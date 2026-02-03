@@ -1,0 +1,80 @@
+Record : 1
+Date/Time : Thu Oct 06 2022 15:46:50
+Severity : 2
+Description : Log cleared.
+-----------------------------------------------------------------
+Record : 2
+Date/Time : Thu Oct 06 2022 15:55:19
+Severity : 2
+Description : C: boot completed.
+-----------------------------------------------------------------
+Record : 3
+Date/Time : Thu Oct 06 2022 15:55:20
+Severity : 2
+Description : OEM software event.
+-----------------------------------------------------------------
+Record : 4
+Date/Time : Fri Apr 28 2023 13:23:29
+Severity : 2
+Description : The process of installing an operating system or hypervisor is started and is in progress.
+-----------------------------------------------------------------
+Record : 5
+Date/Time : Fri Apr 28 2023 13:31:56
+Severity : 2
+Description : The process of installing an operating system or hypervisor is successfully completed.
+-----------------------------------------------------------------
+Record : 6
+Date/Time : Fri Nov 22 2024 22:06:36
+Severity : 4
+Description : The Power Supply Unit (PSU) 1 is not receiving input power because of issues in PSU or cable connections.
+-----------------------------------------------------------------
+Record : 7
+Date/Time : Fri Nov 22 2024 22:06:40
+Severity : 4
+Description : Power supply redundancy is lost.
+-----------------------------------------------------------------
+Record : 8
+Date/Time : Sat Nov 23 2024 02:10:09
+Severity : 2
+Description : The power supplies are redundant.
+-----------------------------------------------------------------
+Record : 9
+Date/Time : Sat Nov 23 2024 02:10:10
+Severity : 2
+Description : The input power for power supply 1 has been restored.
+-----------------------------------------------------------------
+Record : 10
+Date/Time : Sat Nov 23 2024 22:07:05
+Severity : 4
+Description : The Power Supply Unit (PSU) 2 is not receiving input power because of issues in PSU or cable connections.
+-----------------------------------------------------------------
+Record : 11
+Date/Time : Sat Nov 23 2024 22:07:09
+Severity : 4
+Description : Power supply redundancy is lost.
+-----------------------------------------------------------------
+Record : 12
+Date/Time : Sun Nov 24 2024 02:12:55
+Severity : 2
+Description : The power supplies are redundant.
+-----------------------------------------------------------------
+Record : 13
+Date/Time : Sun Nov 24 2024 02:12:56
+Severity : 2
+Description : The input power for power supply 2 has been restored.
+-----------------------------------------------------------------
+Record : 14
+Date/Time : Sat Aug 16 2025 12:09:52
+Severity : 4
+Description : The Power Supply Unit (PSU) 1 is not receiving input power because of issues in PSU or cable connections.
+-----------------------------------------------------------------
+Record : 15
+Date/Time : Sat Aug 16 2025 20:35:25
+Severity : 4
+Description : The Power Supply Unit (PSU) 1 is not receiving input power because of issues in PSU or cable connections.
+-----------------------------------------------------------------
+Record : 16
+Date/Time : Sat Aug 16 2025 20:35:50
+Severity : 4
+Description : Power supply redundancy is lost.
+-----------------------------------------------------------------

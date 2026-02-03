@@ -1,0 +1,1 @@
+git3082 4.20.20.20.34 avc:  denied  { rename } for  pid=22474 comm="openssl" name="serial" dev="tmpfs" ino=273163 scontext=system_u:system_r:openssl_t tcontext=system_u:object_r:syscall_agent_tmp_t tclass=file permissive=0

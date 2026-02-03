@@ -1,0 +1,3238 @@
+Date captured: Sat Sep  6 20:31:35 2025
+
+SOULAPI Version: 4.17.6.0-5c49c295 2020-01-07
+
+
+
+================================================================================
+Controller:    HPE Smart Array P408i-a SR Gen10	Slot:0
+
+Controller Attributes
+-----------------------------------------------
+	4k Raid Supported : False
+	Ace Enabled : True
+	Ace Supported : True
+	Adapter Type : Smart Array
+	All Ports Match : True
+	All Raid Rpi Supported : False
+	Alternate Msa Cache Algorithm : False
+	Alternate Msa Preferred Path Algorithm : False
+	Alternate Msa Surface Delay Algorithm : False
+	Array Count : 2
+	Backup Hardware Error : No Error
+	Backup Power And Green Backup Status Supported : True
+	Backup Power Status : Charged
+	Backup Power Type : Hpe Megacell
+	Battery Good Count : 1
+	Battery Pack Count : 1
+	Battery Status : Ok
+	Bit14 Miscflags Id Phys Drive Support : True
+	Bmic Sensor Supported : True
+	Boot Connector Supported : False
+	Boot Volume Primary : 00000000000000000000000000000000
+	Boot Volume Secondary : 00000000000000000000000000000000
+	Boot Volume Supported : True
+	Bus Type : Pci
+	Cached Data Logical Drive Count : 2
+	Cache Array Count : 0
+	Cache Board Present : True
+	Cache Disabled : False
+	Cache Has Bbwc : True
+	Cache Logical Drive Count : 0
+	Cache Module Memory Data Width : 64
+	Cache Module Memory Transfer Rate : 2100
+	Cache Operations Supported : True
+	Cache Parity Read Errors : 0
+	Cache Parity Write Errors : 0
+	Cache Physical Drive Count : 0
+	Cache Ratio : 10 90
+	Cache Size Total : 3702784
+	Cache Size Total Bbbwc : 3702784
+	Cache Size Total Bbbwc Kb : 1851392
+	Cache Size Total Kb : 1851392
+	Cache Size Total Non Bbbwc : 0
+	Cache Size Total Non Bbbwc Kb : 0
+	Cache Status : Ok
+	Clear Controller Config Supported : True
+	Clear Nvram Supported : True
+	Connector Mode Runtime Change Supported : True
+	Controller Cache Serial Number : 
+	Controller Current Power Mw : 0
+	Controller Disabled Config Status : Ok
+	Controller Firmware Family : Luxor
+	Controller Has Unsupported Sas Drives : False
+	Controller I2c Enabled : False
+	Controller I2c Get Supported : True
+	Controller I2c Set Supported : True
+	Controller Mctp Bus : 92
+	Controller Mctp Device : 0
+	Controller Mctp Eid : 64
+	Controller Mctp Enabled : True
+	Controller Mctp Function : 0
+	Controller Mctp Get Supported : True
+	Controller Mctp Set Supported : True
+	Controller Memory Size : 4194304
+	Controller Memory Size Kb : 2097152
+	Controller Mode : Mixed
+	Controller Name : Smoky Mountains Pm8205 Aroc 8i
+	Controller Oem Id : Hpe
+	Controller Ofa Supported : False
+	Controller Port Rate Limit Supported : False
+	Controller Port Supports Hba : False
+	Controller Port Supports Mixed : True
+	Controller Port Supports Raid : False
+	Controller Product Id : P408i-a SR Gen10
+	Controller Sanitize Supported : True
+	Controller Serial Number : PZXNN0BRHHT0TW 
+	Controller Supports Nvme : False
+	Controller Temperature : 51
+	Controller Vendor Id : HPE
+	Controller Zmr Mode : False
+	Cpld Revision : 14
+	Cpu Revision : 32
+	Current Parallel Surface Scan Count : 1
+	Current Rebuild Mode : Automatic
+	Data Logical Drive Count : 2
+	Data Physical Drive Count : 4
+	Dcache Error Handling Supported : False
+	Ddff Version : Sas And Sata
+	Default Cache Ratio : ATTR_VALUE_CACHE_RATIO_10_90
+	Degraded Performance Optimization : Disabled
+	Degraded Performance Optimization Supported : True
+	Device Id : 2416247439
+	Device Id Hex : 9005028F
+	Diagnostic Mode Enabled : False
+	Driver Enables Hiwatt : False
+	Driver Name : smartpqi
+	Driver Supports Hiwatt : False
+	Driver Version : Linux 2.1.22-040
+	Drives Per Port : 256
+	Drive And Carrier Authentication Support : True
+	Drive Erase Enabled : True
+	Drive Erase On Hba : False
+	Drive Erase On Mixed : True
+	Drive Erase On Raid : True
+	Drive Erase Supported : True
+	Drive Write Cache Policy Support : True
+	Dual Domain Enabled : True
+	Dual Domain Supported : True
+	Dwc Policy Sas Hdd Configured : ATTR_VALUE_DWC_POLICY_DWC_DISABLE
+	Dwc Policy Sas Hdd Unconfigured : ATTR_VALUE_DWC_POLICY_DWC_DEFAULT
+	Dwc Policy Sas Ssd Configured : ATTR_VALUE_DWC_POLICY_DWC_DISABLE
+	Dwc Policy Sas Ssd Unconfigured : ATTR_VALUE_DWC_POLICY_DWC_DEFAULT
+	Dwc Policy Sata Hdd Configured : ATTR_VALUE_DWC_POLICY_DWC_DISABLE
+	Dwc Policy Sata Hdd Unconfigured : ATTR_VALUE_DWC_POLICY_DWC_DEFAULT
+	Dwc Policy Sata Ssd Configured : ATTR_VALUE_DWC_POLICY_DWC_DISABLE
+	Dwc Policy Sata Ssd Unconfigured : ATTR_VALUE_DWC_POLICY_DWC_DEFAULT
+	Dwc Policy Supports Configured : True
+	Dwc Policy Supports Hba : False
+	Dwc Policy Supports Nvme : False
+	Dwc Policy Supports Sas : True
+	Dwc Policy Supports Sata : True
+	Dwc Policy Supports Unconfigured : True
+	Elevator Sort : Enabled
+	Enable Disable Right Phys Supported : False
+	Encrypted Data Logical Drive Count : 0
+	Encryption Acoustics Mixing Supported : False
+	Encryption Boot Password Set : False
+	Encryption Boot Password Unlock Attempts : 0
+	Encryption Controller Locked : False
+	Encryption Controller Password Enabled : False
+	Encryption Crypto Officer Password Set : False
+	Encryption Csp Nvram Status : Passed
+	Encryption Dynamic Roles Supported : False
+	Encryption Enabled : False
+	Encryption Feature Breakout Supported : True
+	Encryption Feature Enabled Allow Plaintext Volumes : True
+	Encryption Feature Enabled Boot Password : True
+	Encryption Feature Enabled Boot Time Remote Auth : True
+	Encryption Feature Enabled Configurable User Roles : True
+	Encryption Feature Enabled Crypto Erase : True
+	Encryption Feature Enabled Data Rekey : True
+	Encryption Feature Enabled Destructive Encode : True
+	Encryption Feature Enabled Disable Encryption On Unit : True
+	Encryption Feature Enabled Drive Rekey : True
+	Encryption Feature Enabled Encode : True
+	Encryption Feature Enabled Encryption Disable : True
+	Encryption Feature Enabled Firmware Lock : True
+	Encryption Feature Enabled Import Foreign Keys : True
+	Encryption Feature Enabled Key Manager Conversion : True
+	Encryption Feature Enabled Local Express : True
+	Encryption Feature Enabled Local Key Cache : True
+	Encryption Feature Enabled Local Mode : True
+	Encryption Feature Enabled Master Key Rekey : True
+	Encryption Feature Enabled Password Recovery User Role : True
+	Encryption Feature Enabled Pause Resume Boot Password : True
+	Encryption Feature Enabled Remote Mode : True
+	Encryption Feature Enabled Return To Factory : True
+	Encryption Feature Enabled Users : True
+	Encryption Feature Enabled Volatile Keys : True
+	Encryption Fw Locked : False
+	Encryption Has Locked Volumes Missing Boot Password : False
+	Encryption Has Suspended Boot Password : False
+	Encryption Hiwatt Mixing Supported : True
+	Encryption Ikey Rekey In Progress : False
+	Encryption Keymanager Mode Conversion Supported : True
+	Encryption Key Manager Retrieval Status : Not Needed
+	Encryption Ldrives Disabled Bad Boot Password : False
+	Encryption Ldrives Disabled Dek Wont Decrypt : False
+	Encryption Ldrives Disabled Ikek Mismatch : False
+	Encryption Ldrives Disabled Key Missing From Eskm : False
+	Encryption Ldrives Disabled Key Retreival Connectivity Error : False
+	Encryption Local Kek Cache Retry Attempts : 0
+	Encryption Local Kek Cache Retry Interval : 0
+	Encryption Local Kek Set : False
+	Encryption Local Key Cache Enabled : False
+	Encryption Local Key Cache Persistent : False
+	Encryption Local Key Cache Supported : True
+	Encryption Lockout Seconds Remaining Crypto : 0
+	Encryption Lockout Seconds Remaining User : 0
+	Encryption Mixed Volumes Enabled : False
+	Encryption Mode : Bypass
+	Encryption One Button Mode : False
+	Encryption Password Unlock Attempts Remaining Crypto : 10
+	Encryption Password Unlock Attempts Remaining User : 10
+	Encryption Reason Rtf : Not Me
+	Encryption Recovery Params Set : False
+	Encryption Remote Kek Set : False
+	Encryption Remote Mode Key Mismatch : False
+	Encryption Rtc Sram Status : Passed
+	Encryption Selftest Status : Passed
+	Encryption Skip Controller Password Enabled : False
+	Encryption Skip Controller Password Supported : True
+	Encryption Standalone Mode Enabled : False
+	Encryption Supported : True
+	Encryption User Password Set : False
+	Encryption Volume Creation Enabled : False
+	Enhanced Rpi Supported : True
+	Expand Priority : Medium
+	Fail Drives With Smart Errors : Disabled
+	Family Id : Smart Array
+	Family Id Supported : True
+	Firmware Allows Recover Cache Module : False
+	Firmware Can Wait For Cache Room : True
+	Firmware Compile Stamp : Jun 28 2023 14:07:04 6.22
+	Firmware Part Number : 836260-004
+	Firmware Request Coalescing : True
+	Firmware Supports Configuring Raid1 Write Buffering : False
+	Firmware Supports Inconsistency Event Notification Control : True
+	Firmware Supports Nobattery Write Cache : True
+	Firmware Supports Raid1 Write Buffering : True
+	Firmware Supports Reorder Command : True
+	Firmware Tag : 6.22
+	Firmware Version : 6.22
+	Firmware Version Pending : 6.22
+	Flashlight Supported : False
+	Flexible Latency Scheduler Setting : Default
+	Flexible Latency Scheduler Supported : True
+	Gasgauge Supported : True
+	Greater Than 2tib Physical Drives Supported : True
+	Green Backup Preservation Enable : False
+	Green Backup Preservation Set : True
+	Green Backup Version Major : 6
+	Green Backup Version Minor : 7
+	Hardware Revision : B
+	Has Splitcache : False
+	Has Swapped Cable Flags : False
+	Hba Encryption Supported : False
+	Hba Mixed Mode Supported : True
+	Hba Mode Led Support : True
+	Hba Mode Physical Drive Count : 0
+	Hba Mode Supported : True
+	Host Serial Number : 2M2320000C                      
+	Hotplug Supported : True
+	Icache Error Handling Supported : False
+	Inactive Firmware Revision : 6.22
+	Inconsistency Repair Policy : Disabled
+	Inconsistency Repair Policy Supported : True
+	Io Bypass Supported : True
+	Is Adg Supported : True
+	Is Rollback Supported : True
+	Is Software Raid : False
+	Is Tofu Supported : False
+	Large Write Cache Bypass Threshold Size : 65
+	Large Write Cache Bypass Threshold Supported : True
+	Last Backup Time : 0
+	Last Restore Time : 0
+	License Keys Supported : True
+	Logical Drive Count : 2
+	Logical Drive Erase Supported : False
+	Long Box Connector Name Supported : True
+	Long Connector Names Supported : True
+	Lun Profiling Enabled : True
+	Lun Profiling Supported : True
+	Marketing Name : HPE Smart Array P408i-a SR Gen10
+	Max Drives Per Array : 128
+	Max License Keys Reached : False
+	Max Logical Volumes : 64
+	Max Parallel Surface Scan Count : 16
+	Max Safe Full Stripe Size : 24576
+	Max Safe Full Stripe Size Kb : 12288
+	Minimum Memory Raid : False
+	Min Parity Strip Size : 32
+	Min Raid 0 1 Strip Size : 32
+	Min Strip Size Supported : True
+	Missing Drive Count Supported : True
+	Mnp Delay : 60
+	Modify Rebuild Mode Supported : True
+	Move Lun Enabled : True
+	Move Lun Supported : True
+	Mpg Supported : True
+	Multi Path Supported : True
+	Ncq Supported : True
+	Notify Driver On Event : False
+	Notify Driver On Event Supported : True
+	No Battery Write Cache : Disabled
+	Nvram Checksum Status : Ok
+	Nway Mirroring Enabled : True
+	Nway Mirroring Supported : True
+	Online Split Mirror Enabled : True
+	Online Split Mirror Supported : True
+	Oob Messaging Interface Supported : False
+	Overprovisioning Optimization Supported : True
+	Parallel Surface Scan Supported : True
+	Parity Raid Supported : True
+	Pcie Gen : Gen3
+	Pcie Width : 8
+	Pci Bus : 92
+	Pci Device : 0
+	Pci Domain : 0
+	Pci Function : 0
+	Pending Sanitize Lock : None
+	Physical Drive Count : 4
+	Pms Running : False
+	Ports : 2
+	Ports External : 0
+	Ports Internal : 2
+	Port Mode Changed Without User Input : False
+	Port Mode Conflict User Input Required : False
+	Post Prompt Timeout : 0
+	Power Consumption : 7820
+	Power Mode Configured : ATTR_VALUE_POWER_MODE_PERFORMANT
+	Power Mode Default : ATTR_VALUE_POWER_MODE_PERFORMANT
+	Power Mode Low Automated Supported : True
+	Power Mode Low Supported : False
+	Power Mode Operational : ATTR_VALUE_POWER_MODE_PERFORMANT
+	Power Mode Performant Supported : True
+	Power Mode Supported : True
+	Power Mode Warning Changed Drive : False
+	Power Mode Warning Changed Mode : False
+	Power Mode Warning Reboot : Not Required
+	Power Mode Warning Temperature : False
+	Predictive Spare Rebuild : Disabled
+	Predictive Spare Rebuild Supported : True
+	Queue Depth : Automatic
+	Raid1 Write Buffering : False
+	Raid 01 Stripe Size : 65535
+	Raid 45 Stripe Size : 2048
+	Raid 50 Enabled : True
+	Raid 50 Supported : True
+	Raid 60 Enabled : True
+	Raid 60 Supported : True
+	Raid 6 Stripe Size : 2048
+	Rapid Parity Initialization Supported : True
+	Rapid Rebuild Supported : True
+	Rebuild Priority : Rapid High
+	Recovery Rom Active Image : A
+	Recovery Rom Supported : True
+	Redundant Paths To All Drives : False
+	Redundant Paths To Some Drives : False
+	Requery Command Supported : True
+	Roaming Spares Supported : True
+	Sanitize Lock : None
+	Sanitize Lock Antifreeze Supported : True
+	Sanitize Lock Changed : False
+	Sanitize Lock Freeze Supported : True
+	Sanitize On Hba : True
+	Sanitize On Mixed : True
+	Sanitize On Raid : True
+	Sed Info Supported : True
+	Sense Support Raid Migration : True
+	Sense Support Stripe Migration : True
+	Sense Support Volume Expansion : True
+	Sense Support Volume Extension : True
+	Signed Firmware Bypass : False
+	Signed Firmware Required : True
+	Slot : 0
+	Smart Hba Mode Supported : True
+	Smr Virtualization Supported : False
+	Spare Physical Drive Count : 0
+	Split Mirror Enabled : True
+	Split Mirror Supported : True
+	Ssd Caching 128kb Cache Line Supported : False
+	Ssd Caching 256kb Cache Line Supported : True
+	Ssd Caching 4k Cache Vols Supported : False
+	Ssd Caching 4k Data Vols Supported : False
+	Ssd Caching 64kb Cache Line Supported : True
+	Ssd Caching Algo0 Bytes Per Cache Line : 50
+	Ssd Caching Algo0 Datavols Per Cachevol : 1
+	Ssd Caching Algo0 Fixed Header Size : 17276
+	Ssd Caching Algo0 Maxcachevol Bits : 27
+	Ssd Caching Algo0 Maxdatavol Bits : 32
+	Ssd Caching Algo0 Type : 1
+	Ssd Caching Algo1 Bytes Per Cache Line : 58
+	Ssd Caching Algo1 Datavols Per Cachevol : 1
+	Ssd Caching Algo1 Fixed Header Size : 17348
+	Ssd Caching Algo1 Maxcachevol Bits : 27
+	Ssd Caching Algo1 Maxdatavol Bits : 32
+	Ssd Caching Algo1 Type : 2
+	Ssd Caching Config Cache Line Supported : True
+	Ssd Caching Enabled : False
+	Ssd Caching Max Strip Size Kb : 256
+	Ssd Caching Memory Available : 1693106176
+	Ssd Caching Memory Used : 0
+	Ssd Caching Min Strip Size Kb : 8
+	Ssd Caching Raid1 Raid10 Enabled : True
+	Ssd Caching Raid5 Raid50 Enabled : False
+	Ssd Caching Raid5 Writeback Enabled : True
+	Ssd Caching Raid6 Raid60 Enabled : False
+	Ssd Caching Supported : True
+	Ssd Caching Version : 2
+	Status : Ok
+	Subsystem Id : 272369154
+	Subsystem Id Hex : 103C0602
+	Surface Analysis Delay : 3
+	Surface Analysis Delay Extended : 30
+	Surface Analysis Inconsistency Event Notification : False
+	Surface Analysis Mode Aggressive : False
+	Surface Analysis Requires Fw Update : False
+	Survival Mode Configurable : True
+	Survival Mode Enabled : True
+	Survival Mode Supported : True
+	Total Number Of Backups : 0
+	Transformation Cache Size : 262144
+	Transformation Cache Size Kb : 131072
+	Type : Array Controller
+	Unassigned Physical Drive Count : 0
+	Unique Id : AC:2814397937
+	Vod Enabled : True
+	Vod Supported : True
+	Wait For Cache Room : False
+	Wwn Port : 51402EC0211310D0
+	Zoning Enabled : False
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_ARRAY_CONTROLLER Supported Operations
+	--------------------------------------------------
+		Discover Arrays
+		Discover Expanders
+		Discover External Array Controllers
+		Discover Licensed Feature
+		Discover License Keys
+		Discover Physical Drives
+		Discover Ports
+		Discover Remote Volumes
+		Discover Sensors
+		Discover Seps
+		Discover Storage Enclosures
+		Discover Storage Volumes
+		Discover Tape Drives
+		Read Array Controller Info
+		...............................................................
+         Class: ATTR_NAME_RAID 
+                     Instance: ATTR_VALUE_RAID_0
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_1
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_1ADM
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_10
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_10ADM
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_5
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_6
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_50
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_60
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+
+		Read Debug Log
+		...............................................................
+         Class: ATTR_NAME_LOG_TYPE 
+                     Instance:	 ATTR_VALUE_LOG_TYPE_LAST_CRASH_DUMP (default)
+                                 Class: ATTR_NAME_CLEAR_LOG 
+                                             Instance: ATTR_VALUE_CLEAR_LOG_TRUE
+                                             Instance:	 ATTR_VALUE_CLEAR_LOG_FALSE (default)
+                     Instance: ATTR_VALUE_LOG_TYPE_PAL_SHIM_LOG
+
+		Read Device Diagnostic Info
+		Read Device Led Info
+		Read Pms Data
+		...............................................................
+         Class: ATTR_NAME_RESET_PMS_COUNTERS 
+                     Instance: ATTR_VALUE_RESET_PMS_COUNTERS_TRUE
+                     Instance:	 ATTR_VALUE_RESET_PMS_COUNTERS_FALSE (default)
+         Class: ATTR_NAME_PMS_DATA_TYPE 
+                     Instance:	 ATTR_VALUE_PMS_DATA_TYPE_AVERAGES (default)
+                     Instance: ATTR_VALUE_PMS_DATA_TYPE_RAW
+
+		Read Scsi Command
+		Write Add License Key
+		...............................................................
+         Class: ATTR_NAME_LICENSE_KEY  [MIN: 25 MAX: 29]
+                     Instance: 
+
+		Write Bmic Command
+		Write Clear Configuration
+		Write Clear Controller Config Bmic
+		...............................................................
+         Class: ATTR_NAME_DELETE_ALL_VOLUMES 
+                     Instance:	 ATTR_VALUE_DELETE_ALL_VOLUMES_TRUE (default)
+                     Instance: ATTR_VALUE_DELETE_ALL_VOLUMES_FALSE
+         Class: ATTR_NAME_CLEAR_NVRAM 
+                     Instance: ATTR_VALUE_CLEAR_NVRAM_TRUE
+                     Instance:	 ATTR_VALUE_CLEAR_NVRAM_FALSE (default)
+
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+		Write Flush Disable Cache
+		...............................................................
+         Class: ATTR_NAME_CACHE_FLAG 
+                     Instance: ATTR_VALUE_CACHE_FLAG_DISABLE
+                     Instance:	 ATTR_VALUE_CACHE_FLAG_FLUSH (default)
+
+		Write Inject Fault
+		...............................................................
+         Class: ATTR_NAME_INJECT_FAULT_TIME_TO_FIRST_ERROR  [MIN: 1 MAX: ]
+                     Instance: 1
+         Class: ATTR_NAME_INJECT_FAULT_TIME_BETWEEN_ERRORS  [MIN: 0 MAX: ]
+                     Instance: 0
+         Class: ATTR_NAME_INJECT_FAULT_TYPE 
+                     Instance: ATTR_VALUE_INJECT_FAULT_TYPE_INFINITE_LOOP
+                     Instance:	 ATTR_VALUE_INJECT_FAULT_TYPE_LOCKUP (default)
+
+		Write Manage Advanced Controller Parameters
+		...............................................................
+         Class: ATTR_NAME_PERFORMANCE_PROFILE 
+                     Instance:	 ATTR_VALUE_PERFORMANCE_PROFILE_DEFAULT (default)
+                                 Class: ATTR_NAME_DEGRADED_PERFORMANCE_OPTIMIZATION 
+                                             Instance: ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_ENABLED
+                                             Instance:	 ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_DISABLED (default)
+                                 Class: ATTR_NAME_ELEVATOR_SORT 
+                                             Instance:	 ATTR_VALUE_ELEVATOR_SORT_ENABLED (default)
+                                             Instance: ATTR_VALUE_ELEVATOR_SORT_DISABLED
+                                 Class: ATTR_NAME_INCONSISTENCY_REPAIR_POLICY 
+                                             Instance: ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_ENABLED
+                                             Instance:	 ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_DISABLED (default)
+                                 Class: ATTR_NAME_QUEUE_DEPTH 
+                                             Instance:	 ATTR_VALUE_QUEUE_DEPTH_AUTOMATIC (default)
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_32
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_16
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_8
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_4
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_2
+                                 Class: ATTR_NAME_MNP_DELAY  [MIN: 0 MAX: 1440]
+                                             Instance:	 60 (default)
+                                 Class: ATTR_NAME_FLEXIBLE_LATENCY_SCHEDULER_SETTING 
+                                             Instance:	 ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_DEFAULT (default)
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_LOW_250
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_100
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_50
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_30
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_10
+                     Instance: ATTR_VALUE_PERFORMANCE_PROFILE_VOD
+                                 Class: ATTR_NAME_DEGRADED_PERFORMANCE_OPTIMIZATION 
+                                             Instance: ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_ENABLED
+                                             Instance:	 ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_DISABLED (default)
+                                 Class: ATTR_NAME_ELEVATOR_SORT 
+                                             Instance:	 ATTR_VALUE_ELEVATOR_SORT_ENABLED (default)
+                                             Instance: ATTR_VALUE_ELEVATOR_SORT_DISABLED
+                                 Class: ATTR_NAME_INCONSISTENCY_REPAIR_POLICY 
+                                             Instance: ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_ENABLED
+                                             Instance:	 ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_DISABLED (default)
+                                 Class: ATTR_NAME_QUEUE_DEPTH 
+                                             Instance:	 ATTR_VALUE_QUEUE_DEPTH_AUTOMATIC (default)
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_32
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_16
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_8
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_4
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_2
+                                 Class: ATTR_NAME_MNP_DELAY  [MIN: 0 MAX: 1440]
+                                             Instance: 0
+                                             Instance:	 60 (default)
+                                 Class: ATTR_NAME_FLEXIBLE_LATENCY_SCHEDULER_SETTING 
+                                             Instance:	 ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_DEFAULT (default)
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_LOW_250
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_100
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_50
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_30
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_10
+                     Instance: ATTR_VALUE_PERFORMANCE_PROFILE_CUSTOM
+                                 Class: ATTR_NAME_DEGRADED_PERFORMANCE_OPTIMIZATION 
+                                             Instance: ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_ENABLED
+                                             Instance:	 ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_DISABLED (default)
+                                 Class: ATTR_NAME_ELEVATOR_SORT 
+                                             Instance:	 ATTR_VALUE_ELEVATOR_SORT_ENABLED (default)
+                                             Instance: ATTR_VALUE_ELEVATOR_SORT_DISABLED
+                                 Class: ATTR_NAME_INCONSISTENCY_REPAIR_POLICY 
+                                             Instance: ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_ENABLED
+                                             Instance:	 ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_DISABLED (default)
+                                 Class: ATTR_NAME_QUEUE_DEPTH 
+                                             Instance:	 ATTR_VALUE_QUEUE_DEPTH_AUTOMATIC (default)
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_32
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_16
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_8
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_4
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_2
+                                 Class: ATTR_NAME_MNP_DELAY  [MIN: 0 MAX: 1440]
+                                             Instance:	 60 (default)
+                                 Class: ATTR_NAME_FLEXIBLE_LATENCY_SCHEDULER_SETTING 
+                                             Instance:	 ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_DEFAULT (default)
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_LOW_250
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_100
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_50
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_30
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_10
+         Class: ATTR_NAME_SURFACE_ANALYSIS_INCONSISTENCY_EVENT_NOTIFICATION 
+                     Instance: ATTR_VALUE_SURFACE_ANALYSIS_INCONSISTENCY_EVENT_NOTIFICATION_TRUE
+                     Instance:	 ATTR_VALUE_SURFACE_ANALYSIS_INCONSISTENCY_EVENT_NOTIFICATION_FALSE (default)
+         Class: ATTR_NAME_FAIL_DRIVES_WITH_SMART_ERRORS 
+                     Instance: ATTR_VALUE_FAIL_DRIVES_WITH_SMART_ERRORS_ENABLED
+                     Instance:	 ATTR_VALUE_FAIL_DRIVES_WITH_SMART_ERRORS_DISABLED (default)
+         Class: ATTR_NAME_FIRMWARE_REQUEST_COALESCING 
+                     Instance:	 ATTR_VALUE_FIRMWARE_REQUEST_COALESCING_TRUE (default)
+                     Instance: ATTR_VALUE_FIRMWARE_REQUEST_COALESCING_FALSE
+
+		Write Manage Array Accelerator
+		...............................................................
+         Class: ATTR_NAME_CACHE_RATIO_READ_PERCENT                   Class: 5  [MIN: 0.000000 MAX: 100]
+                     Instance:	 10 (default)
+         Class: ATTR_NAME_UNIQUE_ID 
+                     Instance:	 AC:2814397937,LD:0 (default)
+                     Instance:	 AC:2814397937,LD:1 (default)
+         Class: ATTR_NAME_NO_BATTERY_WRITE_CACHE 
+                     Instance:	 ATTR_VALUE_NO_BATTERY_WRITE_CACHE_DISABLED (default)
+                     Instance: ATTR_VALUE_NO_BATTERY_WRITE_CACHE_ENABLED
+         Class: ATTR_NAME_WAIT_FOR_CACHE_ROOM 
+                     Instance: ATTR_VALUE_WAIT_FOR_CACHE_ROOM_TRUE
+                     Instance:	 ATTR_VALUE_WAIT_FOR_CACHE_ROOM_FALSE (default)
+         Class: ATTR_NAME_LARGE_WRITE_CACHE_BYPASS_THRESHOLD_SIZE  [MIN: 1 MAX: 65]
+                     Instance:	 65 (default)
+
+		Write Manage Controller Parameters
+		...............................................................
+         Class: ATTR_NAME_EXPAND_PRIORITY 
+                     Instance: ATTR_VALUE_EXPAND_PRIORITY_HIGH
+                     Instance:	 ATTR_VALUE_EXPAND_PRIORITY_MEDIUM (default)
+                     Instance: ATTR_VALUE_EXPAND_PRIORITY_LOW
+         Class: ATTR_NAME_REBUILD_PRIORITY 
+                     Instance:	 ATTR_VALUE_REBUILD_PRIORITY_RAPID_HIGH (default)
+                     Instance: ATTR_VALUE_REBUILD_PRIORITY_RAPID_MEDIUM_HIGH
+                     Instance: ATTR_VALUE_REBUILD_PRIORITY_RAPID_MEDIUM
+                     Instance: ATTR_VALUE_REBUILD_PRIORITY_RAPID_LOW
+         Class: ATTR_NAME_POST_PROMPT_TIMEOUT  [MIN: 0 MAX: 255]
+                     Instance: 0
+                     Instance:	 15 (default)
+         Class: ATTR_NAME_SURFACE_ANALYSIS_DELAY  [MIN: 0 MAX: 30]
+                     Instance:	 3 (default)
+         Class: ATTR_NAME_SURFACE_ANALYSIS_DELAY_EXTENDED  [MIN: 0 MAX: 300]
+                     Instance:	 30 (default)
+         Class: ATTR_NAME_CURRENT_PARALLEL_SURFACE_SCAN_COUNT  [MIN: 1 MAX: 16]
+                     Instance:	 1 (default)
+         Class: ATTR_NAME_NOTIFY_DRIVER_ON_EVENT 
+                     Instance: ATTR_VALUE_NOTIFY_DRIVER_ON_EVENT_TRUE
+                     Instance:	 ATTR_VALUE_NOTIFY_DRIVER_ON_EVENT_FALSE (default)
+
+		Write Manage Drive Write Cache Policy
+		...............................................................
+         Class: ATTR_NAME_DRIVE_WRITE_CACHE_POLICY_CONFIGURED 
+                     Instance:	 ATTR_VALUE_ACTION_DEFAULT (default)
+                     Instance: ATTR_VALUE_ACTION_ENABLE
+                     Instance: ATTR_VALUE_ACTION_DISABLE
+         Class: ATTR_NAME_DRIVE_WRITE_CACHE_POLICY_UNCONFIGURED 
+                     Instance:	 ATTR_VALUE_ACTION_DEFAULT (default)
+                     Instance: ATTR_VALUE_ACTION_ENABLE
+                     Instance: ATTR_VALUE_ACTION_DISABLE
+
+		Write Rescan Physical Devices
+		Write Reset Controller
+		...............................................................
+         Class: ATTR_NAME_RESET_CONTROLLER_TYPE 
+                     Instance:	 ATTR_VALUE_RESET_CONTROLLER_TYPE_IOP (default)
+                     Instance: ATTR_VALUE_RESET_CONTROLLER_TYPE_DRIVERSOFT
+                     Instance: ATTR_VALUE_RESET_CONTROLLER_TYPE_FULL
+
+		Write Set Boot Volume
+		...............................................................
+         Class: ATTR_NAME_BOOT_VOLUME_PRECEDENCE 
+                     Instance:	 ATTR_VALUE_BOOT_VOLUME_PRECEDENCE_PRIMARY (default)
+                                 Class: ATTR_NAME_VOLUME_LOCATION 
+                                             Instance:	 ATTR_VALUE_VOLUME_LOCATION_LOCAL (default)
+                                                         Class: ATTR_NAME_UNIQUE_ID 
+                                                                     Instance: 600508B1001CF4BC217C95FC4FF9774B
+                                                                     Instance: 600508B1001CA18A3EA4B5433E9E79D1
+                                             Instance: ATTR_VALUE_VOLUME_LOCATION_REMOTE
+                                                         Class: ATTR_NAME_UNIQUE_ID 
+                     Instance: ATTR_VALUE_BOOT_VOLUME_PRECEDENCE_SECONDARY
+                                 Class: ATTR_NAME_VOLUME_LOCATION 
+                                             Instance:	 ATTR_VALUE_VOLUME_LOCATION_LOCAL (default)
+                                                         Class: ATTR_NAME_UNIQUE_ID 
+                                                                     Instance: 600508B1001CF4BC217C95FC4FF9774B
+                                                                     Instance: 600508B1001CA18A3EA4B5433E9E79D1
+                                             Instance: ATTR_VALUE_VOLUME_LOCATION_REMOTE
+                                                         Class: ATTR_NAME_UNIQUE_ID 
+
+		Write Set Encryption Mode
+		...............................................................
+         Class: ATTR_NAME_ENCRYPTION_SETUP_TYPE 
+                     Instance: ATTR_VALUE_ENCRYPTION_SETUP_TYPE_AUTO
+                                 Class: ATTR_NAME_ENCRYPTION_ENCODE_DATA 
+                                             Instance: ATTR_VALUE_ENCRYPTION_ENCODE_DATA_FALSE
+                                             Instance:	 ATTR_VALUE_ENCRYPTION_ENCODE_DATA_TRUE (default)
+                     Instance:	 ATTR_VALUE_ENCRYPTION_SETUP_TYPE_MANUAL (default)
+                                 Class: ATTR_NAME_NEW_PASSWORD  [MIN: 8 MAX: 16]
+                                             Instance: 
+                                 Class: ATTR_NAME_ENCRYPTION_MIXED_VOLUMES_ENABLED 
+                                             Instance: ATTR_VALUE_ENCRYPTION_MIXED_VOLUMES_ENABLED_TRUE
+                                             Instance:	 ATTR_VALUE_ENCRYPTION_MIXED_VOLUMES_ENABLED_FALSE (default)
+                                 Class: ATTR_NAME_ENCRYPTION_ENABLED 
+                                             Instance:	 ATTR_VALUE_ENCRYPTION_ENABLED_TRUE (default)
+                                             Instance: ATTR_VALUE_ENCRYPTION_ENABLED_FALSE
+                                 Class: ATTR_NAME_ENCRYPTION_STANDALONE_MODE_ENABLED 
+                                             Instance:	 ATTR_VALUE_ENCRYPTION_STANDALONE_MODE_ENABLED_TRUE (default)
+                                                         Class: ATTR_NAME_KEK_NAME  [MIN: 10 MAX: 32]
+                                                                     Instance:	  (default)
+                                             Instance: ATTR_VALUE_ENCRYPTION_STANDALONE_MODE_ENABLED_FALSE
+                                                         Class: ATTR_NAME_KEK_NAME  [MIN: 1 MAX: 64]
+                                                                     Instance:	  (default)
+
+		Write Set Encryption Passwords
+		...............................................................
+         Class: ATTR_NAME_ENCRYPTION_ROLE_TO_CHANGE 
+                     Instance:	 ATTR_VALUE_ENCRYPTION_ROLE_TO_CHANGE_CRYPTO (default)
+         Class: ATTR_NAME_NEW_PASSWORD  [MIN: 8 MAX: 16]
+                     Instance: 
+
+		Write Set Mctp
+		...............................................................
+         Class: ATTR_NAME_CONTROLLER_MCTP_EID  [MIN: 0 MAX: 255]
+                     Instance:	 64 (default)
+         Class: ATTR_NAME_CONTROLLER_MCTP_BUS  [MIN: 0 MAX: 255]
+                     Instance:	 92 (default)
+         Class: ATTR_NAME_CONTROLLER_MCTP_DEVICE  [MIN: 0 MAX: 255]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONTROLLER_MCTP_FUNCTION  [MIN: 0 MAX: 255]
+                     Instance:	 0 (default)
+
+		Write Set Pms State
+		...............................................................
+         Class: ATTR_NAME_PMS_STATE 
+                     Instance: ATTR_VALUE_PMS_STATE_ENABLED
+                     Instance: ATTR_VALUE_PMS_STATE_DISABLED
+
+		Write Set Power Mode
+		...............................................................
+         Class: ATTR_NAME_POWER_MODE 
+                     Instance: ATTR_VALUE_POWER_MODE_LOW_AUTOMATED
+                     Instance:	 ATTR_VALUE_POWER_MODE_PERFORMANT (default)
+         Class: ATTR_NAME_SURVIVAL_MODE_ENABLED 
+                     Instance:	 ATTR_VALUE_SURVIVAL_MODE_ENABLED_TRUE (default)
+                     Instance: ATTR_VALUE_SURVIVAL_MODE_ENABLED_FALSE
+
+		Write Set Sanitize Lock
+		...............................................................
+         Class: ATTR_NAME_SANITIZE_LOCK 
+                     Instance: ATTR_VALUE_SANITIZE_LOCK_FREEZE
+                     Instance:	 ATTR_VALUE_SANITIZE_LOCK_ANTIFREEZE (default)
+                     Instance: ATTR_VALUE_SANITIZE_LOCK_NONE
+
+		Write Set Spare Mode
+		...............................................................
+         Class: ATTR_NAME_SPARE_MODE 
+                     Instance:	 ATTR_VALUE_SPARE_MODE_LEGACY (default)
+                     Instance: ATTR_VALUE_SPARE_MODE_PREDICTIVE_SPARE_REBUILD
+
+
+	Unsupported Operations
+	--------------------------------------------------
+		Read Configuration Data :	Not Applicable
+		Read Array Controller Bootable Status :	Ev Not Supported
+		Read Controller Ofa Status :	Not Applicable
+			Comment: OFA Not supported on this controller
+		Write Create Array :	Unassigned Drives For Creation Not Available
+		Write Create Array And Raid0 :	Unassigned Drives For Creation Not Available
+		Write Create Boot Connector Array :	Not Supported
+		Write Create Caching Array :	Unassigned Drives For Creation Not Available
+		Write Set Hba Mode :	Not Supported
+			Comment: The controller is reporting it supports Mixed mode
+
+		Write Set I2c :	Oob Interface Not Supported
+			Comment: The controller reports it does not support setting the I2C configuration
+		Write Set Out Of Band Message Interface :	Not Supported
+			Comment: The controller reports it does not support setting the OOB message interface
+		Write Set Port Phy Limit :	Not Supported
+			Comment: Controller does not support setting the port rate limit
+		Write Set Encryption Login :	Encryption No Password Set
+		Write Set Encryption Logout :	Encryption No Password Set
+		Write Set Encryption Recover Password :	Encryption No Password Set
+		Write Set Encryption Recovery Params :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Kek :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Boot Password :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Boot Password State :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Boot Password Remove :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Rekey :	Encryption Disabled
+			Comment: Encryption is not enabled on the controller
+		Write Set Encryption Rescan Keys :	Not Applicable
+		Write Set Encryption Firmware Lock :	Not Applicable
+			Comment: Encryption is not enabled
+		Write Set Encryption Unlock Volumes :	Not Applicable
+		Write Set Encryption Local Kek Cache :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Foreign Local Key Import :	Not Applicable
+		Write Set Encryption Return To Factory Mode :	Encryption No Password Set
+		Write Set Encryption Mode Key Manager :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Mode Key Name :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Mode Enable :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Mode Mixed Vols :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Controller Password Skip :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Boot Controller :	Not Offline
+		Write Set Split Readcache :	Not Applicable
+		Write Clear Ris :	Not Applicable No Ris
+			Comment: The array does not have any physical drives with RIS masked from the HBA - pPhysicalDriveStatus->bMiscDriveFlags & BIT7 
+		Write Set Port Mode :	Only One Mode Supported
+			Comment: The controller reports that all ports support a single mode of operation. Unable to change port modes.
+		Write Recover Cache Module :	Not Applicable
+		Write Cache Settings :	Device Not Yet Cached
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PORT 
+================================================================
+
+	Port Connection Number : 0
+	Port Has One Mode : True
+	Port Id : 0
+	Port Is Boot Connector : False
+	Port Location : Internal
+	Port Mode : Mixed
+	Port Mode Changed : False
+	Port Mode Support Bitmap : 4
+	Port Name : 1I
+	Sas Address : 51402EC0211310D0
+	Type : Port
+	Unique Id : AC:2814397937,Port:0
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_PORT Supported Operations
+	--------------------------------------------------
+		Read Port Info
+
+	Unsupported Operations
+	--------------------------------------------------
+		Write Set Port Mode :	Not Supported
+			Comment: The controller port reports that it supports a single mode of operation. Unable to change port modes.
+		Write Set Port Phy Limit :	Not Supported
+			Comment: Controller does not support setting the port rate limit
+
+
+
+	Device Associations
+	--------------------------------------
+		Port Device
+			AC:2814397937,PD:0
+			AC:2814397937,PD:1
+			AC:2814397937,PD:2
+			AC:2814397937,PD:3
+		Storage Enclosure Port
+			AC:2814397937,SE:AC:281439793700
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PORT 
+================================================================
+
+	Port Connection Number : 1
+	Port Has One Mode : True
+	Port Id : 1
+	Port Is Boot Connector : False
+	Port Location : Internal
+	Port Mode : Mixed
+	Port Mode Changed : False
+	Port Mode Support Bitmap : 4
+	Port Name : 2I
+	Sas Address : 51402EC0211310D4
+	Type : Port
+	Unique Id : AC:2814397937,Port:1
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_PORT Supported Operations
+	--------------------------------------------------
+		Read Port Info
+
+	Unsupported Operations
+	--------------------------------------------------
+		Write Set Port Mode :	Not Supported
+			Comment: The controller port reports that it supports a single mode of operation. Unable to change port modes.
+		Write Set Port Phy Limit :	Not Supported
+			Comment: Controller does not support setting the port rate limit
+
+
+
+	Device Associations
+	--------------------------------------
+		Storage Enclosure Port
+			AC:2814397937,SE:AC:281439793710
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_SENSOR 
+================================================================
+
+	Sensor Current Value : 41
+	Sensor Id : 0
+	Sensor Location : Inlet Ambient
+	Sensor Max Value Since Power On : 46
+	Type : Sensor
+	Unique Id : AC:2814397937,Sensor:0
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_SENSOR 
+================================================================
+
+	Sensor Current Value : 51
+	Sensor Id : 1
+	Sensor Location : Asic
+	Sensor Max Value Since Power On : 57
+	Type : Sensor
+	Unique Id : AC:2814397937,Sensor:1
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_SENSOR 
+================================================================
+
+	Sensor Current Value : 43
+	Sensor Id : 2
+	Sensor Location : Top
+	Sensor Max Value Since Power On : 48
+	Type : Sensor
+	Unique Id : AC:2814397937,Sensor:2
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_LICENSED_FEATURE 
+================================================================
+
+	Licensed Feature Enable Method : Key
+	Licensed Feature Name : Smart Cache
+	Licensed Feature Status : Not Licensed
+	Type : Licensed Feature
+	Unique Id : AC:2814397937,LF:SAF AP02
+
+	Unsupported Operations
+	--------------------------------------------------
+		Write Remove License Key :	Not Applicable
+			Comment: There is no installed key
+
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_STORAGE_ENCLOSURE 
+================================================================
+
+	Backplane Pic Present : False
+	Box : 3
+	Box Index : 0
+	Location : Internal
+	Marketing Name : Storage Enclosure
+	Multi Domain Status : Ok
+	Port : 1I
+	Serial Number : 
+	Status : Ok
+	Type : Storage Enclosure
+	Unique Id : AC:2814397937,SE:AC:281439793700
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_STORAGE_ENCLOSURE Supported Operations
+	--------------------------------------------------
+		Discover Drive Cages
+		Discover Expanders
+		Discover Non Smartarray Physical Drives
+		Discover Seps
+		Read Device Diagnostic Info
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+
+
+	Device Associations
+	--------------------------------------
+		Storage Enclosure Port
+			AC:2814397937,Port:0
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_DRIVE_CAGE 
+================================================================
+
+	Drive Bays : 4
+	Port : 1I
+	Status : Ok
+	Type : Drive Cage
+	Unique Id : AC:2814397937,DC:001I
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_DRIVE_CAGE Supported Operations
+	--------------------------------------------------
+		Discover Physical Drives
+		Discover Tape Drives
+		Read Device Diagnostic Info
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHYSICAL_DRIVE 
+================================================================
+
+	Bay : 4
+	Block Size : 512
+	Box : 3
+	Carrier Application Version : 11
+	Carrier Authentication Status : Ok
+	Carrier Bootloader Version : 6
+	Current Temperature : 45
+	Device Number : 0
+	Drive Authentication Status : Ok
+	Drive Connector Dual Domain : False
+	Drive Connector Phy0 : 0
+	Drive Connector Phy1 : 255
+	Drive Connector Phy2 : 255
+	Drive Connector Phy3 : 255
+	Drive Exposed To Os : False
+	Drive Feature Sed : False
+	Drive Model : HPE     EH000300JWHPL   
+	Drive On Boot Connector : False
+	Drive Ports Match : True
+	Drive Requires Fw Update : False
+	Drive Supports Write Buffer Mode 5 : True
+	Drive Supports Write Buffer Mode 7 : True
+	Drive Type : Data
+	Drive Unique Id : 5000039C481B9321
+	Drive Unique Id Long : 5000039C481B9321619300085000039C
+	Firmware Revision : HPD8
+	Interface : Sas
+	Last Failure Reason : No Failure
+	Location Hint : None
+	Marketing Blocks : 629145600
+	Masked From Hba Has Ris : False
+	Maximum Temperature : 50
+	Media Type : Hdd
+	Mnp Aborted Commands : 0
+	Mnp Bad Target Errors : 0
+	Mnp Ecc Recovered Read Errors : 385
+	Mnp Failed Read Recovers : 0
+	Mnp Failed Write Recovers : 0
+	Mnp Format Errors : 0
+	Mnp Hardware Errors : 0
+	Mnp Hard Read Errors : 760
+	Mnp Hard Write Errors : 0
+	Mnp Hot Plug Count : 0
+	Mnp Media Failures : 0
+	Mnp Not Ready Errors : 0
+	Mnp Other Time Outs : 0
+	Mnp Predictive Failures : 5802
+	Mnp Retry Recovered Read Errors : 406
+	Mnp Retry Recovered Write Errors : 23
+	Mnp Scsi Bus Faults : 0
+	Mnp Sectors Read : 42017104791
+	Mnp Sectors Written : 28181103
+	Mnp Service Hours : 18700
+	Multi Domain Path 0 : 1I:3:4
+	Multi Domain Path Active Path : 0
+	Multi Domain Path Total Paths : 1
+	Multi Domain Status : Ok
+	Native Block Size : 512
+	Phy Count : 2
+	Port : 1I
+	Port Mode : Mixed
+	Protocol : Sas
+	Ris Blocks : 65536
+	Ris Kb : 32768
+	Rotational Speed : 15000
+	Rpi Capable : False
+	Sanitize Erase Supported : True
+	Sanitize Estimated Time : 163
+	Sanitize Method Block Erase Supported : False
+	Sanitize Method Crypto Scramble Supported : False
+	Sanitize Method Overwrite Supported : True
+	Sanitize Unrestricted Supported : True
+	Sanitize Whitelisted Drive : True
+	Serial Number : 13F0A0ACFA3F
+	Shingled Magnetic Recording Support : None
+	Stamped : Yes
+	Status : Predictive Failure
+	Temperature Threshold : 60
+	Total Blocks : 585937500
+	Total Kb : 292968750
+	Type : Physical Drive
+	Unique Id : AC:2814397937,PD:0
+	Unsupported Config Member : False
+	Wwid : 5000039C481B9322
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_PHYSICAL_DRIVE Supported Operations
+	--------------------------------------------------
+		Discover Phys
+		Read Device Diagnostic Info
+		Read Physical Drive Extra Info
+		Read Physical Drive Info
+		Read Scsi Command
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+		Write Fail Physical Drive
+		Write Scsi Command
+
+	Unsupported Operations
+	--------------------------------------------------
+		Send Ata Command :	Not Applicable
+		Association Physical Drive Physical Drive :	Not Applicable
+			Comment: Device is not a spare drive - ATTR_NAME_DRIVE_TYPE != ATTR_VALUE_DRIVE_TYPE_SPARE
+		Write Enable Erased Drive :	Drive Erase Not Running
+		Write Erase Drive :	Drive Is Configured
+			Comment: The physical drive is configured
+		Write Stop Drive Erase :	Drive Erase Not Running
+		Write Clear Ris :	Not Applicable No Ris
+			Comment: The physical drive does not have a RIS masked from the HBA - pPhysicalDriveStatus->bMiscDriveFlags & BIT7 
+
+
+
+	Device Associations
+	--------------------------------------
+		Port Device
+			AC:2814397937,Port:0
+		Data Drive
+			AC:2814397937,A:1
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHY 
+================================================================
+
+	Attached Bmic Index : 65534
+	Attached Device Type : 7
+	Maximum Link Rate : 12 0 Gbps
+	Negotiated Link Rate : 12 0 Gbps
+	Negotiated Physical Link Rate : 12 0 Gbps
+	Phy Number : 0
+	Status : Ok
+	Type : Phy
+	Unique Id : AC:2814397937,PD:0,PY:0
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHY 
+================================================================
+
+	Attached Bmic Index : 0
+	Attached Device Type : 2
+	Maximum Link Rate : 12 0 Gbps
+	Negotiated Link Rate : Unknown
+	Negotiated Physical Link Rate : Unknown
+	Phy Number : 1
+	Status : Ok
+	Type : Phy
+	Unique Id : AC:2814397937,PD:0,PY:1
+
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHYSICAL_DRIVE 
+================================================================
+
+	Bay : 3
+	Block Size : 512
+	Box : 3
+	Carrier Application Version : 11
+	Carrier Authentication Status : Ok
+	Carrier Bootloader Version : 6
+	Current Temperature : 50
+	Device Number : 1
+	Drive Authentication Status : Ok
+	Drive Connector Dual Domain : False
+	Drive Connector Phy0 : 0
+	Drive Connector Phy1 : 255
+	Drive Connector Phy2 : 255
+	Drive Connector Phy3 : 255
+	Drive Exposed To Os : False
+	Drive Feature Sed : False
+	Drive Model : HPE     EH000300JWHPL   
+	Drive On Boot Connector : False
+	Drive Ports Match : True
+	Drive Requires Fw Update : False
+	Drive Supports Write Buffer Mode 5 : True
+	Drive Supports Write Buffer Mode 7 : True
+	Drive Type : Data
+	Drive Unique Id : 5000039C481B8CA5
+	Drive Unique Id Long : 5000039C481B8CA5619300085000039C
+	Firmware Revision : HPD8
+	Interface : Sas
+	Last Failure Reason : No Failure
+	Location Hint : None
+	Marketing Blocks : 629145600
+	Masked From Hba Has Ris : False
+	Maximum Temperature : 55
+	Media Type : Hdd
+	Mnp Aborted Commands : 0
+	Mnp Bad Target Errors : 0
+	Mnp Ecc Recovered Read Errors : 0
+	Mnp Failed Read Recovers : 0
+	Mnp Failed Write Recovers : 0
+	Mnp Format Errors : 0
+	Mnp Hardware Errors : 0
+	Mnp Hard Read Errors : 0
+	Mnp Hard Write Errors : 0
+	Mnp Hot Plug Count : 0
+	Mnp Media Failures : 0
+	Mnp Not Ready Errors : 0
+	Mnp Other Time Outs : 0
+	Mnp Predictive Failures : 0
+	Mnp Retry Recovered Read Errors : 0
+	Mnp Retry Recovered Write Errors : 0
+	Mnp Scsi Bus Faults : 0
+	Mnp Sectors Read : 42016187396
+	Mnp Sectors Written : 28169908
+	Mnp Service Hours : 18700
+	Multi Domain Path 0 : 1I:3:3
+	Multi Domain Path Active Path : 0
+	Multi Domain Path Total Paths : 1
+	Multi Domain Status : Ok
+	Native Block Size : 512
+	Phy Count : 2
+	Port : 1I
+	Port Mode : Mixed
+	Protocol : Sas
+	Ris Blocks : 65536
+	Ris Kb : 32768
+	Rotational Speed : 15000
+	Rpi Capable : False
+	Sanitize Erase Supported : True
+	Sanitize Estimated Time : 163
+	Sanitize Method Block Erase Supported : False
+	Sanitize Method Crypto Scramble Supported : False
+	Sanitize Method Overwrite Supported : True
+	Sanitize Unrestricted Supported : True
+	Sanitize Whitelisted Drive : True
+	Serial Number : 13F0A06XFA3F
+	Shingled Magnetic Recording Support : None
+	Stamped : Yes
+	Status : Ok
+	Temperature Threshold : 60
+	Total Blocks : 585937500
+	Total Kb : 292968750
+	Type : Physical Drive
+	Unique Id : AC:2814397937,PD:1
+	Unsupported Config Member : False
+	Wwid : 5000039C481B8CA6
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_PHYSICAL_DRIVE Supported Operations
+	--------------------------------------------------
+		Discover Phys
+		Read Device Diagnostic Info
+		Read Physical Drive Extra Info
+		Read Physical Drive Info
+		Read Scsi Command
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+		Write Fail Physical Drive
+		Write Scsi Command
+
+	Unsupported Operations
+	--------------------------------------------------
+		Send Ata Command :	Not Applicable
+		Association Physical Drive Physical Drive :	Not Applicable
+			Comment: Device is not a spare drive - ATTR_NAME_DRIVE_TYPE != ATTR_VALUE_DRIVE_TYPE_SPARE
+		Write Enable Erased Drive :	Drive Erase Not Running
+		Write Erase Drive :	Drive Is Configured
+			Comment: The physical drive is configured
+		Write Stop Drive Erase :	Drive Erase Not Running
+		Write Clear Ris :	Not Applicable No Ris
+			Comment: The physical drive does not have a RIS masked from the HBA - pPhysicalDriveStatus->bMiscDriveFlags & BIT7 
+
+
+
+	Device Associations
+	--------------------------------------
+		Port Device
+			AC:2814397937,Port:0
+		Data Drive
+			AC:2814397937,A:1
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHY 
+================================================================
+
+	Attached Bmic Index : 65534
+	Attached Device Type : 7
+	Maximum Link Rate : 12 0 Gbps
+	Negotiated Link Rate : 12 0 Gbps
+	Negotiated Physical Link Rate : 12 0 Gbps
+	Phy Number : 0
+	Status : Ok
+	Type : Phy
+	Unique Id : AC:2814397937,PD:1,PY:0
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHY 
+================================================================
+
+	Attached Bmic Index : 0
+	Attached Device Type : 2
+	Maximum Link Rate : 12 0 Gbps
+	Negotiated Link Rate : Unknown
+	Negotiated Physical Link Rate : Unknown
+	Phy Number : 1
+	Status : Ok
+	Type : Phy
+	Unique Id : AC:2814397937,PD:1,PY:1
+
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHYSICAL_DRIVE 
+================================================================
+
+	Bay : 2
+	Block Size : 512
+	Box : 3
+	Carrier Application Version : 11
+	Carrier Authentication Status : Ok
+	Carrier Bootloader Version : 6
+	Current Temperature : 52
+	Device Number : 2
+	Drive Authentication Status : Ok
+	Drive Connector Dual Domain : False
+	Drive Connector Phy0 : 0
+	Drive Connector Phy1 : 255
+	Drive Connector Phy2 : 255
+	Drive Connector Phy3 : 255
+	Drive Exposed To Os : False
+	Drive Feature Sed : False
+	Drive Model : HPE     EH000300JWHPL   
+	Drive On Boot Connector : False
+	Drive Ports Match : True
+	Drive Requires Fw Update : False
+	Drive Supports Write Buffer Mode 5 : True
+	Drive Supports Write Buffer Mode 7 : True
+	Drive Type : Data
+	Drive Unique Id : 5000039C481B8CD1
+	Drive Unique Id Long : 5000039C481B8CD1619300085000039C
+	Firmware Revision : HPD8
+	Interface : Sas
+	Last Failure Reason : No Failure
+	Location Hint : None
+	Marketing Blocks : 629145600
+	Masked From Hba Has Ris : False
+	Maximum Temperature : 55
+	Media Type : Hdd
+	Mnp Aborted Commands : 0
+	Mnp Bad Target Errors : 0
+	Mnp Ecc Recovered Read Errors : 0
+	Mnp Failed Read Recovers : 0
+	Mnp Failed Write Recovers : 0
+	Mnp Format Errors : 0
+	Mnp Hardware Errors : 0
+	Mnp Hard Read Errors : 0
+	Mnp Hard Write Errors : 0
+	Mnp Hot Plug Count : 0
+	Mnp Media Failures : 0
+	Mnp Not Ready Errors : 0
+	Mnp Other Time Outs : 0
+	Mnp Predictive Failures : 0
+	Mnp Retry Recovered Read Errors : 0
+	Mnp Retry Recovered Write Errors : 0
+	Mnp Scsi Bus Faults : 0
+	Mnp Sectors Read : 34007403042
+	Mnp Sectors Written : 71559442012
+	Mnp Service Hours : 18700
+	Multi Domain Path 0 : 1I:3:2
+	Multi Domain Path Active Path : 0
+	Multi Domain Path Total Paths : 1
+	Multi Domain Status : Ok
+	Native Block Size : 512
+	Phy Count : 2
+	Port : 1I
+	Port Mode : Mixed
+	Protocol : Sas
+	Ris Blocks : 65536
+	Ris Kb : 32768
+	Rotational Speed : 15000
+	Rpi Capable : False
+	Sanitize Erase Supported : True
+	Sanitize Estimated Time : 163
+	Sanitize Method Block Erase Supported : False
+	Sanitize Method Crypto Scramble Supported : False
+	Sanitize Method Overwrite Supported : True
+	Sanitize Unrestricted Supported : True
+	Sanitize Whitelisted Drive : True
+	Serial Number : 13F0A06ZFA3F
+	Shingled Magnetic Recording Support : None
+	Stamped : Yes
+	Status : Ok
+	Temperature Threshold : 60
+	Total Blocks : 585937500
+	Total Kb : 292968750
+	Type : Physical Drive
+	Unique Id : AC:2814397937,PD:2
+	Unsupported Config Member : False
+	Wwid : 5000039C481B8CD2
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_PHYSICAL_DRIVE Supported Operations
+	--------------------------------------------------
+		Discover Phys
+		Read Device Diagnostic Info
+		Read Physical Drive Extra Info
+		Read Physical Drive Info
+		Read Scsi Command
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+		Write Fail Physical Drive
+		Write Scsi Command
+
+	Unsupported Operations
+	--------------------------------------------------
+		Send Ata Command :	Not Applicable
+		Association Physical Drive Physical Drive :	Not Applicable
+			Comment: Device is not a spare drive - ATTR_NAME_DRIVE_TYPE != ATTR_VALUE_DRIVE_TYPE_SPARE
+		Write Enable Erased Drive :	Drive Erase Not Running
+		Write Erase Drive :	Drive Is Configured
+			Comment: The physical drive is configured
+		Write Stop Drive Erase :	Drive Erase Not Running
+		Write Clear Ris :	Not Applicable No Ris
+			Comment: The physical drive does not have a RIS masked from the HBA - pPhysicalDriveStatus->bMiscDriveFlags & BIT7 
+
+
+
+	Device Associations
+	--------------------------------------
+		Port Device
+			AC:2814397937,Port:0
+		Data Drive
+			AC:2814397937,A:0
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHY 
+================================================================
+
+	Attached Bmic Index : 65534
+	Attached Device Type : 7
+	Maximum Link Rate : 12 0 Gbps
+	Negotiated Link Rate : 12 0 Gbps
+	Negotiated Physical Link Rate : 12 0 Gbps
+	Phy Number : 0
+	Status : Ok
+	Type : Phy
+	Unique Id : AC:2814397937,PD:2,PY:0
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHY 
+================================================================
+
+	Attached Bmic Index : 0
+	Attached Device Type : 2
+	Maximum Link Rate : 12 0 Gbps
+	Negotiated Link Rate : Unknown
+	Negotiated Physical Link Rate : Unknown
+	Phy Number : 1
+	Status : Ok
+	Type : Phy
+	Unique Id : AC:2814397937,PD:2,PY:1
+
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHYSICAL_DRIVE 
+================================================================
+
+	Bay : 1
+	Block Size : 512
+	Box : 3
+	Carrier Application Version : 11
+	Carrier Authentication Status : Ok
+	Carrier Bootloader Version : 6
+	Current Temperature : 47
+	Device Number : 3
+	Drive Authentication Status : Ok
+	Drive Connector Dual Domain : False
+	Drive Connector Phy0 : 0
+	Drive Connector Phy1 : 255
+	Drive Connector Phy2 : 255
+	Drive Connector Phy3 : 255
+	Drive Exposed To Os : False
+	Drive Feature Sed : False
+	Drive Model : HPE     EH000300JWHPL   
+	Drive On Boot Connector : False
+	Drive Ports Match : True
+	Drive Requires Fw Update : False
+	Drive Supports Write Buffer Mode 5 : True
+	Drive Supports Write Buffer Mode 7 : True
+	Drive Type : Data
+	Drive Unique Id : 5000039C481B9309
+	Drive Unique Id Long : 5000039C481B9309619300085000039C
+	Firmware Revision : HPD8
+	Interface : Sas
+	Last Failure Reason : No Failure
+	Location Hint : None
+	Marketing Blocks : 629145600
+	Masked From Hba Has Ris : False
+	Maximum Temperature : 52
+	Media Type : Hdd
+	Mnp Aborted Commands : 0
+	Mnp Bad Target Errors : 0
+	Mnp Ecc Recovered Read Errors : 0
+	Mnp Failed Read Recovers : 0
+	Mnp Failed Write Recovers : 0
+	Mnp Format Errors : 0
+	Mnp Hardware Errors : 0
+	Mnp Hard Read Errors : 38
+	Mnp Hard Write Errors : 0
+	Mnp Hot Plug Count : 0
+	Mnp Media Failures : 0
+	Mnp Not Ready Errors : 0
+	Mnp Other Time Outs : 0
+	Mnp Predictive Failures : 0
+	Mnp Retry Recovered Read Errors : 3
+	Mnp Retry Recovered Write Errors : 28
+	Mnp Scsi Bus Faults : 0
+	Mnp Sectors Read : 33988300494
+	Mnp Sectors Written : 71559319801
+	Mnp Service Hours : 18700
+	Multi Domain Path 0 : 1I:3:1
+	Multi Domain Path Active Path : 0
+	Multi Domain Path Total Paths : 1
+	Multi Domain Status : Ok
+	Native Block Size : 512
+	Phy Count : 2
+	Port : 1I
+	Port Mode : Mixed
+	Protocol : Sas
+	Ris Blocks : 65536
+	Ris Kb : 32768
+	Rotational Speed : 15000
+	Rpi Capable : False
+	Sanitize Erase Supported : True
+	Sanitize Estimated Time : 163
+	Sanitize Method Block Erase Supported : False
+	Sanitize Method Crypto Scramble Supported : False
+	Sanitize Method Overwrite Supported : True
+	Sanitize Unrestricted Supported : True
+	Sanitize Whitelisted Drive : True
+	Serial Number : 13F0A0A9FA3F
+	Shingled Magnetic Recording Support : None
+	Stamped : Yes
+	Status : Ok
+	Temperature Threshold : 60
+	Total Blocks : 585937500
+	Total Kb : 292968750
+	Type : Physical Drive
+	Unique Id : AC:2814397937,PD:3
+	Unsupported Config Member : False
+	Wwid : 5000039C481B930A
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_PHYSICAL_DRIVE Supported Operations
+	--------------------------------------------------
+		Discover Phys
+		Read Device Diagnostic Info
+		Read Physical Drive Extra Info
+		Read Physical Drive Info
+		Read Scsi Command
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+		Write Fail Physical Drive
+		Write Scsi Command
+
+	Unsupported Operations
+	--------------------------------------------------
+		Send Ata Command :	Not Applicable
+		Association Physical Drive Physical Drive :	Not Applicable
+			Comment: Device is not a spare drive - ATTR_NAME_DRIVE_TYPE != ATTR_VALUE_DRIVE_TYPE_SPARE
+		Write Enable Erased Drive :	Drive Erase Not Running
+		Write Erase Drive :	Drive Is Configured
+			Comment: The physical drive is configured
+		Write Stop Drive Erase :	Drive Erase Not Running
+		Write Clear Ris :	Not Applicable No Ris
+			Comment: The physical drive does not have a RIS masked from the HBA - pPhysicalDriveStatus->bMiscDriveFlags & BIT7 
+
+
+
+	Device Associations
+	--------------------------------------
+		Port Device
+			AC:2814397937,Port:0
+		Data Drive
+			AC:2814397937,A:0
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHY 
+================================================================
+
+	Attached Bmic Index : 65534
+	Attached Device Type : 7
+	Maximum Link Rate : 12 0 Gbps
+	Negotiated Link Rate : 12 0 Gbps
+	Negotiated Physical Link Rate : 12 0 Gbps
+	Phy Number : 0
+	Status : Ok
+	Type : Phy
+	Unique Id : AC:2814397937,PD:3,PY:0
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_PHY 
+================================================================
+
+	Attached Bmic Index : 0
+	Attached Device Type : 2
+	Maximum Link Rate : 12 0 Gbps
+	Negotiated Link Rate : Unknown
+	Negotiated Physical Link Rate : Unknown
+	Phy Number : 1
+	Status : Ok
+	Type : Phy
+	Unique Id : AC:2814397937,PD:3,PY:1
+
+
+
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_STORAGE_ENCLOSURE 
+================================================================
+
+	Backplane Pic Present : False
+	Box : 0
+	Box Index : 1
+	Location : Internal
+	Marketing Name : Storage Enclosure
+	Multi Domain Status : Ok
+	Port : 2I
+	Serial Number : 
+	Status : Ok
+	Type : Storage Enclosure
+	Unique Id : AC:2814397937,SE:AC:281439793710
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_STORAGE_ENCLOSURE Supported Operations
+	--------------------------------------------------
+		Discover Drive Cages
+		Discover Expanders
+		Discover Non Smartarray Physical Drives
+		Discover Seps
+		Read Device Diagnostic Info
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+
+
+	Device Associations
+	--------------------------------------
+		Storage Enclosure Port
+			AC:2814397937,Port:1
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_DRIVE_CAGE 
+================================================================
+
+	Drive Bays : 4
+	Port : 2I
+	Status : Ok
+	Type : Drive Cage
+	Unique Id : AC:2814397937,DC:102I
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_DRIVE_CAGE Supported Operations
+	--------------------------------------------------
+		Discover Physical Drives
+		Discover Tape Drives
+		Read Device Diagnostic Info
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_STORAGE_VOLUME 
+================================================================
+
+	Block Size : 512
+	Cylinders : 36468
+	Drive Access Name : &#x2F;dev&#x2F;sdb
+	Heads : 255
+	Native Block Size : 512
+	Sectors : 63
+	Type : Storage Volume
+	Unique Id : AC:2814397937,SV:600508B1001CA18A3EA4B5433E9E79D1
+	Useable Blocks : 585871964
+	Volume Bus Type : Raid
+	Volume In Use : False
+	Volume Model : HPE     LOGICAL VOLUME
+	Volume Serial Number : PZXNN0BRHHT0TW
+	Volume Unique Identifier : 600508B1001CA18A3EA4B5433E9E79D1
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_STORAGE_VOLUME Supported Operations
+	--------------------------------------------------
+		Discover Disk Extents
+
+
+	Device Associations
+	--------------------------------------
+		Storage Volume Device
+			AC:2814397937,LD:1
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_STORAGE_VOLUME 
+================================================================
+
+	Block Size : 512
+	Cylinders : 36468
+	Drive Access Name : &#x2F;dev&#x2F;sda
+	Heads : 255
+	Native Block Size : 512
+	Sectors : 63
+	Type : Storage Volume
+	Unique Id : AC:2814397937,SV:600508B1001CF4BC217C95FC4FF9774B
+	Useable Blocks : 585871964
+	Volume Bus Type : Raid
+	Volume In Use : True
+	Volume Model : HPE     LOGICAL VOLUME
+	Volume Serial Number : PZXNN0BRHHT0TW
+	Volume Unique Identifier : 600508B1001CF4BC217C95FC4FF9774B
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_STORAGE_VOLUME Supported Operations
+	--------------------------------------------------
+		Discover Disk Extents
+
+
+	Device Associations
+	--------------------------------------
+		Storage Volume Device
+			AC:2814397937,LD:0
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_DISK_EXTENT 
+================================================================
+
+	Disk Extent Mount Point : &#x2F;boot
+	Disk Extent Number : 2
+	Disk Extent Offset : 1230848
+	Disk Extent Size : 4194304
+	Type : Disk Extent
+	Unique Id : AC:2814397937,SV:600508B1001CF4BC217C95FC4FF9774B,DE:2
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_DISK_EXTENT 
+================================================================
+
+	Disk Extent Mount Point : &#x2F;boot&#x2F;efi
+	Disk Extent Number : 1
+	Disk Extent Offset : 2048
+	Disk Extent Size : 1228800
+	Type : Disk Extent
+	Unique Id : AC:2814397937,SV:600508B1001CF4BC217C95FC4FF9774B,DE:1
+
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_SEP 
+================================================================
+
+	Active Path Box : 0
+	Device Number : 379
+	Firmware Revision : 6.22
+	Marketing Name : SEP
+	Product Id : Smart Adapter   
+	Type : Sep
+	Unique Id : AC:2814397937,S:379
+	Vendor Id : HPE     
+	Wwid : 51402EC0211310D8
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_SEP Supported Operations
+	--------------------------------------------------
+		Read Device Diagnostic Info
+		Read Scsi Command
+
+	Unsupported Operations
+	--------------------------------------------------
+		Read Sep Configuration Mode :	Not Applicable
+		Read Sep Zoning :	Not Applicable
+		Write Set Sep Configuration Mode :	Not Applicable
+		Write Set Sep Zoning :	Not Applicable
+		Read Sep Info :	Not Applicable
+
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_ARRAY 
+================================================================
+
+	Acceleration Mode : Independent
+	Alignment Largest Gap Blocks : 0
+	Alignment Size : 512
+	Array Has Unaligned Logical Drives : False
+	Array Label : A
+	Array Number : 0
+	Array On Boot Connector : False
+	Array Type : Data
+	Free Blocks : 0
+	Free Kb : 0
+	Has Fault Tolerant Drive : True
+	Interface : Sas
+	Last Deleteable Logical Drive : 0
+	Max Aligned Physical Drive Block Size : 0
+	Multi Domain Status : Ok
+	Next Data Offset : 585871964
+	Percent Free : 0.00
+	Percent Used : 100.00
+	Physical Drive Block Size : 512
+	Ris Blocks Per Physical Drive : 65536
+	Ris Kb Per Physical Drive : 32768
+	Shingled Magnetic Recording Support : None
+	Spare Rebuild Mode : Dedicated
+	Status : Ok
+	Total Blocks Per Physical Drive : 585937500
+	Total Kb : 585871964
+	Total Kb Per Physical Drive : 292968750
+	Type : Array
+	Unique Id : AC:2814397937,A:0
+	Used Kb : 585871964
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_ARRAY Supported Operations
+	--------------------------------------------------
+		Discover Logical Drives
+		Read Array Info
+		Read Device Diagnostic Info
+		Write Create Split Mirror Backup
+		...............................................................
+         Class: ATTR_NAME_UNIQUE_ID 
+                     Instance:	 AC:2814397937,PD:2 (default)
+                     Instance: AC:2814397937,PD:3
+
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+
+	Unsupported Operations
+	--------------------------------------------------
+		Write Align Logical Drives :	No Unaligned Logical Drives
+		Write Remove Array Gaps :	Array Has No Gaps
+		Write Create Logical Drive :	Space For Creation Not Available
+			Comment: The size available is smaller than the minimum allowable data volume size
+		Write Manage Data Drives :	Logical Drive Not Raid 0
+		Write Expand Array :	Drives For Transformation Not Available
+		Write Manage Spare Drive :	Assignable Spares Not Available
+		Write Shrink Array :	Minimum Physical Drives Reached
+		Write Move Array :	Drives For Transformation Not Available
+		Write Move Array Across Boot Connector :	Drives For Transformation Not Available
+		Write Replace Array :	Valid Replacement Array Not Available
+		Write Split Array :	Split Mirror Not Supported
+			Comment: Use the new split-mirror backup command
+		Write Create Caching Logical Drive :	Feature Requires License Key
+		Write Join Array :	Split Mirror Not Supported
+			Comment: Use the new split-mirror backup command
+		Write Delete Array :	Not All Logical Drives Deleteable
+		Write Heal Array :	Array Status Ok
+			Comment: There are no failed or degraded arrays to heal
+		Write Manage Split Mirror Backup :	Unsupported For This Drive Type
+			Comment: Array type is neither Split Mirror Set Primary nor Split Mirror Set Backup Orphan
+		Write Manage Logical Drive Acceleration :	Not Applicable To Hdd Arrays
+			Comment: The operation is only applicable to SSDs/NVMEs
+		Write Set Encryption Encode :	Encryption Disabled
+			Comment: Encryption is not enabled on the controller
+		Write Set Encryption Rekey :	Encryption Disabled
+			Comment: Encryption is not enabled on the controller
+		Write Refresh Logical Drives :	Array Status Ok
+
+
+
+	Device Associations
+	--------------------------------------
+		Data Drive
+			AC:2814397937,PD:2
+			AC:2814397937,PD:3
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_LOGICAL_DRIVE 
+================================================================
+
+	Aligned : True
+	Array Accelerator : Enabled
+	Blocks Per Drive : 585871964
+	Block Size : 512
+	Boot Support : Enabled
+	Caching Association : None
+	Cylinders : 65535
+	Data Offset : 0
+	Drives For Fault Tolerance : 1
+	Drive Mix : False
+	Drive Mix Flag : 2
+	Drive Number : 0
+	Heads : 255
+	Is Big Logical Drive : True
+	Is Volume Hidden : False
+	Logical Drive Accelerator : Controller Cache
+	Logical Drive Name : Logical Drive 1
+	Logical Drive Type : Data
+	Missing Drive Count : 0
+	Multi Domain Status : Ok
+	Raid : 1
+	Sectors : 32
+	Signature : 32057380
+	Signature Other : 0
+	Spare Rebuild Mode : Dedicated
+	Status : Ok
+	Stripe Size : 512
+	Stripe Size Full Volume : 512
+	Stripe Size Full Volume Kb : 256
+	Stripe Size Kb : 256
+	Stripe Size Too Large For Transform : False
+	Surface Analysis Blocks Reassigned : 1
+	Surface Analysis Pass Count : 55
+	Surface Analysis Pass Time : 271399
+	Surface Analysis Uncorrected Error : None
+	Total Blocks : 1171743928
+	Type : Logical Drive
+	Unique Id : AC:2814397937,LD:0
+	Useable Blocks : 585871964
+	Volume Size Kb : 292935982
+	Volume Unique Identifier : 600508B1001CF4BC217C95FC4FF9774B
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_LOGICAL_DRIVE Supported Operations
+	--------------------------------------------------
+		Discover Mirror Groups
+		Discover Parity Groups
+		Read Device Diagnostic Info
+		Read Logical Drive Info
+		Read Scsi Command
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+		Write Migrate Logical Drive
+		...............................................................
+         Class: ATTR_NAME_RAID 
+                     Instance: ATTR_VALUE_RAID_0
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance:	 ATTR_VALUE_RAID_1 (default)
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+
+		Write Reorder Logical Drive
+		...............................................................
+         Class: ATTR_NAME_DRIVE_NUMBER 
+                     Instance:	 0 (default)
+                     Instance: 1
+                     Instance: 2
+                     Instance: 3
+                     Instance: 4
+                     Instance: 5
+                     Instance: 6
+                     Instance: 7
+                     Instance: 8
+                     Instance: 9
+                     Instance: 10
+                     Instance: 11
+                     Instance: 12
+                     Instance: 13
+                     Instance: 14
+                     Instance: 15
+                     Instance: 16
+                     Instance: 17
+                     Instance: 18
+                     Instance: 19
+                     Instance: 20
+                     Instance: 21
+                     Instance: 22
+                     Instance: 23
+                     Instance: 24
+                     Instance: 25
+                     Instance: 26
+                     Instance: 27
+                     Instance: 28
+                     Instance: 29
+                     Instance: 30
+                     Instance: 31
+                     Instance: 32
+                     Instance: 33
+                     Instance: 34
+                     Instance: 35
+                     Instance: 36
+                     Instance: 37
+                     Instance: 38
+                     Instance: 39
+                     Instance: 40
+                     Instance: 41
+                     Instance: 42
+                     Instance: 43
+                     Instance: 44
+                     Instance: 45
+                     Instance: 46
+                     Instance: 47
+                     Instance: 48
+                     Instance: 49
+                     Instance: 50
+                     Instance: 51
+                     Instance: 52
+                     Instance: 53
+                     Instance: 54
+                     Instance: 55
+                     Instance: 56
+                     Instance: 57
+                     Instance: 58
+                     Instance: 59
+                     Instance: 60
+                     Instance: 61
+                     Instance: 62
+                     Instance: 63
+
+		Write Set Logical Drive Name
+		...............................................................
+         Class: ATTR_NAME_LOGICAL_DRIVE_NAME  [MIN: 0 MAX: 64]
+                     Instance: Logical Drive	 1 (default)
+
+
+	Unsupported Operations
+	--------------------------------------------------
+		Read Expand Rebuild Info :	Not Applicable
+		Write Extend Logical Drive :	Space For Transformation Not Available
+		Write Move Logical Drive :	Valid Target Array Not Available
+		Write Delete Logical Drive :	In Use By Os
+		Write Reenable Logical Drive :	Logical Drive Not Disabled
+		Write Create Caching Logical Drive :	Feature Requires License Key
+		Write Set Encryption Rekey :	Encryption Disabled
+			Comment: Encryption is not enabled on the controller
+		Write Set Encryption Encode :	Encryption Disabled
+			Comment: Encryption is not enabled on the controller
+		Write Set Encryption Crypto Erase :	Not Applicable
+		Write Modify Ssd Caching Parameters :	Not A Caching Volume
+			Comment: The volume is not a primary or cache LUN
+		Write Set Encryption Drive Options :	Encryption Disabled
+		Write Set Encryption Volatile Key Action :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Read Ssd Cache Stats :	Feature Not Licensed
+
+
+
+	Device Associations
+	--------------------------------------
+		Storage Volume Device
+			AC:2814397937,SV:600508B1001CF4BC217C95FC4FF9774B
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_MIRROR_GROUP 
+================================================================
+
+	Mirror Group Number : 0
+	Type : Mirror Group
+	Unique Id : AC:2814397937,LD:0,MG:0
+
+
+	Device Associations
+	--------------------------------------
+		Data Drive
+			AC:2814397937,PD:2
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_MIRROR_GROUP 
+================================================================
+
+	Mirror Group Number : 1
+	Type : Mirror Group
+	Unique Id : AC:2814397937,LD:0,MG:1
+
+
+	Device Associations
+	--------------------------------------
+		Data Drive
+			AC:2814397937,PD:3
+
+
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_ARRAY 
+================================================================
+
+	Acceleration Mode : Independent
+	Alignment Largest Gap Blocks : 0
+	Alignment Size : 512
+	Array Has Unaligned Logical Drives : False
+	Array Label : B
+	Array Number : 1
+	Array On Boot Connector : False
+	Array Type : Data
+	Free Blocks : 0
+	Free Kb : 0
+	Has Fault Tolerant Drive : True
+	Interface : Sas
+	Last Deleteable Logical Drive : 1
+	Max Aligned Physical Drive Block Size : 0
+	Multi Domain Status : Ok
+	Next Data Offset : 585871964
+	Percent Free : 0.00
+	Percent Used : 100.00
+	Physical Drive Block Size : 512
+	Ris Blocks Per Physical Drive : 65536
+	Ris Kb Per Physical Drive : 32768
+	Shingled Magnetic Recording Support : None
+	Spare Rebuild Mode : Dedicated
+	Status : Ok
+	Total Blocks Per Physical Drive : 585937500
+	Total Kb : 585871964
+	Total Kb Per Physical Drive : 292968750
+	Type : Array
+	Unique Id : AC:2814397937,A:1
+	Used Kb : 585871964
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_ARRAY Supported Operations
+	--------------------------------------------------
+		Discover Logical Drives
+		Read Array Info
+		Read Device Diagnostic Info
+		Write Create Split Mirror Backup
+		...............................................................
+         Class: ATTR_NAME_UNIQUE_ID 
+                     Instance:	 AC:2814397937,PD:0 (default)
+                     Instance: AC:2814397937,PD:1
+
+		Write Delete Array
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+
+	Unsupported Operations
+	--------------------------------------------------
+		Write Align Logical Drives :	No Unaligned Logical Drives
+		Write Remove Array Gaps :	Array Has No Gaps
+		Write Create Logical Drive :	Space For Creation Not Available
+			Comment: The size available is smaller than the minimum allowable data volume size
+		Write Manage Data Drives :	Logical Drive Not Raid 0
+		Write Expand Array :	Drives For Transformation Not Available
+		Write Manage Spare Drive :	Assignable Spares Not Available
+		Write Shrink Array :	Minimum Physical Drives Reached
+		Write Move Array :	Drives For Transformation Not Available
+		Write Move Array Across Boot Connector :	Drives For Transformation Not Available
+		Write Replace Array :	Valid Replacement Array Not Available
+		Write Split Array :	Split Mirror Not Supported
+			Comment: Use the new split-mirror backup command
+		Write Create Caching Logical Drive :	Feature Requires License Key
+		Write Join Array :	Split Mirror Not Supported
+			Comment: Use the new split-mirror backup command
+		Write Heal Array :	Array Status Ok
+			Comment: There are no failed or degraded arrays to heal
+		Write Manage Split Mirror Backup :	Unsupported For This Drive Type
+			Comment: Array type is neither Split Mirror Set Primary nor Split Mirror Set Backup Orphan
+		Write Manage Logical Drive Acceleration :	Not Applicable To Hdd Arrays
+			Comment: The operation is only applicable to SSDs/NVMEs
+		Write Set Encryption Encode :	Encryption Disabled
+			Comment: Encryption is not enabled on the controller
+		Write Set Encryption Rekey :	Encryption Disabled
+			Comment: Encryption is not enabled on the controller
+		Write Refresh Logical Drives :	Array Status Ok
+
+
+
+	Device Associations
+	--------------------------------------
+		Data Drive
+			AC:2814397937,PD:0
+			AC:2814397937,PD:1
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_LOGICAL_DRIVE 
+================================================================
+
+	Aligned : True
+	Array Accelerator : Enabled
+	Blocks Per Drive : 585871964
+	Block Size : 512
+	Boot Support : Enabled
+	Caching Association : None
+	Cylinders : 65535
+	Data Offset : 0
+	Drives For Fault Tolerance : 1
+	Drive Mix : False
+	Drive Mix Flag : 2
+	Drive Number : 1
+	Heads : 255
+	Is Big Logical Drive : True
+	Is Volume Hidden : False
+	Logical Drive Accelerator : Controller Cache
+	Logical Drive Name : Logical Drive 2
+	Logical Drive Type : Data
+	Missing Drive Count : 0
+	Multi Domain Status : Ok
+	Raid : 1
+	Sectors : 32
+	Signature : 99166261
+	Signature Other : 0
+	Spare Rebuild Mode : Dedicated
+	Status : Ok
+	Stripe Size : 512
+	Stripe Size Full Volume : 512
+	Stripe Size Full Volume Kb : 256
+	Stripe Size Kb : 256
+	Stripe Size Too Large For Transform : False
+	Surface Analysis Blocks Reassigned : 218
+	Surface Analysis Pass Count : 71
+	Surface Analysis Pass Time : 323590
+	Surface Analysis Uncorrected Error : None
+	Total Blocks : 1171743928
+	Type : Logical Drive
+	Unique Id : AC:2814397937,LD:1
+	Useable Blocks : 585871964
+	Volume Size Kb : 292935982
+	Volume Unique Identifier : 600508B1001CA18A3EA4B5433E9E79D1
+
+
+	HPE Smart Array P408i-a SR Gen10 0 Controller Device: ATTR_VALUE_TYPE_LOGICAL_DRIVE Supported Operations
+	--------------------------------------------------
+		Discover Mirror Groups
+		Discover Parity Groups
+		Read Device Diagnostic Info
+		Read Logical Drive Info
+		Read Scsi Command
+		Write Delete Logical Drive
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+		Write Migrate Logical Drive
+		...............................................................
+         Class: ATTR_NAME_RAID 
+                     Instance: ATTR_VALUE_RAID_0
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance:	 ATTR_VALUE_RAID_1 (default)
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+
+		Write Reorder Logical Drive
+		...............................................................
+         Class: ATTR_NAME_DRIVE_NUMBER 
+                     Instance: 0
+                     Instance:	 1 (default)
+                     Instance: 2
+                     Instance: 3
+                     Instance: 4
+                     Instance: 5
+                     Instance: 6
+                     Instance: 7
+                     Instance: 8
+                     Instance: 9
+                     Instance: 10
+                     Instance: 11
+                     Instance: 12
+                     Instance: 13
+                     Instance: 14
+                     Instance: 15
+                     Instance: 16
+                     Instance: 17
+                     Instance: 18
+                     Instance: 19
+                     Instance: 20
+                     Instance: 21
+                     Instance: 22
+                     Instance: 23
+                     Instance: 24
+                     Instance: 25
+                     Instance: 26
+                     Instance: 27
+                     Instance: 28
+                     Instance: 29
+                     Instance: 30
+                     Instance: 31
+                     Instance: 32
+                     Instance: 33
+                     Instance: 34
+                     Instance: 35
+                     Instance: 36
+                     Instance: 37
+                     Instance: 38
+                     Instance: 39
+                     Instance: 40
+                     Instance: 41
+                     Instance: 42
+                     Instance: 43
+                     Instance: 44
+                     Instance: 45
+                     Instance: 46
+                     Instance: 47
+                     Instance: 48
+                     Instance: 49
+                     Instance: 50
+                     Instance: 51
+                     Instance: 52
+                     Instance: 53
+                     Instance: 54
+                     Instance: 55
+                     Instance: 56
+                     Instance: 57
+                     Instance: 58
+                     Instance: 59
+                     Instance: 60
+                     Instance: 61
+                     Instance: 62
+                     Instance: 63
+
+		Write Set Logical Drive Name
+		...............................................................
+         Class: ATTR_NAME_LOGICAL_DRIVE_NAME  [MIN: 0 MAX: 64]
+                     Instance: Logical Drive	 2 (default)
+
+
+	Unsupported Operations
+	--------------------------------------------------
+		Read Expand Rebuild Info :	Not Applicable
+		Write Extend Logical Drive :	Space For Transformation Not Available
+		Write Move Logical Drive :	Valid Target Array Not Available
+		Write Reenable Logical Drive :	Logical Drive Not Disabled
+		Write Create Caching Logical Drive :	Feature Requires License Key
+		Write Set Encryption Rekey :	Encryption Disabled
+			Comment: Encryption is not enabled on the controller
+		Write Set Encryption Encode :	Encryption Disabled
+			Comment: Encryption is not enabled on the controller
+		Write Set Encryption Crypto Erase :	Not Applicable
+		Write Modify Ssd Caching Parameters :	Not A Caching Volume
+			Comment: The volume is not a primary or cache LUN
+		Write Set Encryption Drive Options :	Encryption Disabled
+		Write Set Encryption Volatile Key Action :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Read Ssd Cache Stats :	Feature Not Licensed
+
+
+
+	Device Associations
+	--------------------------------------
+		Storage Volume Device
+			AC:2814397937,SV:600508B1001CA18A3EA4B5433E9E79D1
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_MIRROR_GROUP 
+================================================================
+
+	Mirror Group Number : 0
+	Type : Mirror Group
+	Unique Id : AC:2814397937,LD:1,MG:0
+
+
+	Device Associations
+	--------------------------------------
+		Data Drive
+			AC:2814397937,PD:0
+
+
+
+Controller: HPE Smart Array P408i-a SR Gen10 Slot 0	Device: ATTR_VALUE_TYPE_MIRROR_GROUP 
+================================================================
+
+	Mirror Group Number : 1
+	Type : Mirror Group
+	Unique Id : AC:2814397937,LD:1,MG:1
+
+
+	Device Associations
+	--------------------------------------
+		Data Drive
+			AC:2814397937,PD:1
+
+
+
+
+
+
+
+	Controller:    HPE Smart Array P408i-a SR Gen10	Slot:0ATTR_VALUE_TYPE_ARRAY_CONTROLLER Supported Operations
+	--------------------------------------------------
+		Discover Arrays
+		Discover Expanders
+		Discover External Array Controllers
+		Discover Licensed Feature
+		Discover License Keys
+		Discover Physical Drives
+		Discover Ports
+		Discover Remote Volumes
+		Discover Sensors
+		Discover Seps
+		Discover Storage Enclosures
+		Discover Storage Volumes
+		Discover Tape Drives
+		Read Array Controller Info
+		...............................................................
+         Class: ATTR_NAME_RAID 
+                     Instance: ATTR_VALUE_RAID_0
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_1
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_1ADM
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_10
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_10ADM
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_5
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_6
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_50
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+                     Instance: ATTR_VALUE_RAID_60
+                                 Class: ATTR_NAME_STRIPE_SIZE 
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance: 256
+                                             Instance:	 512 (default)
+                                             Instance: 1024
+                                             Instance: 2048
+                                 Class: ATTR_NAME_STRIPE_SIZE_KB 
+                                             Instance: 16
+                                             Instance: 32
+                                             Instance: 64
+                                             Instance: 128
+                                             Instance:	 256 (default)
+                                             Instance: 512
+                                             Instance: 1024
+
+		Read Debug Log
+		...............................................................
+         Class: ATTR_NAME_LOG_TYPE 
+                     Instance:	 ATTR_VALUE_LOG_TYPE_LAST_CRASH_DUMP (default)
+                                 Class: ATTR_NAME_CLEAR_LOG 
+                                             Instance: ATTR_VALUE_CLEAR_LOG_TRUE
+                                             Instance:	 ATTR_VALUE_CLEAR_LOG_FALSE (default)
+                     Instance: ATTR_VALUE_LOG_TYPE_PAL_SHIM_LOG
+
+		Read Device Diagnostic Info
+		Read Device Led Info
+		Read Pms Data
+		...............................................................
+         Class: ATTR_NAME_RESET_PMS_COUNTERS 
+                     Instance: ATTR_VALUE_RESET_PMS_COUNTERS_TRUE
+                     Instance:	 ATTR_VALUE_RESET_PMS_COUNTERS_FALSE (default)
+         Class: ATTR_NAME_PMS_DATA_TYPE 
+                     Instance:	 ATTR_VALUE_PMS_DATA_TYPE_AVERAGES (default)
+                     Instance: ATTR_VALUE_PMS_DATA_TYPE_RAW
+
+		Read Scsi Command
+		Write Add License Key
+		...............................................................
+         Class: ATTR_NAME_LICENSE_KEY  [MIN: 25 MAX: 29]
+                     Instance: 
+
+		Write Bmic Command
+		Write Clear Configuration
+		Write Clear Controller Config Bmic
+		...............................................................
+         Class: ATTR_NAME_DELETE_ALL_VOLUMES 
+                     Instance:	 ATTR_VALUE_DELETE_ALL_VOLUMES_TRUE (default)
+                     Instance: ATTR_VALUE_DELETE_ALL_VOLUMES_FALSE
+         Class: ATTR_NAME_CLEAR_NVRAM 
+                     Instance: ATTR_VALUE_CLEAR_NVRAM_TRUE
+                     Instance:	 ATTR_VALUE_CLEAR_NVRAM_FALSE (default)
+
+		Write Device Blink
+		...............................................................
+         Class: ATTR_NAME_BLINK_INTERVAL  [MIN: 0 MAX: 86400]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONCATENATE 
+                     Instance:	 ATTR_VALUE_CONCATENATE_FALSE (default)
+                     Instance: ATTR_VALUE_CONCATENATE_TRUE
+
+		Write Flush Disable Cache
+		...............................................................
+         Class: ATTR_NAME_CACHE_FLAG 
+                     Instance: ATTR_VALUE_CACHE_FLAG_DISABLE
+                     Instance:	 ATTR_VALUE_CACHE_FLAG_FLUSH (default)
+
+		Write Inject Fault
+		...............................................................
+         Class: ATTR_NAME_INJECT_FAULT_TIME_TO_FIRST_ERROR  [MIN: 1 MAX: ]
+                     Instance: 1
+         Class: ATTR_NAME_INJECT_FAULT_TIME_BETWEEN_ERRORS  [MIN: 0 MAX: ]
+                     Instance: 0
+         Class: ATTR_NAME_INJECT_FAULT_TYPE 
+                     Instance: ATTR_VALUE_INJECT_FAULT_TYPE_INFINITE_LOOP
+                     Instance:	 ATTR_VALUE_INJECT_FAULT_TYPE_LOCKUP (default)
+
+		Write Manage Advanced Controller Parameters
+		...............................................................
+         Class: ATTR_NAME_PERFORMANCE_PROFILE 
+                     Instance:	 ATTR_VALUE_PERFORMANCE_PROFILE_DEFAULT (default)
+                                 Class: ATTR_NAME_DEGRADED_PERFORMANCE_OPTIMIZATION 
+                                             Instance: ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_ENABLED
+                                             Instance:	 ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_DISABLED (default)
+                                 Class: ATTR_NAME_ELEVATOR_SORT 
+                                             Instance:	 ATTR_VALUE_ELEVATOR_SORT_ENABLED (default)
+                                             Instance: ATTR_VALUE_ELEVATOR_SORT_DISABLED
+                                 Class: ATTR_NAME_INCONSISTENCY_REPAIR_POLICY 
+                                             Instance: ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_ENABLED
+                                             Instance:	 ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_DISABLED (default)
+                                 Class: ATTR_NAME_QUEUE_DEPTH 
+                                             Instance:	 ATTR_VALUE_QUEUE_DEPTH_AUTOMATIC (default)
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_32
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_16
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_8
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_4
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_2
+                                 Class: ATTR_NAME_MNP_DELAY  [MIN: 0 MAX: 1440]
+                                             Instance:	 60 (default)
+                                 Class: ATTR_NAME_FLEXIBLE_LATENCY_SCHEDULER_SETTING 
+                                             Instance:	 ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_DEFAULT (default)
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_LOW_250
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_100
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_50
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_30
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_10
+                     Instance: ATTR_VALUE_PERFORMANCE_PROFILE_VOD
+                                 Class: ATTR_NAME_DEGRADED_PERFORMANCE_OPTIMIZATION 
+                                             Instance: ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_ENABLED
+                                             Instance:	 ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_DISABLED (default)
+                                 Class: ATTR_NAME_ELEVATOR_SORT 
+                                             Instance:	 ATTR_VALUE_ELEVATOR_SORT_ENABLED (default)
+                                             Instance: ATTR_VALUE_ELEVATOR_SORT_DISABLED
+                                 Class: ATTR_NAME_INCONSISTENCY_REPAIR_POLICY 
+                                             Instance: ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_ENABLED
+                                             Instance:	 ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_DISABLED (default)
+                                 Class: ATTR_NAME_QUEUE_DEPTH 
+                                             Instance:	 ATTR_VALUE_QUEUE_DEPTH_AUTOMATIC (default)
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_32
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_16
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_8
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_4
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_2
+                                 Class: ATTR_NAME_MNP_DELAY  [MIN: 0 MAX: 1440]
+                                             Instance: 0
+                                             Instance:	 60 (default)
+                                 Class: ATTR_NAME_FLEXIBLE_LATENCY_SCHEDULER_SETTING 
+                                             Instance:	 ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_DEFAULT (default)
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_LOW_250
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_100
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_50
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_30
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_10
+                     Instance: ATTR_VALUE_PERFORMANCE_PROFILE_CUSTOM
+                                 Class: ATTR_NAME_DEGRADED_PERFORMANCE_OPTIMIZATION 
+                                             Instance: ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_ENABLED
+                                             Instance:	 ATTR_VALUE_DEGRADED_PERFORMANCE_OPTIMIZATION_DISABLED (default)
+                                 Class: ATTR_NAME_ELEVATOR_SORT 
+                                             Instance:	 ATTR_VALUE_ELEVATOR_SORT_ENABLED (default)
+                                             Instance: ATTR_VALUE_ELEVATOR_SORT_DISABLED
+                                 Class: ATTR_NAME_INCONSISTENCY_REPAIR_POLICY 
+                                             Instance: ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_ENABLED
+                                             Instance:	 ATTR_VALUE_INCONSISTENCY_REPAIR_POLICY_DISABLED (default)
+                                 Class: ATTR_NAME_QUEUE_DEPTH 
+                                             Instance:	 ATTR_VALUE_QUEUE_DEPTH_AUTOMATIC (default)
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_32
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_16
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_8
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_4
+                                             Instance: ATTR_VALUE_QUEUE_DEPTH_2
+                                 Class: ATTR_NAME_MNP_DELAY  [MIN: 0 MAX: 1440]
+                                             Instance:	 60 (default)
+                                 Class: ATTR_NAME_FLEXIBLE_LATENCY_SCHEDULER_SETTING 
+                                             Instance:	 ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_DEFAULT (default)
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_LOW_250
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_100
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_MIDDLE_50
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_30
+                                             Instance: ATTR_VALUE_FLEXIBLE_LATENCY_SCHEDULER_SETTING_AGGRESSIVE_10
+         Class: ATTR_NAME_SURFACE_ANALYSIS_INCONSISTENCY_EVENT_NOTIFICATION 
+                     Instance: ATTR_VALUE_SURFACE_ANALYSIS_INCONSISTENCY_EVENT_NOTIFICATION_TRUE
+                     Instance:	 ATTR_VALUE_SURFACE_ANALYSIS_INCONSISTENCY_EVENT_NOTIFICATION_FALSE (default)
+         Class: ATTR_NAME_FAIL_DRIVES_WITH_SMART_ERRORS 
+                     Instance: ATTR_VALUE_FAIL_DRIVES_WITH_SMART_ERRORS_ENABLED
+                     Instance:	 ATTR_VALUE_FAIL_DRIVES_WITH_SMART_ERRORS_DISABLED (default)
+         Class: ATTR_NAME_FIRMWARE_REQUEST_COALESCING 
+                     Instance:	 ATTR_VALUE_FIRMWARE_REQUEST_COALESCING_TRUE (default)
+                     Instance: ATTR_VALUE_FIRMWARE_REQUEST_COALESCING_FALSE
+
+		Write Manage Array Accelerator
+		...............................................................
+         Class: ATTR_NAME_CACHE_RATIO_READ_PERCENT                   Class: 5  [MIN: 0.000000 MAX: 100]
+                     Instance:	 10 (default)
+         Class: ATTR_NAME_UNIQUE_ID 
+                     Instance:	 AC:2814397937,LD:0 (default)
+                     Instance:	 AC:2814397937,LD:1 (default)
+         Class: ATTR_NAME_NO_BATTERY_WRITE_CACHE 
+                     Instance:	 ATTR_VALUE_NO_BATTERY_WRITE_CACHE_DISABLED (default)
+                     Instance: ATTR_VALUE_NO_BATTERY_WRITE_CACHE_ENABLED
+         Class: ATTR_NAME_WAIT_FOR_CACHE_ROOM 
+                     Instance: ATTR_VALUE_WAIT_FOR_CACHE_ROOM_TRUE
+                     Instance:	 ATTR_VALUE_WAIT_FOR_CACHE_ROOM_FALSE (default)
+         Class: ATTR_NAME_LARGE_WRITE_CACHE_BYPASS_THRESHOLD_SIZE  [MIN: 1 MAX: 65]
+                     Instance:	 65 (default)
+
+		Write Manage Controller Parameters
+		...............................................................
+         Class: ATTR_NAME_EXPAND_PRIORITY 
+                     Instance: ATTR_VALUE_EXPAND_PRIORITY_HIGH
+                     Instance:	 ATTR_VALUE_EXPAND_PRIORITY_MEDIUM (default)
+                     Instance: ATTR_VALUE_EXPAND_PRIORITY_LOW
+         Class: ATTR_NAME_REBUILD_PRIORITY 
+                     Instance:	 ATTR_VALUE_REBUILD_PRIORITY_RAPID_HIGH (default)
+                     Instance: ATTR_VALUE_REBUILD_PRIORITY_RAPID_MEDIUM_HIGH
+                     Instance: ATTR_VALUE_REBUILD_PRIORITY_RAPID_MEDIUM
+                     Instance: ATTR_VALUE_REBUILD_PRIORITY_RAPID_LOW
+         Class: ATTR_NAME_POST_PROMPT_TIMEOUT  [MIN: 0 MAX: 255]
+                     Instance: 0
+                     Instance:	 15 (default)
+         Class: ATTR_NAME_SURFACE_ANALYSIS_DELAY  [MIN: 0 MAX: 30]
+                     Instance:	 3 (default)
+         Class: ATTR_NAME_SURFACE_ANALYSIS_DELAY_EXTENDED  [MIN: 0 MAX: 300]
+                     Instance:	 30 (default)
+         Class: ATTR_NAME_CURRENT_PARALLEL_SURFACE_SCAN_COUNT  [MIN: 1 MAX: 16]
+                     Instance:	 1 (default)
+         Class: ATTR_NAME_NOTIFY_DRIVER_ON_EVENT 
+                     Instance: ATTR_VALUE_NOTIFY_DRIVER_ON_EVENT_TRUE
+                     Instance:	 ATTR_VALUE_NOTIFY_DRIVER_ON_EVENT_FALSE (default)
+
+		Write Manage Drive Write Cache Policy
+		...............................................................
+         Class: ATTR_NAME_DRIVE_WRITE_CACHE_POLICY_CONFIGURED 
+                     Instance:	 ATTR_VALUE_ACTION_DEFAULT (default)
+                     Instance: ATTR_VALUE_ACTION_ENABLE
+                     Instance: ATTR_VALUE_ACTION_DISABLE
+         Class: ATTR_NAME_DRIVE_WRITE_CACHE_POLICY_UNCONFIGURED 
+                     Instance:	 ATTR_VALUE_ACTION_DEFAULT (default)
+                     Instance: ATTR_VALUE_ACTION_ENABLE
+                     Instance: ATTR_VALUE_ACTION_DISABLE
+
+		Write Rescan Physical Devices
+		Write Reset Controller
+		...............................................................
+         Class: ATTR_NAME_RESET_CONTROLLER_TYPE 
+                     Instance:	 ATTR_VALUE_RESET_CONTROLLER_TYPE_IOP (default)
+                     Instance: ATTR_VALUE_RESET_CONTROLLER_TYPE_DRIVERSOFT
+                     Instance: ATTR_VALUE_RESET_CONTROLLER_TYPE_FULL
+
+		Write Set Boot Volume
+		...............................................................
+         Class: ATTR_NAME_BOOT_VOLUME_PRECEDENCE 
+                     Instance:	 ATTR_VALUE_BOOT_VOLUME_PRECEDENCE_PRIMARY (default)
+                                 Class: ATTR_NAME_VOLUME_LOCATION 
+                                             Instance:	 ATTR_VALUE_VOLUME_LOCATION_LOCAL (default)
+                                                         Class: ATTR_NAME_UNIQUE_ID 
+                                                                     Instance: 600508B1001CF4BC217C95FC4FF9774B
+                                                                     Instance: 600508B1001CA18A3EA4B5433E9E79D1
+                                             Instance: ATTR_VALUE_VOLUME_LOCATION_REMOTE
+                                                         Class: ATTR_NAME_UNIQUE_ID 
+                     Instance: ATTR_VALUE_BOOT_VOLUME_PRECEDENCE_SECONDARY
+                                 Class: ATTR_NAME_VOLUME_LOCATION 
+                                             Instance:	 ATTR_VALUE_VOLUME_LOCATION_LOCAL (default)
+                                                         Class: ATTR_NAME_UNIQUE_ID 
+                                                                     Instance: 600508B1001CF4BC217C95FC4FF9774B
+                                                                     Instance: 600508B1001CA18A3EA4B5433E9E79D1
+                                             Instance: ATTR_VALUE_VOLUME_LOCATION_REMOTE
+                                                         Class: ATTR_NAME_UNIQUE_ID 
+
+		Write Set Encryption Mode
+		...............................................................
+         Class: ATTR_NAME_ENCRYPTION_SETUP_TYPE 
+                     Instance: ATTR_VALUE_ENCRYPTION_SETUP_TYPE_AUTO
+                                 Class: ATTR_NAME_ENCRYPTION_ENCODE_DATA 
+                                             Instance: ATTR_VALUE_ENCRYPTION_ENCODE_DATA_FALSE
+                                             Instance:	 ATTR_VALUE_ENCRYPTION_ENCODE_DATA_TRUE (default)
+                     Instance:	 ATTR_VALUE_ENCRYPTION_SETUP_TYPE_MANUAL (default)
+                                 Class: ATTR_NAME_NEW_PASSWORD  [MIN: 8 MAX: 16]
+                                             Instance: 
+                                 Class: ATTR_NAME_ENCRYPTION_MIXED_VOLUMES_ENABLED 
+                                             Instance: ATTR_VALUE_ENCRYPTION_MIXED_VOLUMES_ENABLED_TRUE
+                                             Instance:	 ATTR_VALUE_ENCRYPTION_MIXED_VOLUMES_ENABLED_FALSE (default)
+                                 Class: ATTR_NAME_ENCRYPTION_ENABLED 
+                                             Instance:	 ATTR_VALUE_ENCRYPTION_ENABLED_TRUE (default)
+                                             Instance: ATTR_VALUE_ENCRYPTION_ENABLED_FALSE
+                                 Class: ATTR_NAME_ENCRYPTION_STANDALONE_MODE_ENABLED 
+                                             Instance:	 ATTR_VALUE_ENCRYPTION_STANDALONE_MODE_ENABLED_TRUE (default)
+                                                         Class: ATTR_NAME_KEK_NAME  [MIN: 10 MAX: 32]
+                                                                     Instance:	  (default)
+                                             Instance: ATTR_VALUE_ENCRYPTION_STANDALONE_MODE_ENABLED_FALSE
+                                                         Class: ATTR_NAME_KEK_NAME  [MIN: 1 MAX: 64]
+                                                                     Instance:	  (default)
+
+		Write Set Encryption Passwords
+		...............................................................
+         Class: ATTR_NAME_ENCRYPTION_ROLE_TO_CHANGE 
+                     Instance:	 ATTR_VALUE_ENCRYPTION_ROLE_TO_CHANGE_CRYPTO (default)
+         Class: ATTR_NAME_NEW_PASSWORD  [MIN: 8 MAX: 16]
+                     Instance: 
+
+		Write Set Mctp
+		...............................................................
+         Class: ATTR_NAME_CONTROLLER_MCTP_EID  [MIN: 0 MAX: 255]
+                     Instance:	 64 (default)
+         Class: ATTR_NAME_CONTROLLER_MCTP_BUS  [MIN: 0 MAX: 255]
+                     Instance:	 92 (default)
+         Class: ATTR_NAME_CONTROLLER_MCTP_DEVICE  [MIN: 0 MAX: 255]
+                     Instance:	 0 (default)
+         Class: ATTR_NAME_CONTROLLER_MCTP_FUNCTION  [MIN: 0 MAX: 255]
+                     Instance:	 0 (default)
+
+		Write Set Pms State
+		...............................................................
+         Class: ATTR_NAME_PMS_STATE 
+                     Instance: ATTR_VALUE_PMS_STATE_ENABLED
+                     Instance: ATTR_VALUE_PMS_STATE_DISABLED
+
+		Write Set Power Mode
+		...............................................................
+         Class: ATTR_NAME_POWER_MODE 
+                     Instance: ATTR_VALUE_POWER_MODE_LOW_AUTOMATED
+                     Instance:	 ATTR_VALUE_POWER_MODE_PERFORMANT (default)
+         Class: ATTR_NAME_SURVIVAL_MODE_ENABLED 
+                     Instance:	 ATTR_VALUE_SURVIVAL_MODE_ENABLED_TRUE (default)
+                     Instance: ATTR_VALUE_SURVIVAL_MODE_ENABLED_FALSE
+
+		Write Set Sanitize Lock
+		...............................................................
+         Class: ATTR_NAME_SANITIZE_LOCK 
+                     Instance: ATTR_VALUE_SANITIZE_LOCK_FREEZE
+                     Instance:	 ATTR_VALUE_SANITIZE_LOCK_ANTIFREEZE (default)
+                     Instance: ATTR_VALUE_SANITIZE_LOCK_NONE
+
+		Write Set Spare Mode
+		...............................................................
+         Class: ATTR_NAME_SPARE_MODE 
+                     Instance:	 ATTR_VALUE_SPARE_MODE_LEGACY (default)
+                     Instance: ATTR_VALUE_SPARE_MODE_PREDICTIVE_SPARE_REBUILD
+
+
+	Unsupported Operations
+	--------------------------------------------------
+		Read Configuration Data :	Not Applicable
+		Read Array Controller Bootable Status :	Ev Not Supported
+		Read Controller Ofa Status :	Not Applicable
+			Comment: OFA Not supported on this controller
+		Write Create Array :	Unassigned Drives For Creation Not Available
+		Write Create Array And Raid0 :	Unassigned Drives For Creation Not Available
+		Write Create Boot Connector Array :	Not Supported
+		Write Create Caching Array :	Unassigned Drives For Creation Not Available
+		Write Set Hba Mode :	Not Supported
+			Comment: The controller is reporting it supports Mixed mode
+
+		Write Set I2c :	Oob Interface Not Supported
+			Comment: The controller reports it does not support setting the I2C configuration
+		Write Set Out Of Band Message Interface :	Not Supported
+			Comment: The controller reports it does not support setting the OOB message interface
+		Write Set Port Phy Limit :	Not Supported
+			Comment: Controller does not support setting the port rate limit
+		Write Set Encryption Login :	Encryption No Password Set
+		Write Set Encryption Logout :	Encryption No Password Set
+		Write Set Encryption Recover Password :	Encryption No Password Set
+		Write Set Encryption Recovery Params :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Kek :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Boot Password :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Boot Password State :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Boot Password Remove :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Rekey :	Encryption Disabled
+			Comment: Encryption is not enabled on the controller
+		Write Set Encryption Rescan Keys :	Not Applicable
+		Write Set Encryption Firmware Lock :	Not Applicable
+			Comment: Encryption is not enabled
+		Write Set Encryption Unlock Volumes :	Not Applicable
+		Write Set Encryption Local Kek Cache :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Foreign Local Key Import :	Not Applicable
+		Write Set Encryption Return To Factory Mode :	Encryption No Password Set
+		Write Set Encryption Mode Key Manager :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Mode Key Name :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Mode Enable :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Mode Mixed Vols :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Encryption Controller Password Skip :	Encryption No Password Set
+			Comment: There is no password set for the crypto officer on this controller
+		Write Set Boot Controller :	Not Offline
+		Write Set Split Readcache :	Not Applicable
+		Write Clear Ris :	Not Applicable No Ris
+			Comment: The array does not have any physical drives with RIS masked from the HBA - pPhysicalDriveStatus->bMiscDriveFlags & BIT7 
+		Write Set Port Mode :	Only One Mode Supported
+			Comment: The controller reports that all ports support a single mode of operation. Unable to change port modes.
+		Write Recover Cache Module :	Not Applicable
+		Write Cache Settings :	Device Not Yet Cached
+
+
+
+================================================================================
+Controller:    lpfc	Slot:ATTR_VALUE_SLOT_UNKNOWN
+
+Controller Attributes
+-----------------------------------------------
+	Adapter Type : Generic Hba
+	Bus Type : Pci
+	Device Id : 0
+	Device Id Hex : 00000000
+	Marketing Name : lpfc
+	Pci Bus : 0
+	Pci Device : 0
+	Pci Domain : 0
+	Pci Function : 0
+	Slot : Unknown
+	Status : Ok
+	Subsystem Id : 0
+	Subsystem Id Hex : 00000000
+	Type : Hba
+	Unique Id : HBA:0_0_0_0
+
+
+	lpfc ATTR_VALUE_SLOT_UNKNOWN Controller Device: ATTR_VALUE_TYPE_HBA Supported Operations
+	--------------------------------------------------
+		Read Device Diagnostic Info
+
+	Unsupported Operations
+	--------------------------------------------------
+		Discover Storage Enclosures :	Not Applicable
+		Discover Non Smartarray Physical Drives :	Not Supported
+			Comment: The HBA was not correctly discovered
+		Discover Storage Volumes :	Not Applicable
+			Comment: No physical drives means no possible storage volumes
+
+
+
+
+
+
+	Controller:    lpfc	Slot:ATTR_VALUE_SLOT_UNKNOWNATTR_VALUE_TYPE_HBA Supported Operations
+	--------------------------------------------------
+		Read Device Diagnostic Info
+
+	Unsupported Operations
+	--------------------------------------------------
+		Discover Storage Enclosures :	Not Applicable
+		Discover Non Smartarray Physical Drives :	Not Supported
+			Comment: The HBA was not correctly discovered
+		Discover Storage Volumes :	Not Applicable
+			Comment: No physical drives means no possible storage volumes
+
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}BITÁCORA{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+
+<!-- HEADER GLOBAL -->
+<nav class="navbar navbar-dark bg-dark px-3">
+    <span class="navbar-text text-white">
+        Usuario: <strong>{{ current_user }}</strong>
+        &nbsp;|&nbsp;
+        Rol: <strong>{{ current_role }}</strong>
+        &nbsp;|&nbsp;
+        Localidad: <strong>{{ current_localidad }}</strong>
+    </span>
+
+    <a href="{{ url_for('menu.menu') }}" class="btn btn-outline-light btn-sm">
+        Regresar al menú
+    </a>
+</nav>
+
+<!-- CONTENIDO -->
+<div class="container mt-4">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

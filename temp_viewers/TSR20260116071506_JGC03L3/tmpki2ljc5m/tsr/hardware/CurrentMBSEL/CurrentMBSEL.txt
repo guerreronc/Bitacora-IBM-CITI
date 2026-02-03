@@ -1,0 +1,10 @@
+Record : 1
+Date/Time : Wed Oct 22 2025 22:21:55
+Severity : 2
+Description : Log cleared.
+-----------------------------------------------------------------
+Record : 2
+Date/Time : Thu Jan 15 2026 23:40:58
+Severity : 4
+Description : The Non-Volatile Dual In-line Memory Module (NVDIMM) device in the slot DIMM_B8 has lost persistency and is placed in write-protect mode.
+-----------------------------------------------------------------

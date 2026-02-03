@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Usuario - Bitácora</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { 
+      background: #1a4b8d;
+      color: #0f172a;
+      font-family: Arial, sans-serif;
+    }
+    h1 { 
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align:center;
+      color: #ffffff;
+    }
+    .form-container {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 0.6rem;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.20);
+    }
+  </style>
+</head>
+<body>
+<div class="container py-4">
+  <h1>CREAR USUARIO</h1>
+
+  <div class="form-container">
+    <form action="{{ url_for('crear_usuario') }}" method="POST">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre Completo</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email">
+      </div>
+
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="role" class="form-label">Rol</label>
+        <select id="role" name="role" class="form-select" required>
+          <option value="">-- Seleccione --</option>
+          <option value="ADMIN">ADMIN</option>
+          <option value="ENGINEER">ENGINEER</option>
+          <option value="GUEST">GUEST</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña Temporal</label>
+        <input type="text" class="form-control" id="password" name="password" value="IbmCitiFour" required>
+        <div class="form-text">El usuario debe cambiarla al primer inicio de sesión.</div>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">Crear Usuario</button>
+      <a href="{{ url_for('usuarios') }}" class="btn btn-secondary w-100 mt-2">Regresar a Usuarios</a>
+    </form>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+{% extends "base.html" %}
+{% block content %}
+    <meta charset="utf-8" />
+    <title>Editar Caso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <style>
+        body {
+            background-color: #0b3c8a; /* azul rey */
+            color: #fff;
+        }
+        .container { padding-top: 18px; padding-bottom: 40px; }
+        .title-ibm { color: #ffffff; background-color:#0f62fe; display:inline-block; padding:8px 14px; border-radius:8px; font-weight:700; }
+        .card { background:#2b2b2b; border-radius:12px; padding:18px; box-shadow:0 6px 20px rgba(0,0,0,0.12); margin-bottom:14px; }
+        label.form-label { color:#ffffff; font-weight:600; display:block; margin-top:8px; margin-bottom:6px; }
+        .input-ibm { background:#3a3a3a; color:#fff; border:1px solid #555; border-radius:8px; height:44px; padding:6px 10px; width:100%; }
+        .input-ibm:focus { outline: none; box-shadow: 0 0 0 3px rgba(15,98,254,0.12); border-color:#0f62fe; }
+        textarea.input-ibm { min-height:180px; resize:vertical; padding:10px; }
+        .btn-ibm { background:#0f62fe; color:#fff; border-radius:10px; padding:10px 20px; font-weight:700; }
+        .btn-ibm:hover { background:#0043ce; color:#fff; }
+        .btn-warn { background:#ffb000; color:#000; border-radius:10px; padding:10px 18px; font-weight:700; text-decoration:none; display:inline-block; }
+        #alertaParte { display:none; padding:12px 16px; border-radius:10px; font-weight:800; text-align:center; margin-bottom:14px; }
+        .small-note { color:#d0d0d0; font-size:0.9rem; margin-top:6px; }
+        .btn-secondary { background:#555; color:#fff; border-radius:10px; padding:10px 18px; font-weight:700; text-decoration:none; }
+        .btn-secondary:hover { background:#444; color:#fff; }
+        #user-info {
+            position: fixed;        /* clave */
+            top: 15px;              /* arriba */
+            right: 25px;            /* derecha */
+            text-align: right;
+            color: #ffffff;
+            z-index: 9999;
+        }
+
+        #user-info .usuario {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        #user-info .detalle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    </style>
+<div class="container">
+    <h3 class="mb-3"><span class="title-ibm">Editar Caso – IBM {{ caso['CASO IBM'] }}</span></h3>
+
+   <!-- ALERTA DE PARTE -->
+    {% if parte_registrada %}
+        <div id="alertaParte"
+            style="background-color:#d4edda;color:#155724;border:1px solid #c3e6cb;">
+            ✔ PARTE REGISTRADA — Ya existe una parte registrada para este caso.
+        </div>
+    {% else %}
+        <div id="alertaParte"
+            style="background-color:#fff3cd;color:#856404;border:1px solid #ffeeba;">
+            ⚠ REGISTRE LA PARTE — Este caso requiere parte.
+        </div>
+    {% endif %}
+
+    <!-- MENSAJES FLASH + REDIRECCIÓN CONTROLADA -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+
+        {% if message == "CASO CERRADO CORRECTAMENTE" %}
+            <script>
+            setTimeout(function () {
+                window.location.href = "{{ url_for('casos.casos') }}";
+            }, 2000);
+            </script>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+
+    <form method="POST"
+        action="{{ url_for('casos.guardar_edicion', caso_ibm=caso['CASO IBM']) }}"
+        class="mt-2">
+        <input type="hidden" name="id_caso" value="{{ caso['CASO IBM'] }}">
+            {% if caso['STATUS'] == 'CERRADO' %}
+            <div class="alert alert-secondary mt-3 text-center">
+                Este caso está <strong>CERRADO</strong>. No se permiten modificaciones.
+            </div>
+            {% endif %}
+        <!-- BOTONES -->
+        <div class="d-flex justify-content-between mt-3 mb-3">
+            <a class="btn btn-secondary" href="/menu">Menú</a>
+            <a class="btn btn-secondary" href="/casos">Casos</a>
+            {% if parte_registrada %}
+                <button class="btn btn-secondary" disabled>Parte ya registrada</button>
+            {% else %}
+                <a id="btnRegistrarParte" class="btn btn-primary"
+                   href="{{ url_for('registrar_parte_bp.registrar_parte', caso_ibm=caso['CASO IBM'], localidad=caso['LOCALIDAD']) }}">
+                   Registrar Parte
+                </a>
+            {% endif %}
+
+            <button type="submit"
+                    class="btn btn-ibm"
+                    {% if caso['STATUS'] == 'CERRADO' %}disabled{% endif %}>
+                GUARDAR CAMBIOS
+            </button>
+            
+            {% if caso['STATUS'] != 'CERRADO' %}
+            <button type="submit"
+                    name="accion"
+                    value="cerrar"
+                    class="btn btn-danger"
+                    onclick="return confirm('¿Está seguro de cerrar el caso?');">
+                CERRAR CASO
+            </button>
+            {% endif %}
+            {% if user.role|upper == "ADMIN" and (caso["STATUS"]|upper == "CERRADO" or caso["STATUS PRINCIPAL"]|upper == "CERRADO") %}
+            <button class="btn btn-success btn-sm" onclick="reabrirCaso('{{ caso['CASO IBM'] }}')">
+                Reabrir Caso
+            </button>
+            {% endif %}
+        </div>
+
+        <!-- FILA PRINCIPAL 4 COLUMNAS -->
+        <div class="row g-4">
+            <!-- COLUMNA 1: Datos Generales -->
+            <div class="col-md-3">
+                <div class="card">
+                    <label class="form-label">FECHA</label>
+                    <input class="form-control input-ibm" name="FECHA" type="text"
+                        value="{% if caso['FECHA'] %}{{ caso['FECHA']}}{% endif %}">
+
+                    <label class="form-label">LOCALIDAD</label>
+                    <select class="form-control input-ibm" name="LOCALIDAD">
+                        {% for opt in localidades %}
+                            <option value="{{ opt }}" {% if caso['LOCALIDAD'] == opt %}selected{% endif %}>{{ opt }}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="form-label">ALERTAMIENTO CITI</label>
+                    <input class="form-control input-ibm" name="ALCITI" value="{{ caso['ALCITI']|default('') }}">
+                    <label class="form-label">FECHA ALERTAMIENTO</label>
+                    <input class="form-control input-ibm" name="FECHA ALERTAMIENTO" type="datetime-local"
+                           value="{% if caso['FECHA ALERTAMIENTO'] %}{{ caso['FECHA ALERTAMIENTO']}}{% endif %}">
+                    <label class="form-label">FECHA DE APERTURA</label>
+                    <input
+                        class="form-control input-ibm"
+                        name="FECHA DE APERTURA"
+                        type="datetime-local"
+                        value="{{ caso['FECHA DE APERTURA'] | replace(' ', 'T') | truncate(16, True, '') }}">
+                    <label class="form-label">SEGUIMIENTO CITI</label>
+                    <input class="form-control input-ibm" name="SEGUIMIENTO CITI" 
+                        value="{{ caso['SEGUIMIENTO CITI'] }}" readonly>
+                    <label class="form-label">CASO CITI</label>
+                    <input class="form-control input-ibm" name="CASO CITI" value="{{ caso['CASO CITI']|default('') }}">
+                    <label class="form-label">SEVERIDAD</label>
+                    <select class="form-control input-ibm" name="SEVERIDAD">
+                        {% for opt in severidades %}
+                            <option value="{{ opt }}" {% if caso['SEVERIDAD'] == opt %}selected{% endif %}>{{ opt }}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="form-label">INGENIERO</label>
+                    <select name="INGENIERO" class="form-select">
+                        {% for ing in ingenieros_disponibles %}
+                            <option value="{{ ing }}"
+                                {% if caso["INGENIERO"] == ing %}selected{% endif %}>
+                                {{ ing }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- COLUMNA 2: Equipo -->
+            <div class="col-md-3">
+                <div class="card">
+                    <label class="form-label">SERIE EQUIPO</label>
+                    <input class="form-control input-ibm" name="SERIE EQUIPO" value="{{ caso['SERIE EQUIPO']|default('') }}">
+                    <label class="form-label">HOST NAME</label>
+                    <input class="form-control input-ibm" name="HOST NAME" value="{{ caso['HOST NAME']|default('') }}">
+                    <label class="form-label">UBICACIÓN</label>
+                    <input class="form-control input-ibm" name="UBICACION" value="{{ caso['UBICACION']|default('') }}">
+                    <label class="form-label">MARCA</label>
+                    <input class="form-control input-ibm" name="MARCA" value="{{ caso['MARCA']|default('') }}">
+                    <label class="form-label">MODELO</label>
+                    <input class="form-control input-ibm" name="MODELO" value="{{ caso['MODELO']|default('') }}">
+                    <label class="form-label">MARCA CSP</label>
+                    <input class="form-control input-ibm" name="MARCA CSP" value="{{ caso['MARCA CSP']|default('') }}">
+                    <label class="form-label">MODELO CSP</label>
+                    <input class="form-control input-ibm" name="MODELO CSP" value="{{ caso['MODELO CSP']|default('') }}">
+                    <label class="form-label">CASO PROVEEDOR</label>
+                    <input class="form-control input-ibm" name="CASO PROOVEDOR" value="{{ caso['CASO PROOVEDOR']|default('') }}">
+                    <label class="form-label">FECHA DE GARANTIA</label>
+                    <input class="form-control input-ibm" name="FECHA GARANTIA" value="{{ caso['FECHA GARANTIA']|default('') }}">
+                </div>
+            </div>
+
+            <!-- COLUMNA 3: Status -->
+            <div class="col-md-3">
+                <div class="card">
+                    <label class="form-label">STATUS</label>
+                    <select class="form-control input-ibm" name="STATUS">
+                        {% for opt in status_opts %}
+                            <option value="{{ opt }}" {% if caso['STATUS'] == opt %}selected{% endif %}>{{ opt }}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="form-label">STATUS PRINCIPAL</label>
+                    <select class="form-control input-ibm" name="STATUS PRINCIPAL">
+                        <option value="ABIERTO" {% if caso['STATUS PRINCIPAL'] == 'ABIERTO' %}selected{% endif %}>ABIERTO</option>
+                        <option value="CERRADO" {% if caso['STATUS PRINCIPAL'] == 'CERRADO' %}selected{% endif %}>CERRADO</option>
+                    </select>
+                    <label class="form-label">TIPO DE SERVICIO</label>
+                    <select class="form-control input-ibm" name="TIPO DE SERVICIO">
+                        {% for opt in tipo_servicio %}
+                            <option value="{{ opt }}" {% if caso['TIPO DE SERVICIO'] == opt %}selected{% endif %}>{{ opt }}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="form-label">SE NECESITA PARTE</label>
+                    <select class="form-control input-ibm" id="NEEDPART" name="SE NECESITA PARTE">
+                        <option value="NO" {% if caso['SE NECESITA PARTE'] == 'NO' %}selected{% endif %}>NO</option>
+                        <option value="SI" {% if caso['SE NECESITA PARTE'] == 'SI' %}selected{% endif %}>SI</option>
+                    </select>
+                    <label class="form-label">UBICACIÓN DE PARTE</label>
+                    <input class="form-control input-ibm" name="UBICACIÓN DE PARTE" value="{{ caso['UBICACIÓN DE PARTE']|default('') }}">
+
+                    <label class="form-label">TIPO DE FALLA</label>
+                    <select class="form-control input-ibm" name="FALLA">
+                        {% for opt in fallas %}
+                            <option value="{{ opt }}" {% if caso['FALLA'] == opt %}selected{% endif %}>{{ opt }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- COLUMNA 4: Tiempos -->
+            <div class="col-md-3">
+                <div class="card">
+                    <label class="form-label">FECHA INICIO ANALISIS</label>
+                    <input class="form-control input-ibm" name="FECHA INICIO ANALISIS" type="datetime-local"
+                           value="{% if caso['FECHA INICIO ANALISIS'] %}{{ caso['FECHA INICIO ANALISIS']}}{% endif %}">
+                    <label class="form-label">FECHA FIN ANALISIS</label>
+                    <input class="form-control input-ibm" name="FECHA FIN ANALISIS" type="datetime-local"
+                           value="{% if caso['FECHA FIN ANALISIS'] %}{{ caso['FECHA FIN ANALISIS']}}{% endif %}">
+                    <label class="form-label">VENTANA DE SERVICIO</label>
+                    <input class="form-control input-ibm" name="VENTANA DE SERVICIO" type="datetime-local"
+                           value="{% if caso['VENTANA DE SERVICIO'] %}{{ caso['VENTANA DE SERVICIO']}}{% endif %}">
+                    <label class="form-label">INICIO DE ATENCION</label>
+                    <input class="form-control input-ibm" name="INICIO DE ATENCION" type="datetime-local"
+                           value="{% if caso['INICIO DE ATENCION'] %}{{ caso['INICIO DE ATENCION']}}{% endif %}">
+                    <label class="form-label">FIN DE ATENCION</label>
+                    <input class="form-control input-ibm" name="FIN DE ATENCION" type="datetime-local"
+                           value="{% if caso['FIN DE ATENCION'] %}{{ caso['FIN DE ATENCION']}}{% endif %}">
+                    <label class="form-label">FECHA SOLUCION</label>
+                    <input class="form-control input-ibm" name="FECHA SOLUCION" type="datetime-local"
+                           value="{% if caso['FECHA SOLUCION'] %}{{ caso['FECHA SOLUCION']}}{% endif %}">
+                    <label class="form-label">VISTO BUENO CLIENTE</label>
+                    <input class="form-control input-ibm"
+                        name="VOBO CLIENTE"
+                        value="{{ caso['VOBO CLIENTE']|default('') }}">
+                    <label class="form-label">VISTO BUENO EN SITIO</label>
+                    <select class="form-control input-ibm" name="VOBO SITIO">
+                        <option value="">-- Seleccione --</option>
+                        {% for persona in seguimiento_citi %}
+                            <option value="{{ persona }}"
+                                {% if caso['VOBO SITIO'] == persona %}selected{% endif %}>
+                                {{ persona }}
+                            </option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- FILA DE NOTAS -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="card">
+                    <label class="form-label">NOTAS</label>
+                    <textarea class="form-control input-ibm" name="NOTAS" rows="6">{{ caso['NOTAS']|default('') }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- ALERTA GARANTIA -->
+        <div id="alertGarantia" style="display:none; text-align:center; padding:12px 16px; border-radius:10px; font-weight:700; margin-bottom:14px; font-size:1rem; color:#fff; box-shadow:0 3px 10px rgba(0,0,0,0.2);"></div>
+            {% if caso['STATUS'] != 'CERRADO' %}
+            <button type="submit"
+                    name="accion"
+                    value="cerrar"
+                    class="btn btn-danger w-100 mt-3"
+                    onclick="return confirm('¿Está seguro de cerrar el caso?');">
+                CERRAR CASO
+            </button>
+            {% endif %}
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
+
+<script>
+    // Control de alerta de necesidad de parte
+    (function(){
+        const needRaw = "{{ caso['SE NECESITA PARTE']|default('') }}";
+        const need = needRaw.trim().toUpperCase();
+        const alerta = document.getElementById('alertaParte');
+        const btn = document.getElementById('btnRegistrarParte');
+
+        function applyNeed() {
+            if (need === 'SI') {
+                alerta.style.display = 'block';
+                btn.style.pointerEvents = 'auto';
+                btn.style.opacity = '1';
+            } else {
+                alerta.style.display = 'none';
+                btn.style.pointerEvents = 'none';
+                btn.style.opacity = '0.45';
+            }
+        }
+
+        const selectNeed = document.getElementById('NEEDPART');
+        if (selectNeed) {
+            selectNeed.addEventListener('change', function(e){
+                const v = (e.target.value||'').trim().toUpperCase();
+                if (v === 'SI') {
+                    alerta.style.display = 'block';
+                    btn.style.pointerEvents = 'auto';
+                    btn.style.opacity = '1';
+                } else {
+                    alerta.style.display = 'none';
+                    btn.style.pointerEvents = 'none';
+                    btn.style.opacity = '0.45';
+                }
+            });
+        }
+
+        applyNeed();
+    })();
+
+    // Alerta de garantía
+    function mostrarAlertaGarantia(fechaRaw, divId) {
+        const contenedor = document.getElementById(divId);
+        if (!contenedor || !fechaRaw) return;
+        const hoy = new Date();
+        const fecha = new Date(fechaRaw);
+        const tresMeses = new Date(); tresMeses.setMonth(hoy.getMonth()+3);
+
+        let mensaje="", color="";
+        if (fecha < hoy){ mensaje="⚠ SERVIDOR SIN GARANTÍA"; color="#ff4d4f"; }
+        else if (fecha >= hoy && fecha <= tresMeses){ mensaje="⚠ SERVIDOR CON GARANTÍA POR MENOS DE 3 MESES"; color="#ffb000"; }
+        else{ mensaje="✔ SERVIDOR EN GARANTÍA"; color="#28a745"; }
+
+        contenedor.style.display='block';
+        contenedor.style.backgroundColor=color;
+        contenedor.innerText = mensaje;
+    }
+    
+    mostrarAlertaGarantia("{{ caso['FECHA GARANTIA']|default('') }}","alertGarantia");
+</script>
+{% if request.args.get('CERRADO') %}
+<script>
+    setTimeout(() => {
+        window.location.href = "{{ url_for('casos.casos') }}";
+    }, 2000);
+</script>
+{% endif %}
+<script>
+function reabrirCaso(caso_ibm) {
+    if (!confirm("¿Deseas reabrir este caso? Esto permitirá modificarlo nuevamente.")) return;
+
+    fetch(`/reabrir/${caso_ibm}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        if (data.success) {
+            alert("Caso reabierto correctamente.");
+            // 🔥 FORZAMOS nuevo render desde backend
+            window.location.reload();
+        } else {
+            alert("Error: " + (data.error || "No se pudo reabrir el caso"));
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Error al reabrir caso.");
+    });
+}
+</script>
+{% endblock %}

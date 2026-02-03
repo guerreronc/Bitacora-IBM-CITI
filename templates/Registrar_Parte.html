@@ -1,0 +1,668 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+    <div>
+        <h2 class="text-primary">
+            Registrar Parte para Caso {{ caso_ibm }}
+        </h2>
+        <p class="mb-0">
+            Localidad: <strong>{{ localidad }}</strong>
+        </p>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% if session.get("preguntar_otro_registro") %}
+  <div class="alert alert-info mt-3">
+    ¿Desea registrar otra parte para este caso?
+    <div class="mt-2">
+      <a class="btn btn-sm btn-primary"
+         href="{{ url_for('registrar_parte_bp.registrar_parte', caso_ibm=caso_ibm, localidad=localidad) }}">
+         Sí
+      </a>
+
+      <a class="btn btn-sm btn-secondary"
+         href="{{ url_for('casos.editar_caso', id_caso=caso_ibm) }}">
+         No, regresar al caso
+      </a>
+    </div>
+  </div>
+
+  {% set _ = session.pop("preguntar_otro_registro") %}
+{% endif %}
+
+<div id="mensajeHDD" class="card border-warning mb-3 d-none">
+    <div class="card-header bg-warning fw-bold">
+        Atención – Parte HDD
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+            Esta parte corresponde a un <b>disco duro (HDD)</b>.
+        </p>
+        <ul>
+            <li>Enviar datos del disco al cliente.</li>
+            <li>Solicitar <b>writeoff</b> si aplica.</li>
+        </ul>
+        <p class="mb-0">
+            Utilice los botones de correo ubicados abajo para completar el proceso.
+        </p>
+    </div>
+</div>
+
+<!-- BOTÓN REGRESAR -->
+<a class="btn btn-secondary mb-4"
+   href="{{ url_for('casos.editar_caso', id_caso=caso_ibm) }}">
+    ← Regresar al Caso
+</a>
+
+<form method="POST" id="form-registrar-parte">
+
+    <input type="hidden" name="caso_ibm" value="{{ caso_ibm }}">
+    <input type="hidden" name="localidad" value="{{ localidad }}">
+    <input type="hidden" id="finalizar" name="finalizar" value="0">
+
+    <div class="card shadow p-4">
+
+    <!-- HIDDEN CORRECTOS -->
+    <input type="hidden" id="caso_ibm_hidden" name="caso_ibm" value="{{ caso_ibm }}">
+    <input type="hidden" id="localidad_hidden" name="localidad" value="{{ localidad }}">
+
+    <div class="row g-3">
+
+        <div class="col-md-4">
+            <label class="form-label">Fecha:</label>
+            <input
+                class="form-control"
+                type="datetime-local"
+                id="fecha"
+                name="fecha"
+                value="{{ fecha }}"
+                readonly
+            >
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Localidad:</label>
+            <input class="form-control" type="text" value="{{ localidad }}" readonly>
+        </div>
+
+        <!-- Tipo de parte -->
+        <div class="col-md-4">
+            <label class="form-label">Tipo de parte:</label>
+            <select class="form-select" name="tipo_parte" id="tipo_parte">
+                <option value="">-- Seleccionar --</option>
+                <option value="ALMACEN">ALMACEN/PROVEEDOR</option>
+                <option value="KIT">KIT</option>
+            </select>
+        </div>
+
+        <!-- Marca -->
+        <div class="col-md-4">
+            <label class="form-label">Marca:</label>
+            <select class="form-select" id="marca" name="marca" disabled>
+                <option value="">Seleccione marca</option>
+                <option value="DELL">DELL</option>
+                <option value="HP">HP</option>
+            </select>
+        </div>
+
+        <!-- Parte -->
+        <div class="col-md-4">
+            <label class="form-label">Parte:</label>
+            <select class="form-select" id="parte" name="parte" disabled>
+                <option value="">Seleccione parte</option>
+            </select>
+        </div>
+
+        <!-- Detalle -->
+        <div class="col-md-4">
+            <label class="form-label">Detalle:</label>
+            <select class="form-select" id="detalle" name="descripcion" disabled>
+                <option value="">Seleccione detalle</option>
+            </select>
+        </div>
+
+        <div class="col-md-3 d-none" id="grupo_stock_kit">
+            <label class="form-label">Partes disponibles</label>
+            <input
+                type="text"
+                class="form-control"
+                id="stock_kit"
+                readonly
+            >
+        </div>
+
+        <!-- Modelo -->
+        <div class="col-md-4">
+            <label class="form-label">Modelo:</label>
+            <input class="form-control" id="modelo" name="modelo">
+        </div>
+
+        <!-- Parte IBM -->
+        <div class="col-md-4">
+            <label class="form-label">Parte IBM:</label>
+            <input class="form-control" id="parte_ibm" name="fru" readonly>
+        </div>
+
+        <!-- Parte Proveedor -->
+        <div class="col-md-4">
+            <label class="form-label">Parte Proveedor:</label>
+            <input class="form-control" id="parte_proveedor" name="num_proveedor" readonly>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Serie Retirada:</label>
+            <input class="form-control" id="serie_retirada" name="serie_retirada">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Serie Instalada:</label>
+            <input class="form-control" id="serie_instalada" name="serie_instalada">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Serie Equipo:</label>
+            <input class="form-control"
+            id="serie_equipo"
+            name="serie_equipo"
+            readonly>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">HostName:</label>
+            <input class="form-control"
+                id="host_name"
+                name="host_name"
+                value="{{ datos_caso.host_name }}"
+                readonly>
+        </div>    
+
+        <div class="col-md-4">
+            <label class="form-label">Caso Citi:</label>
+            <input class="form-control"
+                id="caso_citi"
+                name="caso_citi"
+                value="{{ datos_caso.caso_citi }}"
+                readonly>
+        </div> 
+
+        <div class="col-md-4">
+            <label class="form-label">Ingeniero IBM:</label>
+            <select class="form-select unlock-despues-parte"
+                    id="ingeniero"
+                    name="ingeniero"
+                    disabled>
+                <option value="">Seleccione</option>
+                {% for ing in ingenieros %}
+                    <option value="{{ ing }}">{{ ing }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Cantidad:</label>
+            <input class="form-control" type="number" id="cantidad" name="cantidad" value="1" min="1" required>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Fecha de entrega:</label>
+            <input
+                class="form-control"
+                type="date"
+                id="fecha_entrega"
+                name="fecha_entrega"
+                required
+            >
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Ingeniero Citi:</label>
+            <select id="personal_citi" name="ingeniero_citi" class="form-select">
+                <option value="">Seleccione personal Citi</option>
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Orden Proveedor:</label>
+            <input
+                class="form-control"
+                id="orden_proveedor"
+                name="orden_proveedor"
+            >
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Caso Proveedor:</label>
+            <input class="form-control"
+                id="caso_proveedor"
+                name="caso_proveedor"
+                value="{{ datos_caso.caso_proveedor or ''}}">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Work Order:</label>
+            <input class="form-control" id="work_order" name="work_order">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Orden IBM:</label>
+            <input class="form-control" id="orden_ibm" name="orden_ibm">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">SLOT</label>
+            <input class="form-control"
+                id="ubicacion"
+                name="ubicacion"
+                value="{{ datos_caso.ubicacion }}"
+                readonly>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Notas:</label>
+            <textarea class="form-control" id="notas" name="notas" rows="4"></textarea>
+        </div>
+
+    </div>
+
+    <div class="row mb-3" id="accionesHDD">
+        <div class="col-md-6 d-grid">
+            <button type="button"
+                    id="btnCorreoHDD"
+                    class="btn btn-secondary" disabled>
+                ENVÍO DE CORREO A CLIENTE HDD
+            </button>
+        </div>
+
+        <div class="col-md-6 d-grid">
+            <button type="button"
+                    id="btnWriteoff"
+                    class="btn btn-secondary" disabled>
+                SOLICITUD DE WRITEOFF
+            </button>
+        </div>
+    </div>
+
+    <div class="alert alert-warning d-none" id="mensajeHDD">
+        Por favor enviar datos de disco a cliente y solicitar writeoff si aplica.
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary mt-4 px-4"
+            id="btn_registrar"
+            disabled>
+        Registrar Parte
+    </button>
+    
+</form>
+</div>
+
+{% if get_flashed_messages(category_filter=['success']) %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    setTimeout(() => {
+        const continuar = confirm(
+            "Parte registrada correctamente.\n\n¿Desea registrar otra parte?"
+        );
+
+        if (continuar) {
+            // Limpiar formulario
+            document.getElementById("form-registrar-parte").reset();
+
+            // Restaurar datos críticos
+            document.getElementById("caso_ibm_hidden").value = "{{ caso_ibm }}";
+            document.getElementById("localidad_hidden").value = "{{ localidad }}";
+        } else {
+            window.location.href = "{{ url_for('casos.editar_caso', id_caso=caso_ibm) }}";
+        }
+
+    }, 2000); // ⏱ 2 segundos
+});
+</script>
+{% endif %}
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const selectParte  = document.getElementById("parte");
+    const mensajeHDD   = document.getElementById("mensajeHDD");
+    const btnCorreoHDD = document.getElementById("btnCorreoHDD");
+    const btnWriteoff  = document.getElementById("btnWriteoff");
+
+    function evaluarParte() {
+        const parte = selectParte.value.toUpperCase();
+
+        if (parte === "HDD") {
+            mensajeHDD.classList.remove("d-none");
+            btnCorreoHDD.disabled = false;
+            btnWriteoff.disabled  = false;
+            btnCorreoHDD.classList.remove("btn-secondary");
+            btnCorreoHDD.classList.add("btn-primary");
+            btnWriteoff.classList.remove("btn-secondary");
+            btnWriteoff.classList.add("btn-danger");
+        } else {
+            mensajeHDD.classList.add("d-none");
+            btnCorreoHDD.disabled = true;
+            btnWriteoff.disabled  = true;
+            btnCorreoHDD.classList.remove("btn-primary");
+            btnCorreoHDD.classList.add("btn-secondary");
+            btnWriteoff.classList.remove("btn-danger");
+            btnWriteoff.classList.add("btn-secondary");
+        }
+    }
+
+    selectParte.addEventListener("change", evaluarParte);
+
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btnCorreoHDD = document.getElementById("btnCorreoHDD");
+    const btnWriteoff  = document.getElementById("btnWriteoff");
+    const form         = document.getElementById("form-registrar-parte");
+
+    function enviarCorreo(url) {
+        const formData = new FormData(form);
+
+        fetch(url, {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            alert(data.mensaje);
+        })
+        .catch(err => {
+            alert("Error al generar el correo");
+            console.error(err);
+        });
+    }
+
+    btnCorreoHDD?.addEventListener("click", () => {
+        enviarCorreo("/mensajeria/correo_hdd_cliente");
+    });
+
+    btnWriteoff?.addEventListener("click", () => {
+        enviarCorreo("/mensajeria/correo_writeoff");
+    });
+
+});
+</script>
+
+<script>
+    const localidad = "{{ localidad }}";
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const tipoSelect = document.getElementById("tipo_parte");
+    const marcaSelect = document.getElementById("marca");
+    const parteSelect = document.getElementById("parte");
+    const detalleSelect = document.getElementById("detalle");
+
+    const parteIbmInput = document.getElementById("parte_ibm");
+    const parteProvInput = document.getElementById("parte_proveedor");
+
+    const stockKitGroup = document.getElementById("grupo_stock_kit");
+    const stockKitInput = document.getElementById("stock_kit");
+
+    const localidad = document.getElementById("localidad_hidden").value;
+
+    /* =========================
+       Utilidades
+    ========================= */
+    function limpiarSelect(select) {
+        select.innerHTML = `<option value="">Seleccione</option>`;
+        select.disabled = true;
+    }
+    function habilitarCamposPosteriores() {
+        document.querySelectorAll(".unlock-despues-parte").forEach(el => {
+            el.disabled = false;
+        });
+    }
+    function bloquearFormulario() {
+        const tieneTipo = !!tipoSelect.value;
+
+        marcaSelect.disabled = !tieneTipo;
+
+        if (!tieneTipo) {
+            marcaSelect.value = "";
+            limpiarSelect(parteSelect);
+            limpiarSelect(detalleSelect);
+        }
+    }
+
+    /* =========================
+       Cargar partes
+    ========================= */
+    async function cargarPartes() {
+        limpiarSelect(parteSelect);
+        limpiarSelect(detalleSelect);
+
+        parteIbmInput.value = "";
+        parteProvInput.value = "";
+        stockKitInput.value = "";
+        stockKitGroup.classList.add("d-none");
+
+        const tipo = tipoSelect.value;
+        const marca = marcaSelect.value;
+        if (!tipo || !marca) return;
+
+        try {
+            const res = await fetch(`/registrar_parte/get_partes/${tipo}/${marca}/${localidad}`);
+            const partes = await res.json();
+
+            if (partes.length) {
+                parteSelect.innerHTML =
+                    `<option value="">Seleccione parte</option>` +
+                    partes.map(p => `<option value="${p}">${p}</option>`).join("");
+                parteSelect.disabled = false; // 🔥 CLAVE
+            }
+        } catch (err) {
+            console.error("Error cargando partes:", err);
+        }
+    }
+
+    /* =========================
+       Cargar detalles
+    ========================= */
+    async function cargarDetalles() {
+        limpiarSelect(detalleSelect);
+
+        parteIbmInput.value = "";
+        parteProvInput.value = "";
+        stockKitInput.value = "";
+
+        const tipo = tipoSelect.value;
+        const marca = marcaSelect.value;
+        const parte = parteSelect.value;
+        if (!parte) return;
+
+        try {
+            const res = await fetch(`/registrar_parte/get_detalles/${tipo}/${marca}/${parte}/${localidad}`);
+            const detalles = await res.json();
+
+            if (detalles.length) {
+                detalleSelect.innerHTML =
+                    `<option value="">Seleccione detalle</option>` +
+                    detalles.map(d => `<option value="${d}">${d}</option>`).join("");
+                detalleSelect.disabled = false;
+            }
+        } catch (err) {
+            console.error("Error cargando detalles:", err);
+        }
+    }
+    
+    /* =========================
+       Info de parte
+    ========================= */
+    async function cargarInfoParte() {
+        const tipo = tipoSelect.value;
+        const marca = marcaSelect.value;
+        const parte = parteSelect.value;
+        const detalle = detalleSelect.value;
+
+        if (!detalle) return;
+
+        try {
+            const res = await fetch(
+                `/registrar_parte/get_info_parte` +
+                `?tipo=${encodeURIComponent(tipo)}` +
+                `&marca=${encodeURIComponent(marca)}` +
+                `&parte=${encodeURIComponent(parte)}` +
+                `&detalle=${encodeURIComponent(detalle)}` +
+                `&localidad=${encodeURIComponent(localidad)}`
+            );
+
+            if (!res.ok) {
+                throw new Error(`HTTP ${res.status}`);
+            }
+
+            const data = await res.json();
+
+            parteIbmInput.value = data.parte_ibm || "";
+            parteProvInput.value = data.parte_proveedor || "";
+            evaluarHabilitarGuardar();
+            if (tipo === "KIT") {
+                stockKitGroup.classList.remove("d-none");
+                stockKitInput.value = data.stock || 0;
+            } else {
+                stockKitGroup.classList.add("d-none");
+                stockKitInput.value = "";
+            }
+
+            habilitarCamposPosteriores();
+
+        } catch (err) {
+            console.error("Error cargando info de parte:", err);
+        }
+    }
+
+
+    /* =========================
+       Eventos
+    ========================= */
+    tipoSelect.addEventListener("change", () => {
+        bloquearFormulario();
+        limpiarSelect(parteSelect);
+        limpiarSelect(detalleSelect);
+    });
+
+    marcaSelect.addEventListener("change", cargarPartes);
+    parteSelect.addEventListener("change", cargarDetalles);
+    detalleSelect.addEventListener("change", cargarInfoParte);
+
+    /* =========================
+       Inicialización
+    ========================= */
+    limpiarSelect(parteSelect);
+    limpiarSelect(detalleSelect);
+    bloquearFormulario();
+
+    /* =========================
+       Personal Citi
+    ========================= */
+    async function cargarPersonalCiti() {
+        const select = document.getElementById("personal_citi");
+        select.innerHTML = '<option value="">Seleccione personal Citi</option>';
+
+        try {
+            const res = await fetch(`/registrar_parte/get_personal_citi/${localidad}`);
+            const data = await res.json();
+
+            data.forEach(nombre => {
+                const opt = document.createElement("option");
+                opt.value = nombre;
+                opt.textContent = nombre;
+                select.appendChild(opt);
+            });
+        } catch (err) {
+            console.error("Error cargando personal Citi:", err);
+        }
+    }
+
+    cargarPersonalCiti();
+
+        async function cargarDatosCaso() {
+        const casoIbm = document.getElementById("caso_ibm_hidden").value;
+        if (!casoIbm) return;
+
+        try {
+            const res = await fetch(`/registrar_parte/get_datos_caso/${casoIbm}`);
+            const data = await res.json();
+
+            document.getElementById("serie_equipo").value = data.serie_equipo || "";
+            document.getElementById("host_name").value = data.host_name || "";
+            document.getElementById("caso_citi").value = data.caso_citi || "";
+            document.getElementById("ingeniero").value = data.ingeniero_ibm || "";
+            document.getElementById("ubicacion").value = data.ubicacion || "";
+
+            if (data.ingeniero_citi) {
+                document.getElementById("personal_citi").value = data.ingeniero_citi;
+            }
+
+        } catch (err) {
+            console.error("Error cargando datos del caso:", err);
+        }
+    }
+    cargarDatosCaso();
+
+});
+</script>
+<script>
+function evaluarHabilitarGuardar() {
+    const parteIBM = document.getElementById("parte_ibm")?.value.trim();
+    const parteProv = document.getElementById("parte_proveedor")?.value.trim();
+    const btn = document.getElementById("btn_registrar");
+
+    if (parteIBM || parteProv) {
+        btn.disabled = false;
+    } else {
+        btn.disabled = true;
+    }
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("form-registrar-parte");
+    const finalizarInput = document.getElementById("finalizar");
+
+    if (form) {
+        form.addEventListener("submit", () => {
+            ["fru", "num_proveedor", "ingeniero"].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.disabled = false;
+            });
+        });
+    }
+
+    const btnAgregarOtra = document.getElementById("btn_agregar_otra");
+    const btnFinalizar = document.getElementById("btn_finalizar");
+
+    if (btnAgregarOtra && finalizarInput && form) {
+        btnAgregarOtra.addEventListener("click", () => {
+            finalizarInput.value = "0";
+            form.submit();
+        });
+    }
+
+    if (btnFinalizar && finalizarInput && form) {
+        btnFinalizar.addEventListener("click", () => {
+            finalizarInput.value = "1";
+            form.submit();
+        });
+    }
+});
+</script>
+{% endblock %}

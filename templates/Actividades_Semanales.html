@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Actividades Semanales - BITÁCORA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<div class="container-fluid mt-3">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">Actividades Semanales</h4>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="mb-3">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} py-2">
+                    {{ message }}
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+    </div>
+
+    <!-- FILTRO POR FECHAS -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header fw-bold">
+            Búsqueda por rango de fechas
+        </div>
+        <div class="card-body">
+            <form method="GET" action="/actividades" class="row g-3 align-items-end">
+
+                <div class="col-md-3">
+                    <label class="form-label">Localidad</label>
+                    <select name="localidad" class="form-select" required>
+                        <option value="">Seleccione</option>
+                        <option>QUERETARO</option>
+                        <option>TULTITLAN</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Fecha Inicio</label>
+                    <input type="date" name="fecha_inicio" class="form-control">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Fecha Final</label>
+                    <input type="date" name="fecha_fin" class="form-control">
+                </div>
+
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary w-100">
+                        Buscar
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    {% if resultados_casos %}
+    <div class="card mt-3 shadow-sm">
+        <div class="card-header fw-bold">
+            Casos encontrados
+        </div>
+
+        <div class="card-body table-responsive">
+            <table class="table table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Caso IBM</th>
+                        <th>Caso CITI</th>
+                        <th>Hostname</th>
+                        <th>Serie</th>
+                        <th>Falla</th>
+                        <th>Notas</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in resultados_casos %}
+                    <tr>
+                        <td>{{ c.fecha }}</td>
+                        <td>{{ c.caso_ibm }}</td>
+                        <td>{{ c.caso_citi }}</td>
+                        <td>{{ c.hostname }}</td>
+                        <td>{{ c.serie }}</td>
+                        <td>{{ c.falla }}</td>
+                        <td>{{ c.notas }}</td>
+                        <td>{{ c.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+    {% if resultados_actividades %}
+    <div class="card mt-4">
+    <div class="card-header bg-secondary text-white">
+        <strong>Actividades Semanales</strong>
+    </div>
+
+    <div class="card-body p-0">
+        <table class="table table-sm table-striped mb-0">
+        <thead class="table-light">
+            <tr>
+            <th>Fecha</th>
+            <th>Registro</th>
+            <th>Realizada por</th>
+            <th>Incidencia / Actividad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for act in resultados_actividades %}
+            <tr>
+            <td>{{ act.fecha }}</td>
+            <td>{{ act.registro }}</td>
+            <td>{{ act.responsable }}</td>
+            <td>{{ act.tipo }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    </div>
+    {% endif %}
+
+    {% if mostrar_boton_envio %}
+    <div class="text-end mt-4">
+    <form method="post" action="{{ url_for('actividades.enviar_reporte') }}">
+        <input type="hidden" name="fecha_inicio" value="{{ fecha_inicio }}">
+        <input type="hidden" name="fecha_fin" value="{{ fecha_fin }}">
+        <input type="hidden" name="localidad" value="{{ localidad }}">
+
+        <button type="submit" class="btn btn-success">
+        Enviar Reporte Semanal
+        </button>
+    </form>
+    </div>
+    {% endif %}
+
+
+    <!-- REGISTRO DE ACTIVIDAD -->
+    <div class="card shadow-sm">
+        <div class="card-header fw-bold">
+            Registrar Actividad Semanal
+        </div>
+
+        <div class="card-body">
+            <form method="POST" action="/actividades/registrar" class="row g-3">
+
+                <!-- FECHA -->
+                <div class="col-md-3">
+                    <label class="form-label">Fecha</label>
+                    <input type="date" name="fecha" class="form-control" required>
+                </div>
+
+                <!-- ACTIVIDAD -->
+                <div class="col-md-9">
+                    <label class="form-label">Actividad</label>
+                    <input type="text" name="actividad" class="form-control" required>
+                </div>
+
+                <!-- RESPONSABLE -->
+                <div class="col-md-3">
+                    <label class="form-label">Responsable</label>
+                    <select name="responsable" class="form-select" required>
+                        <option value="">Seleccione</option>
+                        <option>IBM</option>
+                        <option>CITI</option>
+                        <option>DELL</option>
+                        <option>HP</option>
+                    </select>
+                </div>
+
+                <!-- TIPO -->
+                <div class="col-md-3">
+                    <label class="form-label">Tipo</label>
+                    <select name="tipo" class="form-select" required>
+                        <option value="">Seleccione</option>
+                        <option>INCIDENTE</option>
+                        <option>ACTIVIDAD</option>
+                    </select>
+                </div>
+
+                <!-- LOCALIDAD -->
+                <div class="col-md-3">
+                    <label class="form-label">Localidad</label>
+                    <select name="localidad" class="form-select" required>
+                        <option value="">Seleccione</option>
+                        <option>QUERETARO</option>
+                        <option>TULTITLAN</option>
+                    </select>
+                </div>
+
+                <!-- NOTAS -->
+                <div class="col-md-12">
+                    <label class="form-label">Notas</label>
+                    <textarea name="notas" class="form-control" rows="3"></textarea>
+                </div>
+
+                <!-- BOTÓN -->
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-success w-100">
+                        Registrar Actividad
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

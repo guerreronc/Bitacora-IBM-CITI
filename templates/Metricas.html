@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bitácora Métricas</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-light">
+<div class="bg-primary text-white rounded-3 shadow mb-4 p-3 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+    <div class="small">
+        Usuario: <strong>{{ current_user }}</strong>
+        <span class="mx-2">|</span>
+        Rol: <strong>{{ current_role }}</strong>
+        <span class="mx-2">|</span>
+        Localidad: <strong>{{ current_localidad }}</strong>
+    </div>
+    <a href="{{ url_for('menu.menu') }}" class="btn btn-dark btn-sm shadow">Regresar al menú</a>
+</div>
+
+<div class="container mt-4">
+    <h3 class="mb-4">Bitácora Métricas</h3>
+
+    <!-- Selector de Localidad -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <label class="form-label fw-bold">Localidad</label>
+            <select id="selectLocalidad" class="form-select">
+                <option value="">-- Selecciona una localidad --</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Gráficas iniciales -->
+    <div id="sectionInicial" class="row g-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    Querétaro – Promedios
+                </div>
+                <div class="card-body">
+                    <canvas id="chartQro"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header" style="background-color:#c2a27c;">
+                    Tultitlán – Promedios
+                </div>
+                <div class="card-body">
+                    <canvas id="chartTulti"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÉTRICAS POR LOCALIDAD -->
+    <div id="sectionLocalidad" class="row g-4 mt-4" style="display:none;">
+        <div class="col-md-8">
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-dark text-white">
+                    Métricas promedio por localidad
+                </div>
+                <div class="card-body">
+                    <canvas id="chartLocalidad"></canvas>
+                </div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    Métricas por caso
+                </div>
+                <div class="card-body">
+                    <canvas id="chartCaso"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-secondary text-white">
+                    Casos IBM
+                </div>
+                <!-- Detalle del Caso -->
+                <div class="card shadow-sm mt-3">
+                    <div class="card-header bg-info text-white">
+                        Detalle del caso
+                    </div>
+                    <div class="card-body small" id="detalleCaso">
+                        <div class="text-muted">
+                            Selecciona un caso para ver los tiempos
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-2">
+                    <!-- Buscador -->
+                    <input type="text" id="buscarCaso" class="form-control mb-2" placeholder="Buscar caso...">
+                    <!-- Lista compacta con scroll -->
+                    <ul id="listaCasos" class="list-group list-group-flush" style="max-height: 400px; overflow-y: auto;"></ul>
+                    <!-- Botón de detalle -->
+                    <button id="btnDetalle" class="btn btn-primary btn-sm mt-2 w-100" disabled>Ver detalle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ===============================
+   Variables globales de gráficas
+================================*/
+let chartLocalidad = null;
+let chartQro = null;
+let chartTulti = null;
+let chartCaso = null;
+let casoSeleccionado = null;
+
+/* ------------------------------
+   Inicialización
+--------------------------------*/
+document.addEventListener("DOMContentLoaded", async () => {
+    await cargarLocalidades();
+    await cargarPromedios("QUERETARO", "chartQro", "#0d6efd", "chartQro");
+    await cargarPromedios("TULTITLAN", "chartTulti", "#c2a27c", "chartTulti");
+
+    document.getElementById("selectLocalidad").addEventListener("change", function () {
+        const localidad = this.value;
+        if (!localidad) return;
+        cargarMetricasLocalidad(localidad);
+    });
+
+    // Buscador de casos
+    document.getElementById("buscarCaso").addEventListener("input", function () {
+        const filtro = this.value.toLowerCase();
+        document.querySelectorAll("#listaCasos li").forEach(li => {
+            li.style.display = li.textContent.toLowerCase().includes(filtro) ? "" : "none";
+        });
+    });
+
+    // Botón Detalle
+    document.getElementById("btnDetalle").addEventListener("click", () => {
+        if (!casoSeleccionado) return;
+        window.location.href = `/historico/caso/${casoSeleccionado}`;
+    });
+});
+
+/* ------------------------------
+   Funciones
+--------------------------------*/
+async function cargarLocalidades() {
+    const resp = await fetch("/metricas/api/localidades");
+    const localidades = await resp.json();
+
+    const select = document.getElementById("selectLocalidad");
+    localidades.forEach(loc => {
+        const opt = document.createElement("option");
+        opt.value = loc;
+        opt.textContent = loc;
+        select.appendChild(opt);
+    });
+}
+
+async function cargarPromedios(localidad, canvasId, color, refName) {
+    const resp = await fetch(`/metricas/api/metricas_localidad?localidad=${localidad}`);
+    const data = await resp.json();
+
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    if (window[refName] && typeof window[refName].destroy === "function") {
+        window[refName].destroy();
+    }
+
+    window[refName] = new Chart(canvas, {
+        type: "bar",
+        data: {
+            labels: ["Tiempo Análisis", "Tiempo Atención"],
+            datasets: [{
+                data: [data.promedios.analisis, data.promedios.atencion],
+                backgroundColor: color
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true, title: { display: true, text: "Horas promedio" } } }
+        }
+    });
+}
+
+async function cargarMetricasLocalidad(localidad) {
+    const resp = await fetch(`/metricas/api/metricas_localidad?localidad=${localidad}`);
+    const data = await resp.json();
+
+    document.getElementById("sectionInicial").style.display = "none";
+    document.getElementById("sectionLocalidad").style.display = "flex";
+
+    // Gráfica consolidada
+    const ctx = document.getElementById("chartLocalidad");
+    if (chartLocalidad && typeof chartLocalidad.destroy === "function") chartLocalidad.destroy();
+    chartLocalidad = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Apertura", "Análisis", "Atención", "Cliente", "Reporte"],
+            datasets: [{
+                label: "Horas promedio",
+                data: [
+                    data.promedios.apertura,
+                    data.promedios.analisis,
+                    data.promedios.atencion,
+                    data.promedios.cliente,
+                    data.promedios.reporte
+                ],
+                backgroundColor: "#198754"
+            }]
+        },
+        options: { responsive: true, scales: { y: { beginAtZero: true, title: { display: true, text: "Horas" } } } }
+    });
+
+    // Lista de casos
+    const lista = document.getElementById("listaCasos");
+    lista.innerHTML = "";
+    casoSeleccionado = null;
+    document.getElementById("btnDetalle").disabled = true;
+
+    data.casos.forEach(caso => {
+        const li = document.createElement("li");
+        li.className = "list-group-item list-group-item-action";
+        li.textContent = caso;
+        li.style.cursor = "pointer";
+        li.style.padding = "0.25rem 0.5rem";
+        li.style.fontSize = "0.85rem";
+
+        li.onclick = () => {
+            // Resaltar selección
+            document.querySelectorAll("#listaCasos li").forEach(el => el.classList.remove("active"));
+            li.classList.add("active");
+
+            // Guardar selección y habilitar botón
+            casoSeleccionado = caso;
+            document.getElementById("btnDetalle").disabled = false;
+
+            // Cargar gráfica por caso
+            cargarGraficaCaso(caso);
+        };
+
+        lista.appendChild(li);
+    });
+}
+
+async function cargarGraficaCaso(casoId) {
+    const resp = await fetch(`/metricas/api/detalle_caso?caso=${casoId}`);
+    const data = await resp.json();
+
+    const canvas = document.getElementById("chartCaso");
+    if (!canvas) return;
+
+    if (chartCaso && typeof chartCaso.destroy === "function") chartCaso.destroy();
+    chartCaso = new Chart(canvas, {
+        type: "bar",
+        data: {
+            labels: ["Apertura", "Análisis", "Atención", "Cliente", "Reporte"],
+            datasets: [{
+                label: `Caso ${casoId}`,
+                data: [
+                    data.apertura_h,
+                    data.analisis_h,
+                    data.atencion_h,
+                    data.cliente_h,
+                    data.reporte_h
+                ],
+                backgroundColor: "#fd7e14"
+            }]
+        },
+        options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+
+    // 🔹 NUEVO: llenar tarjeta lateral
+    document.getElementById("detalleCaso").innerHTML = `
+        <strong>Caso:</strong> ${casoId}
+        <hr class="my-2">
+        <div>Apertura: <strong>${data.apertura_txt}</strong></div>
+        <div>Análisis: <strong>${data.analisis_txt}</strong></div>
+        <div>Atención: <strong>${data.atencion_txt}</strong></div>
+        <div>Cliente: <strong>${data.cliente_txt}</strong></div>
+        <div>Reporte: <strong>${data.reporte_txt}</strong></div>
+    `;
+}
+</script>
+
+</body>
+</html>

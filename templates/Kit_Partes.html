@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit de Partes</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .stock-bajo {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+        .clickable {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="bg-light p-4">
+
+<!-- ENCABEZADO -->
+<div class="bg-primary text-white rounded-3 shadow mb-4 p-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <div class="small">
+        Usuario: <strong>{{ current_user }}</strong>
+        <span class="mx-2">|</span>
+        Rol: <strong>{{ current_role }}</strong>
+        <span class="mx-2">|</span>
+        Localidad: <strong>{{ current_localidad }}</strong>
+    </div>
+    <a href="{{ url_for('menu.menu') }}" class="btn btn-dark">
+        Regresar al menú
+    </a>
+</div>
+
+<div class="container">
+
+    <h2 class="mb-3">Kit de Partes - Inventario {{ inventario_localidad }}</h2>
+
+    <!-- FLASH MESSAGES -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    {% if aviso_inventario %}
+    <div class="alert alert-{{ aviso_inventario.tipo }} text-center fw-bold">
+        {{ aviso_inventario.mensaje }}
+    </div>
+    {% endif %}
+           
+    <!-- SELECTOR LOCALIDAD -->
+    <form method="POST" action="{{ url_for('kit_bp.kit_partes') }}" class="mb-3">
+        <label class="form-label">Localidad:</label>
+        <select name="inventario_localidad" class="form-select" onchange="this.form.submit()">
+            <option value="QRO" {% if inventario_localidad == 'QRO' %}selected{% endif %}>Querétaro</option>
+            <option value="TULT" {% if inventario_localidad == 'TULT' %}selected{% endif %}>Tultitlán</option>
+        </select>
+    </form>
+
+    <!-- ALERTA STOCK BAJO -->
+    {% if mensajes_stock_bajo %}
+        <div class="alert alert-warning">
+            <strong>Stock bajo en {{ inventario_localidad }}:</strong>
+            <ul class="mb-0">
+                {% for m in mensajes_stock_bajo %}
+                    <li>{{ m }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <!-- FORMULARIO BÚSQUEDA -->
+    <form method="GET" class="row mb-3">
+        <div class="col-md-4">
+            <input type="text" name="buscar_parte" class="form-control"
+                placeholder="Buscar FRU / Número de Parte"
+                value="{{ request.args.get('buscar_parte','') }}">
+            <!-- 🔹 ENVIAR LA LOCALIDAD SELECCIONADA TAMBIÉN -->
+            <input type="hidden" name="inventario_localidad" value="{{ inventario_localidad }}">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <!-- RESULTADO DE BÚSQUEDA -->
+    {% if resultado_busqueda %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Resultado de búsqueda</h5>
+            <p>
+                <strong>Total piezas:</strong> {{ resultado_busqueda.total }} <br>
+                <strong>Disponibles:</strong> {{ resultado_busqueda.disponibles }} <br>
+                <strong>OK:</strong> {{ resultado_busqueda.ok }} |
+                <strong>DIF:</strong> {{ resultado_busqueda.dif }}
+            </p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- TABLA CON LOS RESULTADOS -->
+    {% if resultado_busqueda %}
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Marca</th>
+                <th>Componente</th>
+                <th>Descripción</th>
+                <th>Número Parte</th>
+                <th>SU/PO</th>
+                <th>OEM</th>
+                <th>Cant. Original</th>
+                <th>Cant. Actual</th>
+                <!-- demás columnas... -->
+            </tr>
+        </thead>
+        <tbody>
+        {% for parte in resultado_busqueda.filas %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ parte.marca }}</td>
+                <td>{{ parte.componente }}</td>
+                <td>{{ parte.descripcion }}</td>
+                <td>{{ parte.fru_ibm }}</td>
+                <td>{{ parte.su_po }}</td>
+                <td>{{ parte.oem_propio }}</td>
+                <td>{{ parte.cantidad }}</td>
+                <td>{{ parte.cantidad_actual }}</td>
+                <!-- demás columnas... -->
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    {% if rol == 'ADMIN' and inventario_cerrado and localidad_usuario_cod == inventario_localidad %}
+    <form method="POST" action="{{ url_for('kit_bp.liberar_inventario') }}" class="mt-3">
+        <input type="hidden" name="inventario_localidad" value="{{ inventario_localidad }}">
+        <button class="btn btn-outline-success">
+            🔓 Liberar Inventario
+        </button>
+    </form>
+    {% endif %}
+
+    <!-- TABLA DE INVENTARIO -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="tabla-inventario">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Marca</th>
+                    <th>Componente</th>
+                    <th>Descripción</th>
+                    <th>Número Parte</th>
+                    <th>SU/PO</th>
+                    <th>OEM</th>
+                    <th>Cant. Original</th>
+                    <th>Cant. Actual</th>
+                    <th>Modificar</th>
+                    <th>Eliminar</th>
+                    <th>Inventario</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% set buscar_parte = request.args.get('buscar_parte','').strip().upper() %}
+            {% for parte in inventario %}
+                {% set puede_inventariar = (localidad_usuario_cod == inventario_localidad) %}
+                {% set estado = parte.get('Verificado') %}
+                {% set parte_num_upper = parte['NumeroParte']|upper %}
+
+                <tr id="parte-{{ parte_num_upper }}" class="
+                    {% if estado == 'OK' %}table-success
+                    {% elif estado == 'DIF' %}table-danger
+                    {% elif estado == 'CERRADO' %}table-secondary
+                    {% elif parte['CantidadActual'] < parte['CantidadOriginal'] %}stock-bajo
+                    {% endif %}
+                    {% if parte_num_upper == buscar_parte %}table-info text-dark{% endif %}
+                ">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ parte['Marca'] }}</td>
+                    <td>{{ parte['Componente'] }}</td>
+                    <td>{{ parte['Descripcion'] }}</td>
+                    <td>{{ parte['NumeroParte'] }}</td>
+                    <td>{{ parte['SUPO'] }}</td>
+                    <td>{{ parte['OEM'] }}</td>
+                    <td>{{ parte['CantidadOriginal'] }}</td>
+                    <td>{{ parte['CantidadActual'] }}</td>
+
+                    <!-- MODIFICAR STOCK ±1 -->
+                    <td class="text-center">
+                        <button
+                            class="btn btn-sm btn-outline-danger"
+                            title="Restar 1"
+                            onclick="actualizarStock('{{ parte['NumeroParte'] }}', 'restar')"
+                        >−</button>
+
+                        <button
+                            class="btn btn-sm btn-outline-success"
+                            title="Sumar 1"
+                            onclick="actualizarStock('{{ parte['NumeroParte'] }}', 'sumar')"
+                        >+</button>
+                    </td>
+
+                    <!-- ELIMINAR -->
+                    <td class="text-center">
+                    {% if rol == 'ADMIN' and localidad_usuario_cod == inventario_localidad %}
+                        <form method="POST"
+                            action="{{ url_for('kit_bp.eliminar_parte') }}"
+                            onsubmit="return confirm('¿Eliminar esta parte?');"
+                            style="display:inline;">
+                            
+                            <input type="hidden" name="fru_ibm" value="{{ parte['NumeroParte'] }}">
+                            <input type="hidden" name="inventario_localidad" value="{{ inventario_localidad }}">
+
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                Eliminar
+                            </button>
+                        </form>
+                    {% else %}
+                        —
+                    {% endif %}
+                    </td>
+
+                    <!-- INVENTARIO -->
+                    <td class="text-center">
+                    {% if estado == 'CERRADO' %}
+                        <span class="badge bg-secondary">CERRADO</span>
+
+                    {% elif puede_inventariar and rol in ['ADMIN','ENGINEER'] %}
+
+                        <form method="POST" action="{{ url_for('kit_bp.verificar_inventario') }}" class="d-inline">
+                            <input type="hidden" name="fru_ibm" value="{{ parte['NumeroParte'] }}">
+                            <input type="hidden" name="estado" value="OK">
+                            <button class="btn btn-success btn-sm">OK</button>
+                        </form>
+
+                        <form method="POST" action="{{ url_for('kit_bp.verificar_inventario') }}" class="d-inline">
+                            <input type="hidden" name="fru_ibm" value="{{ parte['NumeroParte'] }}">
+                            <input type="hidden" name="estado" value="DIF">
+                            <button class="btn btn-danger btn-sm">DIF</button>
+                        </form>
+
+                    {% else %}
+                        —
+                    {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- MODAL REGISTRAR PARTE NUEVA -->
+    <div class="modal fade" id="modalNuevaParte" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+            <form method="POST" action="{{ url_for('kit_bp.registrar_parte_nueva') }}">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registrar Parte Nueva</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="inventario_localidad" value="{{ inventario_localidad }}">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Marca</label>
+                            <input type="text" name="Marca" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Componente</label>
+                            <input type="text" name="Componente" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">SU / PO</label>
+                            <input type="text" name="SUPO" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Descripción</label>
+                            <input type="text" name="Descripcion" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Número de Parte</label>
+                            <input type="text" name="NumeroParte" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">OEM</label>
+                            <input type="text" name="OEM" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Cantidad Original</label>
+                            <input type="number" name="CantidadOriginal" class="form-control" min="0" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Cantidad Actual</label>
+                            <input type="number" name="CantidadActual"
+                                    max="{{ request.form.CantidadOriginal if request.form else '' }}">
+                        </div>
+                        <label class="form-label">Fecha de Ingreso</label>
+                        <div class="mb-2"><input class="form-control" type="date" name="FechaIngreso"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar Parte</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#modalNuevaParte">
+        Registrar Parte Nueva
+    </button>
+
+    <!-- CERRAR INVENTARIO -->
+    {% if rol == 'ADMIN' and localidad_usuario_cod == inventario_localidad %}
+        <form method="POST" action="{{ url_for('kit_bp.cerrar_inventario') }}" class="text-end mt-3">
+            <input type="hidden" name="inventario_localidad" value="{{ inventario_localidad }}">
+            <button class="btn btn-warning">🔒 Cerrar Inventario</button>
+        </form>
+    {% endif %}
+
+    <!-- DESCARGAR REPORTE -->
+    {% if rol == 'ADMIN' and localidad_usuario_cod == inventario_localidad %}
+    <div class="mt-3 d-flex gap-2">
+        <a href="{{ url_for('kit_bp.descargar_reporte_inventario') }}" class="btn btn-outline-primary">📥 Descargar Reporte</a>
+    </div>
+    {% endif %}
+
+</div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+function eliminarParte(numeroParte) {
+    if (!confirm("¿Eliminar esta parte del kit? Esta acción no se puede deshacer.")) return;
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = "{{ url_for('kit_bp.eliminar_parte') }}";
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'numero_parte';
+    input.value = numeroParte;
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+}
+
+// SCROLL Y RESALTADO DE FILA BUSCADA
+document.addEventListener("DOMContentLoaded", function() {
+    const numeroParteBuscada = "{{ buscar_parte }}";
+    if (numeroParteBuscada) {
+        const fila = document.getElementById("parte-" + numeroParteBuscada);
+        if (fila) {
+            const tbody = fila.parentElement;
+            // mover la fila al inicio del tbody
+            tbody.prepend(fila);
+
+            // scroll al inicio
+            fila.scrollIntoView({ behavior: "smooth", block: "start" });
+
+            // parpadeo temporal
+            let originalColor = fila.style.backgroundColor || "#fff";
+            let i = 0;
+            const interval = setInterval(() => {
+                fila.style.backgroundColor = i % 2 === 0 ? "#ffeeba" : originalColor;
+                i++;
+                if (i > 5) clearInterval(interval);
+            }, 300);
+        }
+    }
+});
+</script>
+<script>
+function actualizarStock(numeroParte, accion) {
+
+    fetch("{{ url_for('kit_bp.actualizar_stock') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            numero_parte: numeroParte,
+            cantidad: 1,
+            accion: accion   // 👈 CLAVE
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        if (data.status === "success") {
+            location.reload();
+        }
+        else if (data.status === "warning") {
+            alert(data.mensaje);
+        }
+        else {
+            alert("❌ " + data.mensaje);
+        }
+
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Error de comunicación con el servidor");
+    });
+}
+</script>
+</body>
+</html>

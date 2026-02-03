@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block content %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <title>Consulta de Fallas de Partes</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .card-hover {
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+        .card-hover:hover {
+            transform: scale(1.02);
+        }
+        .fru-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+    </style>
+
+<div class="container-fluid mt-4">
+
+    <!-- ENCABEZADO -->
+    <div class="row mb-4">
+        <div class="col">
+            <h3>Consulta de Fallas de Partes (FRU)</h3>
+            <p class="text-muted mb-0">
+                Análisis histórico de partes con mayor número de fallas
+            </p>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6 class="mb-3">Top Partes (FRU) con mayor número de fallas</h6>
+                    <canvas id="chartTopFRU" height="120"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form method="get" class="mb-3">
+        <div class="row align-items-end">
+            <div class="col-md-4">
+                <label class="form-label">Localidad</label>
+                <select name="localidad" class="form-select">
+                    <option value="">Seleccione</option>
+
+                    {% for loc in localidades %}
+                        <option value="{{ loc }}"
+                            {% if loc == localidad_activa %}selected{% endif %}>
+                            {{ loc }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">
+                    Filtrar
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!-- TOP PARTES -->
+    <div class="row">
+        {% for fru, total in top_partes %}
+        <div class="col-md-3 mb-3">
+            <div class="card card-hover shadow-sm"
+                 onclick="window.location.href='/consulta-fallas-partes/{{ fru }}'">
+                <div class="card-body text-center">
+                    <div class="fru-title">{{ fru }}</div>
+                    <div class="small text-muted mt-1">
+                        {{ descripcion_por_fru.get(fru, '') }}
+                    </div>
+                    <div class="mt-2 fw-semibold text-danger">
+                        {{ total }} fallas registradas
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- DETALLE POR PARTE -->
+    {% if detalle_parte %}
+    <hr class="my-4">
+
+    <div class="row mb-3">
+        <div class="col">
+            <h4>
+                Detalle de fallas – FRU:
+                <span class="text-primary">{{ parte_seleccionada }}</span>
+            </h4>
+        </div>
+        <div class="col text-end">
+            <a href="/consulta-fallas-partes" class="btn btn-outline-secondary btn-sm">
+                Regresar al resumen
+            </a>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body table-responsive">
+            <table class="table table-sm table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Servidor</th>
+                        <th>Hostname</th>
+                        <th>CASO IBM</th>
+                        <th>CASO CITI</th>
+                        <th>INGENIERO IBM</th>
+                        <th>Ingeniero CITI que recibe parte</th>
+                        <th>Localidad de ejecución</th>
+                        <th>Notas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in detalle_parte %}
+                    <tr>
+                        <td>{{ r.fecha }}</td>
+                        <td>{{ r.serie_servidor }}</td>
+                        <td>{{ r.hostname }}</td>
+                        <td>{{ r.caso_ibm }}</td>
+                        <td>{{ r.caso_citi }}</td>
+                        <td>{{ r.ingeniero }}</td>
+                        <td>{{ r.ingeniero_citi }}</td>
+                        <td>{{ r.localidad }}</td>
+                        <td>{{ r.notas }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+<script>
+    const topFRUData = {{ top_partes | tojson }};
+
+    const labels = topFRUData.map(item => item[0]);
+    const values = topFRUData.map(item => item[1]);
+
+    const ctx = document.getElementById('chartTopFRU');
+
+    if (ctx) {
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Número de fallas',
+                    data: values
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,16 @@
+{
+	"iDracVersion":"9",
+	"FirmwareVersion":"6.10.30.00",
+	"BuildVersion":"29",
+	"Model":"VxFlex-R740xd",
+	"ServiceTag":"JGC03L3",
+	"Entitlement":"",
+	"SARegistrationID":"",
+	"ClientType":"iDRAC",
+	"CollectionDateTime":"2026-01-16 13:15:08.000+000",
+	"Make":"Dell Inc.",
+	"OSName":"",
+	"DeviceSystemId":"0x0737",
+	"HostName":"LACQRCR006001.lac.nsroot.net",
+	"System Generation":"14G Monolithic"
+}

@@ -1,0 +1,16 @@
+{
+	"iDracVersion":"9",
+	"FirmwareVersion":"6.10.00.00",
+	"BuildVersion":"54",
+	"Model":"PowerEdge R740",
+	"ServiceTag":"9N6D6S3",
+	"Entitlement":"",
+	"SARegistrationID":"",
+	"ClientType":"iDRAC",
+	"CollectionDateTime":"2025-08-17 01:44:09.000+000",
+	"Make":"Dell Inc.",
+	"OSName":"",
+	"DeviceSystemId":"0x0715",
+	"HostName":"lqr1ttssoasap3p.lac.nsroot.net",
+	"System Generation":"14G Monolithic"
+}

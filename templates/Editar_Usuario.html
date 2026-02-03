@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Usuario - Bitácora</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { 
+      background: #1a4b8d;
+      color: #0f172a;
+      font-family: Arial, sans-serif;
+    }
+    h1 { 
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align:center;
+      color: #ffffff;
+    }
+    .form-container {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 0.6rem;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.20);
+    }
+  </style>
+</head>
+<body>
+<div class="container py-4">
+  <h1>EDITAR USUARIO</h1>
+
+  <div class="form-container">
+    <form action="{{ url_for('editar_usuario', username=user.username) }}" method="POST">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre Completo</label>
+        <input type="text" class="form-control" id="name" name="name" value="{{ user.name }}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+      </div>
+
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label for="role" class="form-label">Rol</label>
+        <select id="role" name="role" class="form-select" required>
+          <option value="">-- Seleccione --</option>
+          <option value="ADMIN" {% if user.role == 'ADMIN' %}selected{% endif %}>ADMIN</option>
+          <option value="ENGINEER" {% if user.role == 'ENGINEER' %}selected{% endif %}>ENGINEER</option>
+          <option value="GUEST" {% if user.role == 'GUEST' %}selected{% endif %}>GUEST</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña Temporal</label>
+        <input type="text" class="form-control" id="password" name="password" value="{{ user.password }}" required>
+        <div class="form-text">Solo cambiar si deseas asignar una nueva contraseña temporal.</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
+      <a href="{{ url_for('usuarios') }}" class="btn btn-secondary w-100 mt-2">Regresar a Usuarios</a>
+    </form>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

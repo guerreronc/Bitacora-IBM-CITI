@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Casos - BITACORA</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Fondo IBM azul suave */
+    body { 
+      background: #1a4b8d;  /* Azul suave corporativo */
+      color: #0f172a; 
+      font-family: Arial, sans-serif; 
+    }
+
+    h1 { 
+      font-weight: 700; 
+      margin-bottom: 1.5rem; 
+      text-align:center; 
+      color: #ffffff;
+    }
+
+    /* Contenedor principal con scroll */
+    .cases-container {
+      max-height: 70vh;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: flex-start;
+    }
+
+    /* Tarjeta de cada caso */
+    .case-card {
+      background: #ffffff;
+      border-radius: 0.6rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.20);
+      padding: 1rem;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .case-card h5 { margin-bottom: 0.5rem; }
+    .case-card p { margin: 0.25rem 0; font-size: 0.9rem; }
+    .case-card .btn-edit {
+      align-self: flex-start;
+      margin-top: 0.5rem;
+    }
+
+    /* Botones filtro */
+    .filter-buttons .btn {
+      margin-right: 0.5rem;
+      min-width: 100px;
+      font-weight: 600;
+    }
+
+    /* Scroll */
+    .cases-container::-webkit-scrollbar { width: 10px; }
+    .cases-container::-webkit-scrollbar-thumb {
+      background-color: rgba(0,0,0,0.2);
+      border-radius: 5px;
+    }
+  </style>
+<div class="container py-4">
+
+  <h1>CASOS</h1>
+
+  <!-- SUCURSAL Y FILTROS -->
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap text-white">
+    <div>
+      <strong>Sucursal:</strong> {{ sucursal }}
+    </div>
+    <div class="filter-buttons">
+      <select id="filtro-localidad" class="form-select d-inline-block me-2" style="width: auto;" onchange="filtrarLocalidad()">
+        <option value="">-- Seleccionar Localidad --</option>
+        <option value="QUERETARO" {% if filtro_localidad == "QUERETARO" %}selected{% endif %}>QUERETARO</option>
+        <option value="TULTITLAN" {% if filtro_localidad == "TULTITLAN" %}selected{% endif %}>TULTITLAN</option>
+      </select>
+        <button class="btn btn-success"
+            onclick="filtrarStatus('abiertos')">
+          Abiertos
+        </button>
+        <button class="btn btn-warning"
+                onclick="filtrarStatus('cerrados')">
+          Cerrados
+        </button>
+    </div>
+  </div>
+
+  <!-- CONTENEDOR DE CASOS -->
+  <div class="cases-container">
+    {% for c in casos %}
+      <div class="case-card">
+        <h5>{{ c.caso_ibm }} / {{ c.caso_citi }}</h5>
+
+        <p><strong>Ingeniero:</strong> {{ c.ingeniero }}</p>
+        <p><strong>Serie:</strong> {{ c.serie }}</p>
+        <p><strong>Status:</strong> {{ c.status or 'N/A' }}</p>
+        <p><strong>Falla:</strong> {{ c.falla or 'N/A' }}</p>
+        <p><strong>Fecha Apertura:</strong> {{ c.fecha_apertura }}</p>
+
+        <div class="d-flex gap-2 mt-2">
+          <a href="{{ url_for('casos.editar_caso', id_caso=c.caso_ibm) }}"
+            class="btn btn-primary btn-sm">Editar</a>
+
+          {% if user.role == "ADMIN" %}
+          <button class="btn btn-danger btn-sm"
+                  onclick="eliminarCaso('{{ c.caso_ibm }}')">
+            Eliminar Caso
+          </button>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script>
+function filtrarLocalidad() {
+    const loc = document.getElementById("filtro-localidad").value;
+    window.location.href = "{{ url_for('casos.casos') }}" + "?localidad=" + loc;
+}
+
+function filtrarStatus(status) {
+    const loc = document.getElementById("filtro-localidad").value;
+
+    if (!loc) {
+        alert("Seleccione una localidad primero");
+        return;
+    }
+
+    window.location.href =
+        "{{ url_for('casos.casos') }}" +
+        "?filtro=" + status +
+        "&localidad=" + loc;
+}
+
+function eliminarCaso(caso_ibm) {
+    if (!confirm("¿Deseas eliminar este caso? Esta acción no se puede deshacer.")) return;
+
+    fetch(`/casos/eliminar/${caso_ibm}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        if (data.success) {
+            alert("Caso eliminado correctamente.");
+            location.reload(); // recarga la página para actualizar la lista
+        } else {
+            alert("Error: " + (data.error || "No se pudo eliminar"));
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Error al eliminar caso.");
+    });
+}
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

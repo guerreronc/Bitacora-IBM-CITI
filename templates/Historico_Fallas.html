@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico de Fallas</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        .card-equipo {
+            border-left: 6px solid #dc3545;
+        }
+        .badge-fallas {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+<div class="bg-primary text-white rounded-3 shadow mb-4 p-3 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+    <div class="small">
+        Usuario: <strong>{{ current_user }}</strong>
+        <span class="mx-2">|</span>
+        Rol: <strong>{{ current_role }}</strong>
+        <span class="mx-2">|</span>
+        Localidad: <strong>{{ current_localidad }}</strong>
+    </div>
+    <a href="{{ url_for('menu.menu') }}" class="btn btn-dark btn-sm shadow">Regresar al menú</a>
+</div>
+<div class="container-fluid px-4 py-3">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">Histórico de Fallas por Equipo</h3>
+        <span class="text-muted">Consulta general</span>
+    </div>
+
+    {% if top_equipos %}
+    <div class="card shadow-sm mb-4 border-danger">
+        <div class="card-header bg-danger text-white">
+            <strong>Top equipos reincidentes</strong>
+            <span class="small ms-2">(mayor número de fallas)</span>
+        </div>
+
+        <div class="card-body">
+            <div class="row g-3">
+                {% for eq in top_equipos %}
+                <div class="col-md-6 col-xl-4">
+                    <div class="border rounded p-3 h-100 bg-light">
+                        <div class="fw-bold text-danger">
+                            {{ loop.index }}. {{ eq.serie }}
+                        </div>
+
+                        <div class="small mt-1">
+                            <div><strong>Marca:</strong> {{ eq.marca }}</div>
+                            <div><strong>Modelo:</strong> {{ eq.modelo }}</div>
+                            <div><strong>Localidad:</strong> {{ localidad_sel }}</div>
+                        </div>
+
+                        <div class="mt-2">
+                            <span class="badge bg-danger">
+                                {{ eq.total_fallas }} fallas
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- FILTRO -->
+    <div class="card mb-4 shadow-sm">
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+            <form method="get" class="d-flex gap-2">
+                <select name="localidad" class="form-select form-select-sm">
+                    <option value="">Seleccionar localidad</option>
+                    {% for loc in localidades %}
+                    <option value="{{ loc }}" {% if loc == localidad_sel %}selected{% endif %}>
+                        {{ loc }}
+                    </option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="btn btn-primary btn-sm">
+                    Filtrar
+                </button>
+            </form>
+
+            {% if detalle_caso %}
+            <a href="{{ url_for('historico_fallas.historico', localidad=localidad_sel) }}"
+            class="btn btn-outline-secondary btn-sm ms-auto">
+                ← Regresar al histórico
+            </a>
+            {% endif %}
+            <a href="{{ url_for('metricas.metricas') }}" class="btn btn-primary btn-sm shadow mb-3">
+                Ir a Métricas
+            </a>
+
+        </div>
+    </div>
+
+    {% if equipos %}
+    <!-- GRID DE EQUIPOS -->
+    <div class="row">
+        {% for eq in equipos %}
+        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+            <div class="card card-equipo shadow-sm h-100">
+                <div class="card-body">
+
+                    <h6 class="fw-bold mb-1">{{ eq.serie }}</h6>
+                    <div class="text-muted small mb-2">
+                        {{ eq.marca }} · {{ eq.modelo }}
+                    </div>
+
+                    <span class="badge bg-danger badge-fallas mb-3">
+                        {{ eq.total_fallas }} fallas registradas
+                    </span>
+
+                    <hr>
+
+                    <!-- CASOS -->
+                    {% set serie_id = eq.serie | replace(' ', '_') %}
+
+                    <div class="accordion" id="accordion{{ serie_id }}">
+                        {% for c in eq.casos %}
+                        {% set caso_id = serie_id ~ '_' ~ c.caso_ibm %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed py-2"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#caso{{ caso_id }}">
+                                    Caso IBM: {{ c.caso_ibm }}
+                                </button>
+                            </h2>
+                            <div id="caso{{ caso_id }}" class="accordion-collapse collapse">
+                                <div class="accordion-body small">
+
+                                    <p class="mb-1"><strong>Falla:</strong> {{ c.falla }}</p>
+                                    <p class="mb-1"><strong>Ingeniero:</strong> {{ c.ingeniero }}</p>
+                                    <p class="mb-1"><strong>Severidad:</strong> {{ c.severidad }}</p>
+                                    <p class="mb-1"><strong>Fecha:</strong> {{ c.fecha_apertura }}</p>
+
+                                    <a href="/historico/caso/{{ c.caso_ibm }}"
+                                    class="btn btn-sm btn-outline-primary mt-2">
+                                        Ver detalle
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+        <div class="alert alert-info">
+            Selecciona una localidad para visualizar equipos con fallas.
+        </div>
+    {% endif %}
+
+    {% if detalle_caso %}
+    <div class="card shadow-sm mb-4 border-primary">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>CASO IBM:</strong> {{ detalle_caso.caso_ibm }}
+                    {% if detalle_caso.caso_citi %}
+                        <span class="ms-2">| CASO CITI: {{ detalle_caso.caso_citi }}</span>
+                    {% endif %}
+                </div>
+                <span class="badge bg-danger">
+                    Severidad {{ detalle_caso.severidad }}
+                </span>
+            </div>
+        </div>
+
+        <div class="card-body small">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <strong>Seguimiento Citi</strong><br>
+                    {{ detalle_caso.seguimiento }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Fecha de apertura</strong><br>
+                    {{ detalle_caso.fecha_apertura }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Ingeniero asignado</strong><br>
+                    {{ detalle_caso.ingeniero }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Serie del equipo</strong><br>
+                    {{ detalle_caso.serie }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Host Name</strong><br>
+                    {{ detalle_caso.hostname }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Ubicación</strong><br>
+                    {{ detalle_caso.ubicacion }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Marca</strong><br>
+                    {{ detalle_caso.marca }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Modelo</strong><br>
+                    {{ detalle_caso.modelo }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Localidad</strong><br>
+                    {{ detalle_caso.localidad }}
+                </div>
+
+                <div class="col-12">
+                    <strong>Falla reportada</strong>
+                    <div class="border rounded p-2 bg-light mt-1">
+                        {{ detalle_caso.falla }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if detalle_caso.notas %}
+    <div class="card shadow-sm mb-4 border-secondary">
+        <div class="card-header bg-secondary text-white">
+            Detalle de atención / Notas del caso
+        </div>
+        <div class="card-body small">
+            {{ detalle_caso.notas }}
+        </div>
+    </div>
+    {% endif %}
+    {% if partes %}
+    <hr class="my-4">
+
+    <h5 class="fw-bold text-danger mb-3">
+        Partes utilizadas en el caso
+    </h5>
+
+    <div class="row g-3">
+        {% for p in partes %}
+        <div class="col-12 col-md-6 col-xl-4">
+            <div class="card shadow-sm h-100 border-danger">
+                <div class="card-header bg-danger text-white small">
+                    <strong>{{ p.parte }}</strong>
+                    {% if p.fru_ibm %}
+                        <span class="ms-2">| FRU: {{ p.fru_ibm }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="card-body small">
+                    <div><strong>Marca:</strong> {{ p.marca }}</div>
+                    <div><strong>FRU:</strong> {{ p.fru_ibm }}</div>
+                    <div><strong>DESCRIPCION:</strong> {{ p.descripcion }}</div>
+
+                    <hr class="my-2">
+
+                    <div><strong>Núm. proveedor:</strong> {{ p.num_proveedor }}</div>
+                    <div><strong>Cantidad:</strong> {{ p.cantidad }}</div>
+                    
+                    <hr class="my-2">
+
+                    <div><strong>Serie retirada:</strong> {{ p.serie_retirada }}</div>
+                    <div><strong>Serie instalada:</strong> {{ p.serie_instalada }}</div>
+
+                    <hr class="my-2">
+
+                    <div><strong>Work Order:</strong> {{ p.work_order }}</div>
+                    <div><strong>Ingeniero:</strong> {{ p.ingeniero }}</div>
+                    <div><strong>Recibe:</strong> {{ p.se_entrega }}</div>
+                    <div><strong>Fecha entrega:</strong> {{ p.fecha_entrega }}</div>
+                </div>
+
+                {% if p.notas %}
+                <div class="card-footer bg-light small">
+                    <strong>Notas:</strong><br>
+                    {{ p.notas }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="alert alert-secondary mt-3">
+        No hay partes registradas para este caso.
+    </div>
+    {% endif %}
+{% endif %}
+</div>
+
+</body>
+</html>

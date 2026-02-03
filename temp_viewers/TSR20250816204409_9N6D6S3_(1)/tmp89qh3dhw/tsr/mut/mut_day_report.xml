@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<day_report start_date="20250816" end_date="20250816">
+
+<wsman>
+ 
+</wsman>
+ 
+<racadm>
+	<command>
+		<command>hwinventory</command>
+		<sub_command>(null)</sub_command>
+		<fqdd>(null)</fqdd>
+		<interface>(null)</interface>
+		<count>1</count>
+	</command>
+	<command>
+		<command>swinventory</command>
+		<sub_command>(null)</sub_command>
+		<fqdd>(null)</fqdd>
+		<interface>(null)</interface>
+		<count>1</count>
+	</command>
+	<command>
+		<command>getsensorinfo</command>
+		<sub_command>(null)</sub_command>
+		<fqdd>(null)</fqdd>
+		<interface>(null)</interface>
+		<count>1</count>
+	</command>
+	<command>
+		<command>getniccfg</command>
+		<sub_command>(null)</sub_command>
+		<fqdd>(null)</fqdd>
+		<interface>(null)</interface>
+		<count>1</count>
+	</command>
+	<command>
+		<command>get</command>
+		<sub_command>(null)</sub_command>
+		<fqdd>Lifecyclecontroller.LCAttributes</fqdd>
+		<interface>(null)</interface>
+		<count>1</count>
+	</command>
+
+</racadm>
+
+<gui>
+	<command>
+		<page>restgui/index.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/dashboard/dashboard.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/settings/summary.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/maintenance/summary.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/maintenance/supportassist/supportassist.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/maintenance/supportassist/registration.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/maintenance/supportassist/welcome.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/maintenance/supportassist/sa_collect.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/maintenance/supportassist/sa_eula.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/locale/eula/eula_es.html</page>
+		<count>1</count>
+	</command>
+
+</gui>
+
+<usc>
+
+</usc>
+
+<updates>
+
+</updates>
+
+<redfish>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>PATCH</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes</uri>
+		<count>50</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Systems/System.Embedded.1</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/System.Embedded.1/Attributes</uri>
+		<count>12</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Systems/System.Embedded.1/Bios</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Oem/Dell/Jobs</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/LogServices/Sel/Entries</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Logs/FaultList</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/SessionService/Sessions</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Oem/Dell/Jobs/JID_553949105336</uri>
+		<count>13</count>
+	</command>
+
+</redfish>
+
+<ism>
+
+</ism>
+
+<jobcontrol>
+
+</jobcontrol>
+
+<gui_operation>
+	<command>
+		<command>PATCH</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes</uri>
+		<count>4</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Registries/ManagerAttributeRegistry/ManagerAttributeRegistry.v1_0_0.json</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2015/groupmanager</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=PlatformCapability.1.NGMPlatform,PlatformCapability.1.UnsupportedCntlrMsgCapable,PlatformCapability.1.PostPoneNICSelectionCapable</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2015/server/privileges</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Systems/System.Embedded.1?$select=PowerState</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2016/server/extended_health</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/System.Embedded.1/Attributes?$select=LCD.1.CurrentFPStates</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=IPv4.*</uri>
+		<count>4</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=NIC.*</uri>
+		<count>4</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=IPv6.*</uri>
+		<count>4</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=Info.*</uri>
+		<count>6</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/System.Embedded.1/Attributes?$select=ServerInfo.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Systems/System.Embedded.1</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/System.Embedded.1/Attributes?$select=ServerOS.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Systems/System.Embedded.1/Bios?$select=Attributes/SystemBiosVersion,Attributes/SystemModelName</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Oem/Dell/Jobs?$expand=*($levels=1)</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/LogServices/Sel/Entries?$top=10</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Logs/FaultList</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/System.Embedded.1/Attributes?$select=LCD.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/System.Embedded.1/Attributes?$select=ServerPwr.1.AllowLoginUserToPowerOn</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2013/server/lclogs?category=6&amp;maxcount=10</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/System.Embedded.1/Attributes?$select=ServerPwr.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2012/server/license</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=PlatformCapability.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=SecurityCertificate.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=CertificateManagement.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=VNCServer.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=VirtualConsole.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2015/server/preview</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/capconsole/scapture0.png</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=WebServer.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2015/server/sysinfo</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=CurrentNIC.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/SessionService/Sessions?$expand=*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=SwitchConnectionView.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=ServiceModule.*</uri>
+		<count>4</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2013/server/lclogs</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2013/server/lclogs?maxcount=100&amp;sequenceNumber=1769&amp;skip=0</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=ServiceModule.1.NetworkConnection</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2016/server/supportassist/contactInfo</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=SupportAssist.1.LaunchRegistrationWizard,SupportAssist.1.PromptToSaveDefaultNetworkShare</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=SupportAssist.*</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2016/server/supportassist/prerequisite</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2016/server/supportassist/collection/lastjobstatus</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>POST</command>
+		<uri>/sysmgmt/2016/server/supportassist/registration/proxy_settings</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>POST</command>
+		<uri>/sysmgmt/2019/server/enhancedlog</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=Telemetry.*</uri>
+		<count>4</count>
+	</command>
+	<command>
+		<command>POST</command>
+		<uri>/sysmgmt/2016/server/supportassist/registration/accept_eula</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>POST</command>
+		<uri>/sysmgmt/2016/server/supportassist/collection</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Oem/Dell/Jobs/JID_553949105336</uri>
+		<count>13</count>
+	</command>
+	<command>
+		<command>POST</command>
+		<uri>/sysmgmt/2016/server/supportassist/collection/collection_estimate</uri>
+		<count>1</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/sysmgmt/2016/server/supportassist/collectionhistoryinfo</uri>
+		<count>1</count>
+	</command>
+
+</gui_operation>
+
+<most_used>
+
+<wsman>
+ 
+</wsman>
+ 
+<racadm>
+	<command>
+		<command>hwinventory</command>
+		<sub_command>(null)</sub_command>
+		<fqdd>(null)</fqdd>
+		<interface>(null)</interface>
+		<count>1</count>
+	</command>
+	<command>
+		<command>swinventory</command>
+		<sub_command>(null)</sub_command>
+		<fqdd>(null)</fqdd>
+		<interface>(null)</interface>
+		<count>1</count>
+	</command>
+	<command>
+		<command>getsensorinfo</command>
+		<sub_command>(null)</sub_command>
+		<fqdd>(null)</fqdd>
+		<interface>(null)</interface>
+		<count>1</count>
+	</command>
+	<command>
+		<command>getniccfg</command>
+		<sub_command>(null)</sub_command>
+		<fqdd>(null)</fqdd>
+		<interface>(null)</interface>
+		<count>1</count>
+	</command>
+	<command>
+		<command>get</command>
+		<sub_command>(null)</sub_command>
+		<fqdd>Lifecyclecontroller.LCAttributes</fqdd>
+		<interface>(null)</interface>
+		<count>1</count>
+	</command>
+
+</racadm>
+
+<gui>
+	<command>
+		<page>restgui/index.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/dashboard/dashboard.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/settings/summary.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/maintenance/summary.html</page>
+		<count>1</count>
+	</command>
+	<command>
+		<page>restgui/views/maintenance/supportassist/supportassist.html</page>
+		<count>1</count>
+	</command>
+
+</gui>
+
+<usc>
+
+</usc>
+
+<updates>
+
+</updates>
+
+<redfish>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes</uri>
+		<count>50</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Oem/Dell/Jobs/JID_553949105336</uri>
+		<count>13</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/System.Embedded.1/Attributes</uri>
+		<count>12</count>
+	</command>
+	<command>
+		<command>PATCH</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes</uri>
+		<count>2</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Systems/System.Embedded.1</uri>
+		<count>2</count>
+	</command>
+
+</redfish>
+
+<ism>
+
+</ism>
+
+<jobcontrol>
+
+</jobcontrol>
+
+<gui_operation>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Oem/Dell/Jobs/JID_553949105336</uri>
+		<count>13</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=Info.*</uri>
+		<count>6</count>
+	</command>
+	<command>
+		<command>PATCH</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes</uri>
+		<count>4</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=IPv4.*</uri>
+		<count>4</count>
+	</command>
+	<command>
+		<command>GET</command>
+		<uri>/redfish/v1/Managers/iDRAC.Embedded.1/Attributes?$select=NIC.*</uri>
+		<count>4</count>
+	</command>
+
+</gui_operation>
+
+</most_used>
+</day_report>

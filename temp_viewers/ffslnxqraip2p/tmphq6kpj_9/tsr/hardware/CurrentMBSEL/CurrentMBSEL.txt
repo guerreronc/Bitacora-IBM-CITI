@@ -1,0 +1,130 @@
+Record : 1
+Date/Time : Thu Jun 01 2023 02:41:59
+Severity : 2
+Description : Log cleared.
+-----------------------------------------------------------------
+Record : 2
+Date/Time : Thu Jun 01 2023 02:48:25
+Severity : 2
+Description : OEM software event.
+-----------------------------------------------------------------
+Record : 3
+Date/Time : Thu Jun 01 2023 02:48:25
+Severity : 2
+Description : OEM software event.
+-----------------------------------------------------------------
+Record : 4
+Date/Time : Thu Jun 01 2023 02:49:41
+Severity : 2
+Description : C: boot completed.
+-----------------------------------------------------------------
+Record : 5
+Date/Time : Thu Jun 01 2023 02:49:41
+Severity : 2
+Description : OEM software event.
+-----------------------------------------------------------------
+Record : 6
+Date/Time : Wed Jul 12 2023 03:30:25
+Severity : 2
+Description : The process of installing an operating system or hypervisor is started and is in progress.
+-----------------------------------------------------------------
+Record : 7
+Date/Time : Wed Jul 12 2023 03:38:31
+Severity : 2
+Description : The process of installing an operating system or hypervisor is successfully completed.
+-----------------------------------------------------------------
+Record : 8
+Date/Time : Sun Sep 03 2023 15:55:25
+Severity : 2
+Description : The process of installing an operating system or hypervisor is started and is in progress.
+-----------------------------------------------------------------
+Record : 9
+Date/Time : Sun Sep 03 2023 16:04:13
+Severity : 2
+Description : The process of installing an operating system or hypervisor is successfully completed.
+-----------------------------------------------------------------
+Record : 10
+Date/Time : Mon Feb 12 2024 16:37:04
+Severity : 4
+Description : The chassis is open while the power is off.
+-----------------------------------------------------------------
+Record : 11
+Date/Time : Mon Feb 12 2024 16:37:09
+Severity : 2
+Description : The chassis is closed while the power is off.
+-----------------------------------------------------------------
+Record : 12
+Date/Time : Fri Nov 22 2024 22:07:14
+Severity : 4
+Description : The Power Supply Unit (PSU) 1 is not receiving input power because of issues in PSU or cable connections.
+-----------------------------------------------------------------
+Record : 13
+Date/Time : Fri Nov 22 2024 22:07:23
+Severity : 4
+Description : Power supply redundancy is lost.
+-----------------------------------------------------------------
+Record : 14
+Date/Time : Sat Nov 23 2024 02:10:44
+Severity : 2
+Description : The input power for power supply 1 has been restored.
+-----------------------------------------------------------------
+Record : 15
+Date/Time : Sat Nov 23 2024 02:10:48
+Severity : 2
+Description : The power supplies are redundant.
+-----------------------------------------------------------------
+Record : 16
+Date/Time : Sat Nov 23 2024 22:07:30
+Severity : 4
+Description : The Power Supply Unit (PSU) 2 is not receiving input power because of issues in PSU or cable connections.
+-----------------------------------------------------------------
+Record : 17
+Date/Time : Sat Nov 23 2024 22:07:34
+Severity : 4
+Description : Power supply redundancy is lost.
+-----------------------------------------------------------------
+Record : 18
+Date/Time : Sun Nov 24 2024 02:13:29
+Severity : 2
+Description : The power supplies are redundant.
+-----------------------------------------------------------------
+Record : 19
+Date/Time : Sun Nov 24 2024 02:13:30
+Severity : 2
+Description : The input power for power supply 2 has been restored.
+-----------------------------------------------------------------
+Record : 20
+Date/Time : Sun Dec 08 2024 05:34:25
+Severity : 2
+Description : The process of installing an operating system or hypervisor is started and is in progress.
+-----------------------------------------------------------------
+Record : 21
+Date/Time : Sun Dec 08 2024 13:19:17
+Severity : 2
+Description : The process of installing an operating system or hypervisor is started and is in progress.
+-----------------------------------------------------------------
+Record : 22
+Date/Time : Sun Dec 08 2024 13:57:55
+Severity : 2
+Description : The process of installing an operating system or hypervisor is started and is in progress.
+-----------------------------------------------------------------
+Record : 23
+Date/Time : Sun Dec 08 2024 16:23:13
+Severity : 2
+Description : The process of installing an operating system or hypervisor is started and is in progress.
+-----------------------------------------------------------------
+Record : 24
+Date/Time : Sun Dec 08 2024 17:25:53
+Severity : 2
+Description : The process of installing an operating system or hypervisor is started and is in progress.
+-----------------------------------------------------------------
+Record : 25
+Date/Time : Tue Dec 10 2024 23:28:45
+Severity : 2
+Description : The process of installing an operating system or hypervisor is started and is in progress.
+-----------------------------------------------------------------
+Record : 26
+Date/Time : Sun Jan 11 2026 08:31:31
+Severity : 3
+Description : A predictive failure detected on drive 2 in disk drive bay 1.
+-----------------------------------------------------------------

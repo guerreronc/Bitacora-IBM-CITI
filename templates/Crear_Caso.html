@@ -1,0 +1,387 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="ibm-card p-4 mb-4">
+    <h4 class="mb-4 text-primary fw-semibold">
+        Crear Caso
+    </h4>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="mb-3">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} py-2">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  {% if messages %}
+  <script>
+    setTimeout(function () {
+      window.location.href = "{{ url_for('menu.menu') }}";
+    }, 3000);
+  </script>
+  {% endif %}
+
+  <form id="crearCasoForm" action="{{ url_for('crear_caso') }}" method="POST" novalidate>
+    <input type="hidden" name="edit_mode" value="{{ 'True' if edit_mode else 'False' }}">
+    <input type="hidden" name="fila_original" value="{{ datos['row'] if datos else '' }}">
+
+    <div class="row g-3">
+
+      <!-- COLUMNA 1 -->
+      <div class="col-12 col-lg-3">
+        <div class="card-section h-100">
+          <div class="section-title">Datos del Caso</div>
+
+          <div class="mb-2">
+            <label for="Fecha">FECHA <span class="required">*</span></label>
+            <input id="Fecha" name="fecha" type="datetime-local" class="form-control" required>
+            <div class="form-text">Generado automáticamente al abrir el formulario.</div>
+          </div>
+
+          <div class="mb-2">
+            <label for="localidad">LOCALIDAD <span class="required">*</span></label>
+            <select id="localidad" name="localidad" class="form-select" required>
+              <option value="">-- Seleccione --</option>
+              <option value="QUERETARO">QUERETARO</option>
+              <option value="TULTITLAN">TULTITLAN</option>
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label for="AlCiti">ALERTAMIENTO CITI <span class="required">*</span></label>
+            <input id="AlCiti" name="alciti" type="text" class="form-control" required>
+          </div>
+
+          <div class="mb-2">
+            <label for="TextBoxFechaAlerta">FECHA ALERTAMIENTO <span class="required">*</span></label>
+            <input id="TextBoxFechaAlerta" name="fecha_alerta" type="datetime-local" class="form-control" required>
+          </div>
+
+          <div class="mb-2">
+            <label for="CboxSegCiti">SEGUIMIENTO CITI <span class="required">*</span></label>
+            <select id="CboxSegCiti" name="seguimiento_citi" class="form-select" required>
+              <option value="">-- Seleccione --</option>
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label for="TxtCasoIbm">CASO IBM <span class="required">*</span></label>
+            <input id="TxtCasoIbm" name="caso_ibm" type="text" class="form-control" required>
+          </div>
+
+          <div class="mb-2">
+            <label for="TxtCasoCiti">CASO CITI</label>
+            <input id="TxtCasoCiti" name="caso_citi" type="text" class="form-control">
+          </div>
+
+          <div class="mb-2">
+            <label for="TxtFechaCsp">FECHA APERTURA CSP <span class="required">*</span></label>
+            <input id="TxtFechaCsp" name="fecha_apertura" type="datetime-local" class="form-control" required>
+          </div>
+
+          <div class="mb-2">
+            <label for="ComboSeveridad">SEVERIDAD</label>
+            <select id="ComboSeveridad" name="severidad" class="form-select">
+              <option value="">-- Seleccione --</option>
+              {% for s in severidades %}
+                <option value="{{ s }}">{{ s }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label for="ComboIngeniero">INGENIERO</label>
+            <select id="ComboIngeniero" name="ingeniero" class="form-select">
+              <option value="">-- Seleccione --</option>
+              {% for i in ingenieros %}
+                <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- COLUMNA 2 -->
+      <div class="col-12 col-lg-3 position-relative">
+        <div class="card-section h-100">
+          <div class="section-title">Datos del Equipo</div>
+
+          <div class="mb-2 position-relative">
+            <label for="SerieEquipo">ESCRIBA EL NÚMERO DE SERIE <span class="required">*</span></label>
+            <input id="SerieEquipo" name="serie_equipo" class="form-control" autocomplete="off" placeholder="Empieza a escribir para buscar...">
+            <div id="serieList" class="autocomplete-list d-none"></div>
+            <div class="form-text">Serie dinámico: se cargará desde la hoja BASE_SERVERS.</div>
+          </div>
+
+          <div class="mb-2">
+            <label for="TxtSerie">SERIE</label>
+            <input id="TxtSerie" name="txt_serie" type="text" class="form-control" readonly>
+          </div>
+
+          <div class="mb-2">
+            <label for="NombreServer">NOMBRE DEL SERVIDOR</label>
+            <input id="NombreServer" name="nombre_server" type="text" class="form-control" readonly>
+          </div>
+
+          <div class="mb-2">
+            <label for="Ubicacion">UBICACIÓN</label>
+            <input id="Ubicacion" name="ubicacion" type="text" class="form-control" readonly>
+          </div>
+
+          <div class="mb-2">
+            <label for="Proveedor">MARCA / PROVEEDOR</label>
+            <input id="Proveedor" name="proveedor" type="text" class="form-control" readonly>
+          </div>
+
+          <div class="mb-2">
+            <label for="TextModelo">MODELO</label>
+            <input id="TextModelo" name="text_modelo" type="text" class="form-control" readonly>
+          </div>
+
+          <div class="mb-2">
+            <label for="TextBoxMarcaCSP">MARCA CSP</label>
+            <input id="TextBoxMarcaCSP" name="marca_csp" type="text" class="form-control" readonly>
+          </div>
+
+          <div class="mb-2">
+            <label for="TextBoxModeloCSP">MODELO CSP</label>
+            <input id="TextBoxModeloCSP" name="modelo_csp" type="text" class="form-control" readonly>
+          </div>
+
+          <div class="mb-2">
+            <label for="FechaGar">FECHA GARANTÍA</label>
+            <input id="FechaGar" name="fecha_garantia" type="date" class="form-control" readonly>
+            <div id="garantiaNote" class="form-text small-muted"></div>
+          </div>
+
+          <div class="mb-2">
+            <label for="CasoProveedor">CASO PROVEEDOR</label>
+            <input id="CasoProveedor" name="caso_proveedor" type="text" class="form-control">
+          </div>
+
+        </div>
+      </div>
+
+      <!-- COLUMNA 3 -->
+      <div class="col-12 col-lg-3">
+        <div class="card-section h-100">
+          <div class="section-title">Diagnóstico y Partes</div>
+
+          <div class="mb-2">
+            <label for="ComboBoxFalla">FALLA REPORTADA <span class="required">*</span></label>
+            <select id="ComboBoxFalla" name="falla_reportada" class="form-select" required>
+              <option value="">-- Seleccione --</option>
+              {% for f in fallas %}
+                <option value="{{ f }}">{{ f }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label for="UbicacionParte">UBICACIÓN DE PARTE</label>
+            <input id="UbicacionParte" name="ubicacion_parte" type="text" class="form-control">
+          </div>
+
+          <div class="mb-2">
+            <label for="ComboStatus">STATUS <span class="required">*</span></label>
+            <select id="ComboStatus" name="status" class="form-select" required>
+              <option value="">-- Seleccione --</option>
+              {% for st in status_list %}
+                <option value="{{ st }}">{{ st }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label for="CBAbiertoCerrado">STATUS PRINCIPAL <span class="required">*</span></label>
+            <select id="CBAbiertoCerrado" name="status_principal" class="form-select" required>
+              <option value="">-- Seleccione --</option>
+              {% for sp in status_principal %}
+                <option value="{{ sp }}">{{ sp }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label for="ComboServicio">TIPO DE SERVICIO <span class="required">*</span></label>
+            <select id="ComboServicio" name="tipo_servicio" class="form-select" required>
+              <option value="">-- Seleccione --</option>
+              {% for ts in tipos_servicio %}
+                <option value="{{ ts }}">{{ ts }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label for="NEEDPART">SE NECESITA PARTE <span class="required">*</span></label>
+            <select id="NEEDPART" name="needpart" class="form-select" required>
+              <option value="">-- Seleccione --</option>
+              {% for np in needpart_options %}
+                <option value="{{ np }}">{{ np }}</option>
+              {% endfor %}
+            </select>
+            <div id="needpartNote" class="form-text text-danger d-none">Favor de registrar la parte (disponible en Casos).</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BANDERA DE GARANTÍA -->
+      <div id="bannerGarantia" class="p-3 mb-3 text-center fw-bold rounded" style="display:none; font-size:1rem;"></div>
+
+
+      <!-- NOTAS (full-width) -->
+      <div class="col-12">
+        <div class="card-section">
+          <div class="section-title">Notas / Observaciones <span class="required">*</span></div>
+          <textarea id="Notas" name="notas" class="form-control" required placeholder="Escribe las notas aquí..."></textarea>
+        </div>
+      </div>
+
+      <!-- BOTONES (full-width centrado) -->
+      <div class="col-12">
+        <div class="d-flex justify-content-center gap-3 mt-3">
+          <button id="btnGuardar" type="submit" class="btn btn-primary">GUARDAR REGISTRO</button>
+          <a href="{{ url_for('menu.menu') }}" class="btn btn-secondary">REGRESAR A MENU</a>
+        </div>
+      </div>
+
+    </div> <!-- row -->
+  </form>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // --- Auto fecha ---
+    const fechaInput = document.getElementById('Fecha');
+    if(fechaInput) {
+        const now = new Date();
+        const tzOffset = now.getTimezoneOffset() * 60000;
+        fechaInput.value = new Date(now - tzOffset).toISOString().slice(0,16);
+    }
+
+    // --- SEGUIMIENTO CITI dinámico ---
+    const seguimiento = {
+        "QUERETARO": {{ seguimiento_citi_qro|tojson }},
+        "TULTITLAN": {{ seguimiento_citi_tult|tojson }}
+    };
+    const selLocalidad = document.getElementById('localidad');
+    const selSeguimiento = document.getElementById('CboxSegCiti');
+
+    function llenarSeguimiento() {
+        const loc = selLocalidad.value || '{{ localidad }}';
+        selSeguimiento.innerHTML = '<option value="">-- Seleccione --</option>';
+        if(seguimiento[loc]){
+            seguimiento[loc].forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p; opt.textContent = p;
+                selSeguimiento.appendChild(opt);
+            });
+        }
+    }
+    selLocalidad.addEventListener('change', llenarSeguimiento);
+    llenarSeguimiento();
+
+// --- Función para actualizar banner de garantía ---
+function actualizarBannerGarantia(fechaGarantiaStr) {
+    const banner = document.getElementById('bannerGarantia');
+    if (!banner || !fechaGarantiaStr) {
+        banner.style.display = 'none';
+        return;
+    }
+
+    const hoy = new Date();
+    const fechaGarantia = new Date(fechaGarantiaStr);
+    const tresMeses = new Date();
+    tresMeses.setMonth(hoy.getMonth() + 3);
+
+    let mensaje = "";
+    let color = "";
+
+    if (fechaGarantia < hoy) {
+        mensaje = "⚠ EQUIPO SIN GARANTÍA";
+        color = "#ff4d4d"; // rojo
+    } else if (fechaGarantia <= tresMeses) {
+        mensaje = "⚠ EQUIPO PRÓXIMO A VENCER";
+        color = "#ffc107"; // amarillo
+    } else {
+        mensaje = "✅ EQUIPO EN GARANTÍA";
+        color = "#28a745"; // verde
+    }
+
+    banner.textContent = mensaje;
+    banner.style.backgroundColor = color;
+    banner.style.color = "#fff";
+    banner.style.display = "block";
+}
+
+// --- Autocomplete Serie ---
+const serieInput = document.getElementById('SerieEquipo');
+const serieList = document.getElementById('serieList');
+let debounceTimer = null;
+
+serieInput.addEventListener('input', function(e) {
+    const q = e.target.value.trim();
+    clearTimeout(debounceTimer);
+    if(q.length < 1) { serieList.classList.add('d-none'); serieList.innerHTML = ''; return; }
+
+    debounceTimer = setTimeout(()=> {
+        fetch('/api/buscar_serie?query=' + encodeURIComponent(q))
+        .then(r => r.json())
+        .then(items => {
+            serieList.innerHTML = '';
+            if(!items || items.length===0) { serieList.classList.add('d-none'); return; }
+            items.forEach(it => {
+                const div = document.createElement('div');
+                div.className = 'autocomplete-item';
+                div.innerHTML = `<strong>${it.serie}</strong> — ${it.nombre || ''} <div class="small-muted">${it.proveedor||''} ${it.modelo||''}</div>`;
+                div.addEventListener('click', function(){
+                    document.getElementById('SerieEquipo').value = it.serie;
+                    document.getElementById('TxtSerie').value = it.serie || '';
+                    document.getElementById('NombreServer').value = it.nombre || '';
+                    document.getElementById('Ubicacion').value = it.ubicacion || '';
+                    document.getElementById('Proveedor').value = it.proveedor || '';
+                    document.getElementById('TextModelo').value = it.modelo || '';
+                    document.getElementById('TextBoxMarcaCSP').value = it.marca_csp || '';
+                    document.getElementById('TextBoxModeloCSP').value = it.modelo_csp || '';
+                    document.getElementById('FechaGar').value = it.fecha_garantia || '';
+
+                    // <-- LLAMADA A LA FUNCIÓN para actualizar el banner
+                    actualizarBannerGarantia(it.fecha_garantia);
+
+                    serieList.classList.add('d-none');
+                });
+                serieList.appendChild(div);
+            });
+            serieList.classList.remove('d-none');
+        }).catch(()=>{ serieList.classList.add('d-none'); });
+    }, 220);
+});
+
+document.addEventListener('click', function(ev){
+    if(!serieInput.contains(ev.target)) { serieList.classList.add('d-none'); }
+});
+
+
+    // --- NEEDPART note ---
+    const needSelect = document.getElementById('NEEDPART');
+    const needNote = document.getElementById('needpartNote');
+    function updateNeedPart() {
+        if(!needSelect) return;
+        const v = needSelect.value;
+        if(v && v.toUpperCase().startsWith('S')) { needNote.classList.remove('d-none'); } 
+        else { needNote.classList.add('d-none'); }
+    }
+    needSelect.addEventListener('change', updateNeedPart);
+    updateNeedPart();
+
+});
+</script>
+{% endblock %}

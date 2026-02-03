@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 4px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Reporte de Servidores – {{ titulo }}</h2>
+
+<p>Fecha de generación: {{ fecha }}</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Serie</th>
+            <th>Hostname</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Localidad</th>
+            <th>Garantía</th>
+            <th>Estatus</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in servidores %}
+        <tr>
+            <td>{{ s.serie }}</td>
+            <td>{{ s.hostname }}</td>
+            <td>{{ s.marca }}</td>
+            <td>{{ s.modelo }}</td>
+            <td>{{ s.localidad }}</td>
+            <td>{{ s.garantia }}</td>
+            <td>{{ s.estado }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

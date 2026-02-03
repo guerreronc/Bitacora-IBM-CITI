@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico de Casos</title>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<div class="max-w-7xl mx-auto">
+
+    <!-- TÍTULO -->
+    <h1 class="text-3xl font-bold text-center text-blue-900 mb-6">
+        Histórico de Casos
+    </h1>
+
+    <div class="flex justify-start mb-6">
+        <a href="{{ url_for('menu.menu') }}"
+        class="bg-gray-700 hover:bg-gray-900 text-white px-5 py-2 rounded-lg shadow">
+            ← Regresar al Menú
+        </a>
+    </div>
+
+    <!-- FILTROS -->
+    <form method="POST" class="bg-white rounded-xl shadow p-4 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+            <select name="tipo" class="border rounded p-2">
+                <option value="IBM">Caso IBM</option>
+                <option value="CITI">Caso CITI</option>
+            </select>
+
+            <input type="text" name="valor" placeholder="Buscar por número de caso"
+                   class="border rounded p-2 md:col-span-2">
+
+            <button class="bg-blue-700 hover:bg-blue-900 text-white rounded px-4">
+                Buscar
+            </button>
+
+        </div>
+    </form>
+
+    {% if mensaje %}
+    <div class="bg-red-100 text-red-800 p-3 rounded mb-4">
+        {{ mensaje }}
+    </div>
+    {% endif %}
+
+    <!-- TARJETAS DE CASOS -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        {% for caso in casos %}
+        <div class="bg-white rounded-xl shadow p-4 cursor-pointer"
+             onclick="abrirModal('{{ caso['CASO IBM'] }}')">
+
+            <p class="font-bold text-blue-800">
+                Caso IBM: {{ caso['CASO IBM'] }}
+            </p>
+
+            <p class="text-sm text-gray-600">
+                Caso CITI: {{ caso['CASO CITI'] }}
+            </p>
+
+            <p class="text-sm mt-1">
+                {{ caso['LOCALIDAD'] }} · {{ caso['STATUS'] }}
+            </p>
+
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+<!-- ================= MODALES ================= -->
+{% for caso in casos %}
+<div id="modal-{{ caso['CASO IBM'] }}"
+     class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 overflow-auto">
+
+    <div class="bg-white max-w-6xl mx-auto mt-10 rounded-xl shadow-lg p-6">
+
+        <!-- HEADER -->
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-bold text-blue-900">
+                Caso IBM {{ caso['CASO IBM'] }}
+            </h2>
+            <button onclick="cerrarModal('{{ caso['CASO IBM'] }}')"
+                    class="text-red-600 font-bold">
+                Cerrar
+            </button>
+        </div>
+
+        <!-- DATOS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mb-6">
+            <div><b>Ingeniero:</b> {{ caso['INGENIERO'] }}</div>
+            <div><b>Serie:</b> {{ caso['SERIE EQUIPO'] }}</div>
+            <div><b>Host:</b> {{ caso['HOST NAME'] }}</div>
+
+            <div><b>Marca:</b> {{ caso['MARCA'] }}</div>
+            <div><b>Modelo:</b> {{ caso['MODELO'] }}</div>
+            <div><b>Severidad:</b> {{ caso['SEVERIDAD'] }}</div>
+            <div><b>VOBO CLIENTE:</b> {{ caso['VOBO_CLIENTE'] }}</div>
+            <div><b>VOBO EN SITIO:</b> {{ caso['VOBO_SITIO'] }}</div>
+        </div>
+
+        <!-- TIEMPOS -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm mb-6">
+            <div><b>Apertura:</b> {{ caso['TIEMPO APERTURA'] }}</div>
+            <div><b>Análisis:</b> {{ caso['TIEMPO ANALISIS'] }}</div>
+            <div><b>Atención:</b> {{ caso['TIEMPO ATENCION'] }}</div>
+            <div><b>Reporte:</b> {{ caso['TIEMPO REPORTE'] }}</div>
+        </div>
+
+        <!-- GRÁFICA -->
+        <div class="mb-6">
+            <canvas
+                id="grafica-{{ caso['CASO IBM'] }}"
+                data-apertura="{{ caso['TIEMPO APERTURA'] }}"
+                data-analisis="{{ caso['TIEMPO ANALISIS'] }}"
+                data-atencion="{{ caso['TIEMPO ATENCION'] }}"
+                data-reporte="{{ caso['TIEMPO REPORTE'] }}"
+                height="120">
+            </canvas>
+        </div>
+
+        <!-- NOTAS -->
+        <div class="mb-6">
+            <b>Notas:</b>
+            <div class="bg-slate-100 p-3 rounded text-sm">
+                {{ caso['NOTAS'] }}
+            </div>
+        </div>
+
+        <!-- PARTES -->
+        {% if caso.PARTES %}
+        <div>
+            <h3 class="font-bold text-blue-800 mb-2">Partes Utilizadas</h3>
+
+            {% for p in caso.PARTES %}
+            <div class="border rounded p-3 mb-2 text-sm bg-slate-50">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+                    <div><b>Parte:</b> {{ p['PARTE'] }}</div>
+                    <div><b>FRU:</b> {{ p['FRU'] }}</div>
+                    <div><b>Cantidad:</b> {{ p['CANTIDAD'] }}</div>
+                    <div><b>Ingeniero Citi:</b> {{ p['INGENIERO CITI'] }}</div>
+                    <div><b>Ingeniero:</b> {{ p['INGENIERO'] }}</div>
+                    <div><b>Workorden:</b> {{ p['WORK ORDER'] }}</div>
+                </div>
+                <div class="mt-2">
+                    <b>Descripción:</b> {{ p['DESCRIPCION'] }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endfor %}
+
+<!-- ================= JS ================= -->
+<script>
+function abrirModal(id) {
+    document.getElementById('modal-' + id).classList.remove('hidden');
+    setTimeout(() => crearGraficaCaso(id), 50);
+}
+
+function cerrarModal(id) {
+    document.getElementById('modal-' + id).classList.add('hidden');
+}
+
+function tiempoADecimal(tiempo) {
+    if (!tiempo || typeof tiempo !== "string") return 0;
+
+    let dias = 0;
+    let horas = 0;
+    let minutos = 0;
+
+    const partes = tiempo.split(" ");
+
+    partes.forEach(p => {
+        if (p.endsWith("d")) {
+            dias = parseInt(p);
+        } else if (p.endsWith("h")) {
+            horas = parseInt(p);
+        } else if (p.endsWith("m")) {
+            minutos = parseInt(p);
+        }
+    });
+
+    return (dias * 24 * 60) + (horas * 60) + minutos;
+}
+
+const graficasCreadas = {};
+
+function crearGraficaCaso(casoId) {
+
+    if (graficasCreadas[casoId]) return;
+
+    const canvas = document.getElementById("grafica-" + casoId);
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+
+    graficasCreadas[casoId] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Apertura', 'Análisis', 'Atención', 'Reporte'],
+            datasets: [{
+                data: [
+                    tiempoADecimal(canvas.dataset.apertura),
+                    tiempoADecimal(canvas.dataset.analisis),
+                    tiempoADecimal(canvas.dataset.atencion),
+                    tiempoADecimal(canvas.dataset.reporte)
+                ],
+                backgroundColor: [
+                    '#2563eb',
+                    '#7c3aed',
+                    '#059669',
+                    '#dc2626'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Minutos'
+                    }
+                }
+            }
+        }
+    });
+}
+</script>
+{% endblock %}

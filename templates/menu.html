@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% block content %}
+    <meta charset="UTF-8">
+    <title>Menú Principal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+        .card-menu {
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .card-menu:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+        }
+        .icon {
+            font-size: 50px;
+        }
+    </style>
+
+
+<body>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("MENU JS CARGADO");
+    });
+    </script>
+
+{% if user.temp_password and user.role != "ClientCITI" %}
+<div class="alert alert-warning text-center mt-3">
+    <strong>Acceso restringido</strong><br>
+    Debes cambiar tu contraseña antes de usar el sistema.
+</div>
+{% endif %}
+
+<div class="container mt-5">
+{% if user.temp_password and user.role != "ClientCITI" %}
+<script>
+    setTimeout(function () {
+        window.location.href = "{{ url_for('cambiar_password') }}";
+    }, 3000);
+</script>
+{% endif %}
+
+{% if user.rol == "guest" and user.temp_password %}
+<script>
+    setTimeout(function () {
+        window.location.href = "{{ url_for('cambiar_password') }}";
+    }, 3000);
+</script>
+{% endif %}
+
+    <!-- CONFIGURACIÓN (solo ADMIN y ENGINEER) -->
+    {% if user.role in ["ADMIN", "ENGINEER", "GUEST"] %}
+    <div class="text-end mb-3">
+        <button class="btn btn-light border" data-bs-toggle="modal" data-bs-target="#cambiarPasswordModal">
+            ⚙️ Configuración
+        </button>
+    </div>
+
+    <!-- Modal de cambio de contraseña -->
+    <div class="modal fade" id="cambiarPasswordModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ url_for('cambiar_password') }}" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Cambiar Contraseña</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        {% if mensaje %}
+                            <div class="alert alert-{{ mensaje.tipo }}">{{ mensaje.texto }}</div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña Actual</label>
+                            <input type="password" class="form-control" name="current_password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nueva Contraseña</label>
+                            <input type="password" class="form-control" name="new_password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirmar Nueva Contraseña</label>
+                            <input type="password" class="form-control" name="confirm_password" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Actualizar Contraseña</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- DATOS DEL USUARIO -->
+    <div class="text-center mb-4">
+        <h4>Localidad: {{ localidad }}</h4>
+        <h2 class="mb-2">Bienvenido {{ user.name }}</h2>
+        <h5 class="text-secondary">Rol: {{ user.role }}</h5>
+    </div>
+
+   <!-- MENÚ DINÁMICO -->
+<div class="row mt-4 g-4">
+    {% for item in menu_items %}
+    <div class="col-md-4">
+
+        {% if not user.temp_password or user.role == "ClientCITI" %}
+
+        <!-- Acceso normal -->
+        <a href="{{ item.url }}" style="text-decoration: none; color: inherit;">
+            <div class="card card-menu p-4 text-center shadow-sm">
+                <div class="icon">{{ item.icon }}</div>
+                <h5 class="mt-3">{{ item.name }}</h5>
+            </div>
+        </a>
+
+        {% else %}
+        <!-- Bloqueado -->
+        <div class="card card-menu p-4 text-center shadow-sm text-muted"
+             style="opacity:0.5; cursor:not-allowed;">
+            <div class="icon">{{ item.icon }}</div>
+            <h5 class="mt-3">{{ item.name }}</h5>
+            <small>Requiere cambio de contraseña</small>
+        </div>
+        {% endif %}
+
+    </div>
+    {% endfor %}
+</div>
+
+    <!-- BOTÓN SALIR -->
+    <div class="text-center mt-5">
+        <a href="{{ url_for('logout') }}" class="btn btn-danger btn-lg">Cerrar Sesión</a>
+    </div>
+
+    </div>
+    <div class="modal fade" id="modalAlertas" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+        <div class="modal-header bg-warning">
+            <h5 class="modal-title">🔔 Alertas del sistema</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+            {% if alertas %}
+            {% for a in alertas %}
+                <div class="alert alert-{{ a.nivel }}">
+                    {{ a.mensaje | safe }}
+                </div>
+            {% endfor %}
+            {% else %}
+            <div class="text-muted text-center">
+                No hay alertas pendientes.
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+
+        </div>
+    </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const totalAlertas = {{ total_alertas | default(0) }};
+
+    if (totalAlertas > 0) {
+        const modal = new bootstrap.Modal(
+            document.getElementById("modalAlertas")
+        );
+        modal.show();
+    }
+
+});
+</script>
+{% endblock %}

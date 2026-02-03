@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+
+    <meta charset="UTF-8">
+    <title>Base de Servidores</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .readonly {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container mt-4">
+
+
+    <!-- BOTÓN REGRESAR -->
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Base de Servidores</h5>
+        </div>
+
+        <div class="card-body">
+
+            <!-- FILTROS -->
+            <div class="card mb-4">
+                <div class="card-body">
+
+                    <div class="row g-3 align-items-end">
+
+                        <div class="col-md-4">
+                            <label class="form-label">Localidad</label>
+                            <select id="localidad" class="form-select">
+                                <option value="">Seleccione</option>
+                                <option value="QUERETARO">QUERÉTARO</option>
+                                <option value="TULTITLAN">TULTITLÁN</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Serie o Hostname</label>
+                            <input
+                                type="text"
+                                id="busqueda"
+                                class="form-control"
+                                placeholder="Ingrese Serie o Hostname"
+                            >
+                        </div>
+
+                        <div class="col-md-4">
+                            <button class="btn btn-primary w-100" onclick="buscarServidor()">
+                                Buscar Servidor
+                            </button>
+                        </div>
+                        <div class="d-flex justify-content-end mb-3">
+                            <a href="/base-servidores/nuevo" class="btn btn-success">
+                                ➕ Registrar Servidor
+                            </a>
+                        </div>
+                        <a href="/base-servidores/garantias" class="btn btn-info btn-sm">
+                            Reporte de Garantías
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div id="resultadoServidor" class="d-none mt-4">
+                <div class="card border-primary shadow">
+                    <div class="card-header bg-primary text-white">
+                        Información del Servidor
+                    </div>
+                    <div class="card-body" id="contenidoServidor">
+                        <!-- Aquí se inyecta el contenido -->
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- MENSAJES -->
+            <div id="mensaje" class="alert d-none"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+async function buscarServidor() {
+
+    const localidad = document.getElementById("localidad").value;
+    const termino = document.getElementById("busqueda").value.trim();
+
+    if (!localidad || !termino) {
+        alert("Debe seleccionar Localidad y Serie o Hostname");
+        return;
+    }
+
+    const params = new URLSearchParams({
+        localidad: localidad,
+        termino: termino
+    });
+
+    const response = await fetch(`/base-servidores/buscar?${params.toString()}`);
+    const data = await response.json();
+
+    const contenedor = document.getElementById("resultadoServidor");
+    const contenido = document.getElementById("contenidoServidor");
+
+    contenedor.classList.remove("d-none");
+
+    if (!data.encontrado) {
+        contenido.innerHTML = `
+            <div class="alert alert-warning">
+                Servidor no encontrado.<br>
+                <a href="/base-servidores/nuevo" class="btn btn-sm btn-success mt-2">
+                    Registrar servidor
+                </a>
+            </div>
+        `;
+        return;
+    }
+
+    /* ========= NUEVO BLOQUE (AQUÍ VA) ========= */
+    let bannerEstatus = "";
+
+    if (data.estatus === "BAJA") {
+        bannerEstatus = `
+            <div class="alert alert-danger">
+                Servidor dado de BAJA. No se encuentra en operación.
+            </div>
+        `;
+    }
+
+    if (data.estatus === "DECOMISADO") {
+        bannerEstatus = `
+            <div class="alert alert-dark">
+                Servidor DECOMISADO. Equipo fuera de servicio.
+            </div>
+        `;
+    }
+    /* ========= FIN NUEVO BLOQUE ========= */
+
+    const estadoGarantia = evaluarGarantia(data.garantia_raw);
+
+    contenido.innerHTML = `
+        ${bannerEstatus}
+
+        <div class="alert alert-${estadoGarantia.tipo}">
+            ${estadoGarantia.texto}
+        </div>
+
+        <p><strong>Serie:</strong> ${data.serie}</p>
+        <p><strong>Hostname:</strong> ${data.hostname}</p>
+        <p><strong>Marca:</strong> ${data.marca}</p>
+        <p><strong>Modelo:</strong> ${data.modelo}</p>
+        <p><strong>Ubicación:</strong> ${data.ubicacion}</p>
+        <p><strong>Garantía:</strong> ${data.garantia_view || "No registrada"}</p>
+        <p><strong>Estatus:</strong> ${data.estatus}</p>
+
+        <a href="/base-servidores/editar/${data.serie}?localidad=${data.localidad}"
+           class="btn btn-warning btn-sm mt-2">
+            Editar servidor
+        </a>
+    `;
+}
+</script>
+
+<script>
+function evaluarGarantia(fechaStr) {
+
+    if (!fechaStr) {
+        return {
+            texto: "Servidor sin fecha de garantía registrada.",
+            tipo: "secondary"
+        };
+    }
+
+    // Esperamos formato YYYY-MM-DD o similar
+    const fecha = new Date(fechaStr);
+    if (isNaN(fecha)) {
+        return {
+            texto: "Fecha de garantía inválida.",
+            tipo: "secondary"
+        };
+    }
+
+    const hoy = new Date();
+    const tresMeses = new Date();
+    tresMeses.setMonth(hoy.getMonth() + 3);
+
+    if (fecha < hoy) {
+        return {
+            texto: "Garantía VENCIDA.",
+            tipo: "danger"
+        };
+    }
+
+    if (fecha <= tresMeses) {
+        return {
+            texto: "Garantía por VENCER (≤ 3 meses).",
+            tipo: "warning"
+        };
+    }
+
+    return {
+        texto: "Servidor EN GARANTÍA.",
+        tipo: "success"
+    };
+}
+</script>
+
+<script>
+function habilitarGarantiaEditable() {
+    const g = document.getElementById("garantia");
+    g.value = "";
+    g.disabled = false;
+}
+
+function bloquearGarantia(valor) {
+    const g = document.getElementById("garantia");
+    g.value = valor || "";
+    g.disabled = true;
+}
+</script>
+{% endblock %}

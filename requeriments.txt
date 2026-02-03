@@ -1,0 +1,22 @@
+Flask==3.1.2
+mysql-connector-python==9.5.0
+
+# Manejo de fechas
+python-dateutil==2.9.0.post0
+
+# Excel (LEGACY – se puede retirar si ya no se usa)
+openpyxl==3.1.5
+
+# PDFs
+xhtml2pdf==0.2.15
+
+# Automatización Windows / Outlook
+pywin32==306
+
+# Utilidades Flask
+Werkzeug==3.1.5
+Jinja2==3.1.6
+itsdangerous==2.2.0
+click==8.3.1
+blinker==1.9.0
+colorama==0.4.6
