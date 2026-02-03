@@ -1,4 +1,4 @@
-
+from config import SECRET_KEY, FLASK_DEBUG
 from flask import Flask, render_template, request, redirect, session, url_for, flash, jsonify
 from datetime import datetime
 import os
@@ -26,6 +26,9 @@ from modules.login_routes import login_bp
 from db import get_connection
 from modules.menu_routes import menu_bp
 from helpers.alertas import obtener_alertas
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def to_dt(valor):
     """Convierte string ISO (YYYY-MM-DDTHH:MM) a datetime, devuelve None si está vacío o inválido"""
@@ -63,7 +66,8 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16MB máximo por archivo
-app.secret_key = "clave_super_secreta"
+app.secret_key = SECRET_KEY
+app.debug = FLASK_DEBUG
 register_crear_caso(app)
 app.register_blueprint(casos_bp)
 app.register_blueprint(registrar_parte_bp)

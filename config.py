@@ -51,3 +51,19 @@ HOJAS_BASE_SERVERS = {
     "QUERETARO": "BASE_SERVERS",
     "TULTITLAN": "BASE_SERVERS_TULT"
 }
+# ============================
+#  CONFIGURACIÓN BASE DE DATOS
+# ============================
+
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = int(os.getenv("DB_PORT", 3306))
+DB_USER = os.getenv("DB_USER", "root")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "")
+DB_NAME = os.getenv("DB_NAME", "bitacora_ibm")
+
+# ============================
+#  SEGURIDAD / FLASK
+# ============================
+
+SECRET_KEY = os.getenv("SECRET_KEY", "dev_secret_key")
+FLASK_DEBUG = os.getenv("FLASK_DEBUG", "false").lower() == "true"
