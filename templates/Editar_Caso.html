@@ -139,11 +139,12 @@
                     <label class="form-label">ALERTAMIENTO CITI</label>
                     <input class="form-control input-ibm" name="ALCITI" value="{{ caso['ALCITI']|default('') }}">
                     <label class="form-label">FECHA ALERTAMIENTO</label>
-                    <input class="form-control input-ibm" name="FECHA ALERTAMIENTO" type="datetime-local"
-                           value="{% if caso['FECHA ALERTAMIENTO'] %}{{ caso['FECHA ALERTAMIENTO']}}{% endif %}">
+                    <input class="form-control input-ibm"
+                        name="FECHA ALERTAMIENTO"
+                        type="datetime-local"
+                        value="{{ caso['FECHA ALERTAMIENTO'] | replace(' ', 'T') | truncate(16, True, '') }}">
                     <label class="form-label">FECHA DE APERTURA</label>
-                    <input
-                        class="form-control input-ibm"
+                    <input class="form-control input-ibm"
                         name="FECHA DE APERTURA"
                         type="datetime-local"
                         value="{{ caso['FECHA DE APERTURA'] | replace(' ', 'T') | truncate(16, True, '') }}">
@@ -235,23 +236,40 @@
             <div class="col-md-3">
                 <div class="card">
                     <label class="form-label">FECHA INICIO ANALISIS</label>
-                    <input class="form-control input-ibm" name="FECHA INICIO ANALISIS" type="datetime-local"
-                           value="{% if caso['FECHA INICIO ANALISIS'] %}{{ caso['FECHA INICIO ANALISIS']}}{% endif %}">
+                    <input class="form-control input-ibm"
+                        name="FECHA INICIO ANALISIS"
+                        type="datetime-local"
+                        value="{{ caso['FECHA INICIO ANALISIS'] | replace(' ', 'T') | truncate(16, True, '') }}">
+
                     <label class="form-label">FECHA FIN ANALISIS</label>
-                    <input class="form-control input-ibm" name="FECHA FIN ANALISIS" type="datetime-local"
-                           value="{% if caso['FECHA FIN ANALISIS'] %}{{ caso['FECHA FIN ANALISIS']}}{% endif %}">
+                    <input class="form-control input-ibm"
+                        name="FECHA FIN ANALISIS"
+                        type="datetime-local"
+                        value="{{ caso['FECHA FIN ANALISIS'] | replace(' ', 'T') | truncate(16, True, '') }}">
+
                     <label class="form-label">VENTANA DE SERVICIO</label>
-                    <input class="form-control input-ibm" name="VENTANA DE SERVICIO" type="datetime-local"
-                           value="{% if caso['VENTANA DE SERVICIO'] %}{{ caso['VENTANA DE SERVICIO']}}{% endif %}">
+                    <input class="form-control input-ibm"
+                        name="VENTANA DE SERVICIO"
+                        type="datetime-local"
+                        value="{{ caso['VENTANA DE SERVICIO'] | replace(' ', 'T') | truncate(16, True, '') }}">
+
                     <label class="form-label">INICIO DE ATENCION</label>
-                    <input class="form-control input-ibm" name="INICIO DE ATENCION" type="datetime-local"
-                           value="{% if caso['INICIO DE ATENCION'] %}{{ caso['INICIO DE ATENCION']}}{% endif %}">
+                    <input class="form-control input-ibm"
+                        name="INICIO DE ATENCION"
+                        type="datetime-local"
+                        value="{{ caso['INICIO DE ATENCION'] | replace(' ', 'T') | truncate(16, True, '') }}">
+
                     <label class="form-label">FIN DE ATENCION</label>
-                    <input class="form-control input-ibm" name="FIN DE ATENCION" type="datetime-local"
-                           value="{% if caso['FIN DE ATENCION'] %}{{ caso['FIN DE ATENCION']}}{% endif %}">
+                    <input class="form-control input-ibm"
+                        name="FIN DE ATENCION"
+                        type="datetime-local"
+                        value="{{ caso['FIN DE ATENCION'] | replace(' ', 'T') | truncate(16, True, '') }}">
+
                     <label class="form-label">FECHA SOLUCION</label>
-                    <input class="form-control input-ibm" name="FECHA SOLUCION" type="datetime-local"
-                           value="{% if caso['FECHA SOLUCION'] %}{{ caso['FECHA SOLUCION']}}{% endif %}">
+                    <input class="form-control input-ibm"
+                        name="FECHA SOLUCION"
+                        type="datetime-local"
+                        value="{{ caso['FECHA SOLUCION'] | replace(' ', 'T') | truncate(16, True, '') }}">
                     <label class="form-label">VISTO BUENO CLIENTE</label>
                     <input class="form-control input-ibm"
                         name="VOBO CLIENTE"

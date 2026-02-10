@@ -106,36 +106,52 @@
 
     <div class="card shadow-sm">
         <div class="card-body table-responsive">
-            <table class="table table-sm table-striped align-middle">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Servidor</th>
-                        <th>Hostname</th>
-                        <th>CASO IBM</th>
-                        <th>CASO CITI</th>
-                        <th>INGENIERO IBM</th>
-                        <th>Ingeniero CITI que recibe parte</th>
-                        <th>Localidad de ejecución</th>
-                        <th>Notas</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for r in detalle_parte %}
-                    <tr>
-                        <td>{{ r.fecha }}</td>
-                        <td>{{ r.serie_servidor }}</td>
-                        <td>{{ r.hostname }}</td>
-                        <td>{{ r.caso_ibm }}</td>
-                        <td>{{ r.caso_citi }}</td>
-                        <td>{{ r.ingeniero }}</td>
-                        <td>{{ r.ingeniero_citi }}</td>
-                        <td>{{ r.localidad }}</td>
-                        <td>{{ r.notas }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="row">
+                {% for r in detalle_parte %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-dark text-white small">
+                            <strong>Fecha:</strong> {{ r.fecha }}
+                        </div>
+
+                        <div class="card-body small">
+                            <p><strong>Servidor:</strong> {{ r.serie_servidor }}</p>
+                            <p><strong>Hostname:</strong> {{ r.hostname }}</p>
+
+                            <hr class="my-2">
+
+                            <p><strong>CASO IBM:</strong> {{ r.caso_ibm }}</p>
+                            <p><strong>CASO CITI:</strong> {{ r.caso_citi }}</p>
+
+                            <hr class="my-2">
+
+                            <p><strong>Ingeniero IBM:</strong> {{ r.ingeniero }}</p>
+                            <p><strong>Ingeniero CITI:</strong> {{ r.se_entrega }}</p>
+
+                            <hr class="my-2">
+
+                            <p><strong>Work Order:</strong> {{ r.work_order }}</p>
+                            <p><strong>Orden IBM:</strong> {{ r.orden_ibm }}</p>
+
+                            <hr class="my-2">
+
+                            <p><strong>Serie Retirada:</strong> {{ r.serie_retirada }}</p>
+                            <p><strong>Serie Instalada:</strong> {{ r.serie_instalada }}</p>
+
+                            <hr class="my-2">
+
+                            <p><strong>Localidad:</strong> {{ r.localidad }}</p>
+
+                            {% if r.notas %}
+                            <hr class="my-2">
+                            <p class="text-muted"><strong>Notas:</strong><br>{{ r.notas }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
         </div>
     </div>
     {% endif %}

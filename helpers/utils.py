@@ -4,7 +4,7 @@
 import json
 from datetime import datetime, timedelta
 
-from config import EXCEL_PATH, USERS_FILE
+from config import USERS_FILE
 from db import get_connection
 # ============================================================================
 # FECHAS / TIEMPOS

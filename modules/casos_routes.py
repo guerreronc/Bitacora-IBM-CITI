@@ -234,7 +234,9 @@ def guardar_edicion(caso_ibm):
             "inicio_atencion": to_dt_mysql(f.get("INICIO DE ATENCION")),
             "fin_atencion": to_dt_mysql(f.get("FIN DE ATENCION")),
             "fecha_garantia": to_dt_mysql(f.get("FECHA GARANTIA")),
+            "ventana": to_dt_mysql(f.get("VENTANA DE SERVICIO")),  # 👈 DATE
         }
+
         # -------------------------
         # Validaciones de cierre
         # -------------------------
@@ -307,6 +309,7 @@ def guardar_edicion(caso_ibm):
         params = {
             **fechas,
             "alciti": f.get("ALCITI"),
+            "fecha_apertura": f.get("FECHA DE APERTURA"),
             "seguimiento": f.get("SEGUIMIENTO CITI"),
             "caso_citi": f.get("CASO CITI"),
             "severidad": f.get("SEVERIDAD"),

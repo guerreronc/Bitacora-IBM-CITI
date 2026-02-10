@@ -92,19 +92,106 @@
     </form>
 
     <!-- RESULTADO DE BÚSQUEDA -->
-    {% if resultado_busqueda %}
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">Resultado de búsqueda</h5>
-            <p>
-                <strong>Total piezas:</strong> {{ resultado_busqueda.total }} <br>
-                <strong>Disponibles:</strong> {{ resultado_busqueda.disponibles }} <br>
-                <strong>OK:</strong> {{ resultado_busqueda.ok }} |
-                <strong>DIF:</strong> {{ resultado_busqueda.dif }}
-            </p>
-        </div>
+{% if resultado_busqueda is defined and resultado_busqueda %}
+
+  {% set parte = resultado_busqueda.filas[0] %}
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Resultado de búsqueda</h5>
+      <p>
+        <strong>Total piezas:</strong> {{ resultado_busqueda.total }} <br>
+        <strong>Disponibles:</strong> {{ resultado_busqueda.disponibles }} <br>
+        <strong>OK:</strong> {{ resultado_busqueda.ok }} |
+        <strong>DIF:</strong> {{ resultado_busqueda.dif }}
+      </p>
+
+      {% if current_role|upper == 'ADMIN' %}
+        <button type="button"
+                class="btn btn-warning btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEditarParte">
+          ✏️ Editar parte
+        </button>
+      {% endif %}
     </div>
-    {% endif %}
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal fade" id="modalEditarParte" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+
+        <form method="POST" action="{{ url_for('kit_bp.editar_parte') }}">
+
+          <input type="hidden" name="localidad" value="{{ parte.localidad }}">
+          <input type="hidden" name="fru_original" value="{{ parte.fru_ibm }}">
+
+          <div class="modal-header">
+            <h5 class="modal-title">Editar parte del inventario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="row g-3">
+
+              <div class="col-md-4">
+                <label class="form-label">FRU / OEM</label>
+                <input type="text" name="fru"
+                       class="form-control"
+                       value="{{ parte.fru_ibm }}" required>
+              </div>
+
+              <div class="col-md-8">
+                <label class="form-label">Descripción</label>
+                <input type="text" name="descripcion"
+                       class="form-control"
+                       value="{{ parte.descripcion }}" required>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Componente</label>
+                <input type="text" name="componente"
+                       class="form-control"
+                       value="{{ parte.componente }}">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Marca</label>
+                <input type="text" name="marca"
+                       class="form-control"
+                       value="{{ parte.marca }}" required>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label">Cantidad</label>
+                <input type="number" name="cantidad"
+                       class="form-control"
+                       value="{{ parte.cantidad }}" min="0" required>
+              </div>
+
+            </div>
+
+            <div class="alert alert-warning mt-3 mb-0">
+              ⚠️ Al guardar, la cantidad disponible se ajustará al nuevo valor.
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">
+              Guardar cambios
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+{% endif %}
 
     <!-- TABLA CON LOS RESULTADOS -->
     {% if resultado_busqueda %}

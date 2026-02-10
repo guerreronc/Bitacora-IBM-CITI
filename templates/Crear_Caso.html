@@ -36,7 +36,9 @@
 
           <div class="mb-2">
             <label for="Fecha">FECHA <span class="required">*</span></label>
-            <input id="Fecha" name="fecha" type="datetime-local" class="form-control" required>
+            <input id="Fecha" name="fecha" type="datetime-local"
+                  class="form-control" required
+                  value="{{ form.get('fecha','') }}">
             <div class="form-text">Generado automáticamente al abrir el formulario.</div>
           </div>
 
@@ -44,41 +46,50 @@
             <label for="localidad">LOCALIDAD <span class="required">*</span></label>
             <select id="localidad" name="localidad" class="form-select" required>
               <option value="">-- Seleccione --</option>
-              <option value="QUERETARO">QUERETARO</option>
-              <option value="TULTITLAN">TULTITLAN</option>
+              <option value="QUERETARO" {{ 'selected' if form and form.get('localidad')=='QUERETARO' }}>QUERETARO</option>
+              <option value="TULTITLAN" {{ 'selected' if form and form.get('localidad')=='TULTITLAN' }}>TULTITLAN</option>
             </select>
           </div>
 
           <div class="mb-2">
             <label for="AlCiti">ALERTAMIENTO CITI <span class="required">*</span></label>
-            <input id="AlCiti" name="alciti" type="text" class="form-control" required>
+            <input id="AlCiti" name="alciti" type="text" class="form-control" required
+                  value="{{ form.get('alciti','') }}">
           </div>
 
           <div class="mb-2">
             <label for="TextBoxFechaAlerta">FECHA ALERTAMIENTO <span class="required">*</span></label>
-            <input id="TextBoxFechaAlerta" name="fecha_alerta" type="datetime-local" class="form-control" required>
+            <input id="TextBoxFechaAlerta" name="fecha_alerta" type="datetime-local"
+                  class="form-control" required
+                  value="{{ form.get('fecha_alerta','') }}">
           </div>
 
           <div class="mb-2">
             <label for="CboxSegCiti">SEGUIMIENTO CITI <span class="required">*</span></label>
-            <select id="CboxSegCiti" name="seguimiento_citi" class="form-select" required>
+            <select id="CboxSegCiti" name="seguimiento" class="form-select" required>
               <option value="">-- Seleccione --</option>
+              {% for s in seguimiento_citi_qro + seguimiento_citi_tult %}
+                <option value="{{ s }}" {{ 'selected' if form and form.get('seguimiento')==s }}>{{ s }}</option>
+              {% endfor %}
             </select>
           </div>
 
           <div class="mb-2">
             <label for="TxtCasoIbm">CASO IBM <span class="required">*</span></label>
-            <input id="TxtCasoIbm" name="caso_ibm" type="text" class="form-control" required>
+            <input id="TxtCasoIbm" name="caso_ibm" type="text" class="form-control" required value="{{ form.caso_ibm if form else '' }}">
           </div>
 
           <div class="mb-2">
             <label for="TxtCasoCiti">CASO CITI</label>
-            <input id="TxtCasoCiti" name="caso_citi" type="text" class="form-control">
+            <input id="TxtCasoCiti" name="caso_citi" type="text" class="form-control"
+                  value="{{ form.get('caso_citi','') }}">
           </div>
 
           <div class="mb-2">
             <label for="TxtFechaCsp">FECHA APERTURA CSP <span class="required">*</span></label>
-            <input id="TxtFechaCsp" name="fecha_apertura" type="datetime-local" class="form-control" required>
+            <input id="TxtFechaCsp" name="fecha_apertura" type="datetime-local"
+                  class="form-control" required
+                  value="{{ form.get('fecha_apertura','') }}">
           </div>
 
           <div class="mb-2">
@@ -86,7 +97,7 @@
             <select id="ComboSeveridad" name="severidad" class="form-select">
               <option value="">-- Seleccione --</option>
               {% for s in severidades %}
-                <option value="{{ s }}">{{ s }}</option>
+                <option value="{{ s }}" {{ 'selected' if form and form.get('severidad')==s }}>
               {% endfor %}
             </select>
           </div>
@@ -96,7 +107,7 @@
             <select id="ComboIngeniero" name="ingeniero" class="form-select">
               <option value="">-- Seleccione --</option>
               {% for i in ingenieros %}
-                <option value="{{ i }}">{{ i }}</option>
+                <option value="{{ s }}" {{ 'selected' if form and form.get('ingeniero')==s }}>
               {% endfor %}
             </select>
           </div>
@@ -118,12 +129,16 @@
 
           <div class="mb-2">
             <label for="TxtSerie">SERIE</label>
-            <input id="TxtSerie" name="txt_serie" type="text" class="form-control" readonly>
+            <input id="TxtSerie" name="txt_serie" type="text"
+                  class="form-control" readonly
+                  value="{{ form.get('txt_serie','') }}">
           </div>
 
           <div class="mb-2">
             <label for="NombreServer">NOMBRE DEL SERVIDOR</label>
-            <input id="NombreServer" name="nombre_server" type="text" class="form-control" readonly>
+            <input id="NombreServer" name="hostname" type="text"
+                  class="form-control" readonly
+                  value="{{ form.get('hostname','') }}">
           </div>
 
           <div class="mb-2">
@@ -133,17 +148,23 @@
 
           <div class="mb-2">
             <label for="Proveedor">MARCA / PROVEEDOR</label>
-            <input id="Proveedor" name="proveedor" type="text" class="form-control" readonly>
+            <input id="Proveedor" name="marca" type="text"
+                  class="form-control" readonly
+                  value="{{ form.get('marca','') }}">
           </div>
 
           <div class="mb-2">
             <label for="TextModelo">MODELO</label>
-            <input id="TextModelo" name="text_modelo" type="text" class="form-control" readonly>
+            <input id="TextModelo" name="modelo" type="text"
+                  class="form-control" readonly
+                  value="{{ form.get('modelo','') }}">
           </div>
 
           <div class="mb-2">
             <label for="TextBoxMarcaCSP">MARCA CSP</label>
-            <input id="TextBoxMarcaCSP" name="marca_csp" type="text" class="form-control" readonly>
+            <input id="TextBoxMarcaCSP" name="marca_csp" type="text"
+                  class="form-control" readonly
+                  value="{{ form.get('marca_csp','') }}">
           </div>
 
           <div class="mb-2">
@@ -153,7 +174,9 @@
 
           <div class="mb-2">
             <label for="FechaGar">FECHA GARANTÍA</label>
-            <input id="FechaGar" name="fecha_garantia" type="date" class="form-control" readonly>
+            <input id="FechaGar" name="fecha_garantia" type="date"
+                  class="form-control" readonly
+                  value="{{ form.get('fecha_garantia','') }}">
             <div id="garantiaNote" class="form-text small-muted"></div>
           </div>
 
@@ -172,7 +195,7 @@
 
           <div class="mb-2">
             <label for="ComboBoxFalla">FALLA REPORTADA <span class="required">*</span></label>
-            <select id="ComboBoxFalla" name="falla_reportada" class="form-select" required>
+            <select id="ComboBoxFalla" name="falla" class="form-select" required>
               <option value="">-- Seleccione --</option>
               {% for f in fallas %}
                 <option value="{{ f }}">{{ f }}</option>
@@ -237,7 +260,7 @@
       <div class="col-12">
         <div class="card-section">
           <div class="section-title">Notas / Observaciones <span class="required">*</span></div>
-          <textarea id="Notas" name="notas" class="form-control" required placeholder="Escribe las notas aquí..."></textarea>
+          <textarea id="Notas" name="notas" class="form-control" required placeholder="Escribe las notas aquí...">{{ form.notas if form else '' }}</textarea>
         </div>
       </div>
 
@@ -333,33 +356,52 @@ serieInput.addEventListener('input', function(e) {
     if(q.length < 1) { serieList.classList.add('d-none'); serieList.innerHTML = ''; return; }
 
     debounceTimer = setTimeout(()=> {
-        fetch('/api/buscar_serie?query=' + encodeURIComponent(q))
+        const localidad = selLocalidad ? selLocalidad.value.trim() : '';
+        fetch('/crear-caso/autocomplete-serie?query=' + encodeURIComponent(q))
         .then(r => r.json())
         .then(items => {
             serieList.innerHTML = '';
-            if(!items || items.length===0) { serieList.classList.add('d-none'); return; }
+            if(!items || items.length === 0) {
+                serieList.classList.add('d-none');
+                return;
+            }
+
             items.forEach(it => {
                 const div = document.createElement('div');
                 div.className = 'autocomplete-item';
-                div.innerHTML = `<strong>${it.serie}</strong> — ${it.nombre || ''} <div class="small-muted">${it.proveedor||''} ${it.modelo||''}</div>`;
-                div.addEventListener('click', function(){
-                    document.getElementById('SerieEquipo').value = it.serie;
+
+                div.innerHTML = `
+                    <strong>${it.serie}</strong> — ${it.nombre || ''}
+                    <div class="small-muted">${it.marca || ''} ${it.modelo || ''}</div>
+                `;
+
+                div.addEventListener('click', function () {
+
+                    document.getElementById('SerieEquipo').value = it.serie || '';
                     document.getElementById('TxtSerie').value = it.serie || '';
                     document.getElementById('NombreServer').value = it.nombre || '';
                     document.getElementById('Ubicacion').value = it.ubicacion || '';
-                    document.getElementById('Proveedor').value = it.proveedor || '';
+                    document.getElementById('Proveedor').value = it.marca || '';
                     document.getElementById('TextModelo').value = it.modelo || '';
-                    document.getElementById('TextBoxMarcaCSP').value = it.marca_csp || '';
+                    document.getElementById('TextBoxMarcaCSP').value = it.tipo_csp || '';
                     document.getElementById('TextBoxModeloCSP').value = it.modelo_csp || '';
-                    document.getElementById('FechaGar').value = it.fecha_garantia || '';
 
-                    // <-- LLAMADA A LA FUNCIÓN para actualizar el banner
-                    actualizarBannerGarantia(it.fecha_garantia);
+                    // Garantía (convertir a YYYY-MM-DD)
+                    if (it.garantia) {
+                        const d = new Date(it.garantia);
+                        document.getElementById('FechaGar').value = d.toISOString().split('T')[0];
+                        actualizarBannerGarantia(d.toISOString().split('T')[0]);
+                    } else {
+                        document.getElementById('FechaGar').value = '';
+                        actualizarBannerGarantia('');
+                    }
 
                     serieList.classList.add('d-none');
                 });
+
                 serieList.appendChild(div);
             });
+
             serieList.classList.remove('d-none');
         }).catch(()=>{ serieList.classList.add('d-none'); });
     }, 220);
@@ -368,7 +410,6 @@ serieInput.addEventListener('input', function(e) {
 document.addEventListener('click', function(ev){
     if(!serieInput.contains(ev.target)) { serieList.classList.add('d-none'); }
 });
-
 
     // --- NEEDPART note ---
     const needSelect = document.getElementById('NEEDPART');

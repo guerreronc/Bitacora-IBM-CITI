@@ -80,8 +80,12 @@ def detalle_falla_parte(fru):
             host_name AS hostname,
             caso_ibm,
             caso_citi,
-            ingeniero AS ingeniero,
-            se_entrega AS ingeniero_citi,
+            ingeniero,
+            se_entrega,
+            work_order,
+            orden_ibm,
+            serie_instalada,
+            serie_retirada,
             localidad,
             notas
         FROM registro_partes_usadas

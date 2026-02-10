@@ -85,17 +85,21 @@ def recalcular_tiempos_mysql(cursor, id_caso):
 
 def to_dt_mysql(v):
     """
-    Convierte valor de formulario o string a datetime para MySQL.
-    NO calcula tiempos.
+    Convierte string de <input type="datetime-local">
+    Formato esperado: YYYY-MM-DDTHH:MM
+    Retorna datetime para MySQL (segundos en 00).
     """
     if not v:
         return None
+
     if isinstance(v, datetime):
         return v
+
     try:
-        return datetime.fromisoformat(v).date()
-    except Exception:
+        return datetime.strptime(v, "%Y-%m-%dT%H:%M")
+    except ValueError:
         return None
+
 
 def seconds_to_dhm(seconds):
     """

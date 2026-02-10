@@ -757,3 +757,87 @@ def liberar_inventario():
 
     return redirect(url_for("kit_bp.kit_partes"))
 
+#-----------------------------
+#EDITAR PARTE
+#----------------------------
+
+@kit_bp.route("/editar_parte", methods=["GET", "POST"])
+def editar_parte():
+
+    if session.get("role") != "ADMIN":
+        abort(403)
+
+    fru = request.form.get("fru") or request.args.get("fru")
+    localidad = request.values.get("localidad")
+    print (session)
+    print (localidad)
+    if not fru or not localidad:
+        abort(400)
+
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("""
+        SELECT *
+        FROM kit_partes
+        WHERE fru_ibm = %s
+        AND localidad = %s
+    """, (fru, localidad))
+
+    partes = cursor.fetchall()
+
+    if not partes:
+        abort(404)
+
+    # Validar que NO haya DIF
+    if any(p["cantidad_actual"] != p["cantidad"] for p in partes):
+        flash("❌ No se puede editar una parte con diferencias de inventario.", "danger")
+        return redirect(url_for("kit_bp.kit_partes"))
+
+    if request.method == "POST":
+        nueva_cantidad = request.form.get("cantidad")
+        descripcion = request.form.get("descripcion")
+        marca = request.form.get("marca")
+        fru_nuevo = request.form.get("fru")
+
+        cursor.execute("""
+            UPDATE kit_partes
+            SET
+                fru_ibm = %s,
+                descripcion = %s,
+                marca = %s,
+                cantidad = %s,
+                cantidad_actual = %s
+            WHERE fru_ibm = %s
+            AND localidad = %s
+        """, (
+            fru_nuevo,
+            descripcion,
+            marca,
+            nueva_cantidad,
+            nueva_cantidad,
+            fru,
+            localidad
+        ))
+
+        conn.commit()
+        flash("✅ Parte actualizada correctamente.", "success")
+
+        cursor.close()
+        conn.close()
+
+        return redirect(url_for("kit_bp.kit_partes", buscar_parte=fru_nuevo))
+
+    cursor.close()
+    conn.close()
+
+    return render_template(
+        "Kit_Partes.html",
+        resultado_busqueda=partes[0] if partes else None,
+        fru=fru,
+        localidad=localidad,
+        inventario_localidad=localidad, # Para que coincida con tu input hidden
+        current_role=session.get("role")
+    )
+
+

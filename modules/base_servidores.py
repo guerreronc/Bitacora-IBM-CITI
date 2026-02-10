@@ -316,7 +316,9 @@ def editar_servidor(serie):
     if request.method == "POST":
         ubicacion = request.form.get("ubicacion", "").strip()
         estatus = request.form.get("estatus", "").strip()
+        localidad = request.form.get("localidad", "").strip().upper()
         garantia_str = request.form.get("garantia", "").strip()
+
 
         garantia = None
         if garantia_str:
@@ -332,10 +334,11 @@ def editar_servidor(serie):
                 UPDATE base_servers
                 SET ubicacion=%s,
                     estatus=%s,
-                    garantia=%s
+                    garantia=%s,
+                    localidad=%s
                 WHERE serie=%s
                 """,
-                (ubicacion, estatus, garantia, serie)
+                (ubicacion, estatus, garantia, localidad, serie)
             )
             conn.commit()
 

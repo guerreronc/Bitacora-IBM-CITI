@@ -1,6 +1,6 @@
 # modules/crear_caso.py
 from datetime import datetime
-from flask import render_template, request, redirect, url_for, flash,session
+from flask import jsonify, render_template, request, redirect, url_for, flash,session
 from modules.users_repository import obtener_ingenieros
 from db import get_connection
 
@@ -129,6 +129,8 @@ def register_crear_caso(app):
         # POST: Guardar Caso
         # -----------------------
         if request.method == "POST":
+            form = request.form if request.method == "POST" else {}
+
             form = request.form
 
             # Fechas
@@ -143,36 +145,65 @@ def register_crear_caso(app):
 
             # Campos directos
             alciti = form.get("alciti")
-            seguimiento = form.get("seguimiento_citi")
-            caso_ibm = form.get("caso_ibm")
-            caso_citi = form.get("caso_citi")
+            seguimiento = form.get("seguimiento")
+            caso_ibm = (form.get("caso_ibm") or "").strip()
+            caso_citi = (form.get("caso_citi") or "").strip()
             severidad = form.get("severidad")
             ingeniero = form.get("ingeniero")
 
-            serie = form.get("serie_equipo") or form.get("txt_serie") or ""
+            serie = (form.get("serie") or form.get("txt_serie") or "").strip()
+            notas = (form.get("notas") or "").strip()
+
             txt_serie = form.get("txt_serie") or serie
-            nombre_server = form.get("nombre_server")
+            nombre_server = form.get("hostname")
             ubicacion = form.get("ubicacion")
-            proveedor = form.get("proveedor")
-            modelo = form.get("text_modelo")
+            proveedor = form.get("marca")
+            modelo = form.get("modelo")
             marca_csp = form.get("marca_csp")
             modelo_csp = form.get("modelo_csp")
             fecha_garantia = form.get("fecha_garantia")
             caso_proveedor = form.get("caso_proveedor")
 
-            falla_reportada = form.get("falla_reportada")
-            ventana_servicio = form.get("ventana_servicio")
+            falla_reportada = form.get("falla")
+            ventana_servicio = form.get("ventana")
             status = form.get("status")
             status_principal_val = form.get("status_principal")
             tipo_servicio = form.get("tipo_servicio")
             needpart = form.get("needpart")
             ubicacion_parte = form.get("ubicacion_parte")
-            notas = form.get("notas")
             localidad = form.get("localidad")
 
             # Fecha garantía (string -> datetime si aplica)
             fecha_garantia = _parse_dt(form.get("fecha_garantia"))
 
+            errores = []
+
+            if not serie:
+                errores.append("La serie es obligatoria.")
+            if not notas:
+                errores.append("Las notas son obligatorias.")
+            if not caso_ibm:
+                errores.append("El Caso IBM es obligatorio.")
+
+            if errores:
+                for e in errores:
+                    flash(e, "danger")
+
+                return render_template(
+                    "Crear_Caso.html",
+                    seguimiento_citi_qro=seguimiento_citi_qro,
+                    seguimiento_citi_tult=seguimiento_citi_tult,
+                    severidades=severidades,
+                    ingenieros=ingenieros,
+                    fallas=fallas,
+                    status_list=status_list,
+                    status_principal=status_principal,
+                    tipos_servicio=tipos_servicio,
+                    needpart_options=needpart_options,
+                    series_list=series_list,
+                    form={}   # 👈 CLAVE
+
+                )
             # -----------------------
             # Guardar en MySQL
             # -----------------------
@@ -274,4 +305,40 @@ def register_crear_caso(app):
             tipos_servicio=tipos_servicio,
             needpart_options=needpart_options,
             series_list=series_list,
+            form={},   # 👈 CLAVE
         )
+
+    @app.route("/crear-caso/autocomplete-serie")
+    def autocomplete_serie():
+        query = request.args.get("query", "").strip()
+        localidad = session.get("localidad", "QUERETARO")
+
+        if not query:
+            return jsonify([])
+
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT
+                serie,
+                hostname AS nombre,
+                ubicacion,
+                marca,
+                modelo,
+                tipo_csp,
+                modelo_csp,
+                garantia
+            FROM base_servers
+            WHERE localidad = %s
+              AND serie LIKE %s
+            ORDER BY serie
+            LIMIT 10
+        """, (localidad, f"{query}%"))
+
+        rows = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return jsonify(rows)
