@@ -1,8 +1,9 @@
 from datetime import datetime
 import os
 from flask import Blueprint, request, jsonify
-import win32com.client as win32
-import pythoncom
+from email.message import EmailMessage
+from flask import send_file
+import io
 from helpers.utils_servidores_service import evaluar_garantia
 from modules.base_servidores import obtener_servidor_por_serie
 
@@ -14,10 +15,9 @@ mensajeria_bp = Blueprint(
 
 @mensajeria_bp.route("/correo_hdd_cliente", methods=["POST"])
 def correo_hdd_cliente():
-    pythoncom.CoInitialize()
     datos = request.form
     localidad = datos.get("localidad", "").upper()
-
+    #email = user.get("email")
     if localidad in ("QUERETARO", "QRO"):
         to = datos.get("gt.la.qrcs.ops@citi.com","")
         cc = "ibm_qrcs_engineering-dg@ibm.com;fvargas@mx1.ibm.com;saguilar@mx1.ibm.com;garcizam@mx1.ibm.com;agomsan@mx1.ibm.com"
@@ -118,24 +118,33 @@ def correo_hdd_cliente():
     </tr>
     </table>
     """
+        # 🔹 AQUÍ ES LO QUE TE FALTABA
+    msg = EmailMessage()
+    msg["Subject"] = "ENTREGA DE DISCO"
+    msg["From"] = "email"
+    msg["To"] = to
+    msg["Cc"] = cc
 
+    msg.set_content("Este correo requiere un cliente compatible con HTML.")
+    msg.add_alternative(cuerpo, subtype="html")
+    eml_buffer = io.BytesIO()
+    eml_buffer.write(msg.as_bytes())
+    eml_buffer.seek(0)
 
-    outlook = win32.Dispatch("Outlook.Application")
-    mail = outlook.CreateItem(0)
-    mail.To = to
-    mail.CC = cc
-    mail.Subject = f"Datos de HDD – Caso {datos.get('caso_ibm')}"
-    mail.HTMLBody = cuerpo
-    mail.Display()
+    filename = f"Correo_HDD_Caso_{datos.get('caso_ibm')}.eml"
 
-    return jsonify({"mensaje": "Correo a cliente generado correctamente"})
+    return send_file(
+        eml_buffer,
+        as_attachment=True,
+        download_name=filename,
+        mimetype="message/rfc822"
+    )
 
 
 @mensajeria_bp.route("/correo_writeoff", methods=["POST"])
 def correo_writeoff():
-    pythoncom.CoInitialize()
     datos = request.form
-    
+    #email = user.get("email")
     # -----------------------------
     # DESTINATARIOS
     # -----------------------------
@@ -289,18 +298,34 @@ def correo_writeoff():
       </tr>
     </table>
     """
-
     # -----------------------------
-    # ENVÍO OUTLOOK
+    # GENERAR .EML EN MEMORIA
     # -----------------------------
-    outlook = win32.Dispatch("Outlook.Application")
-    mail = outlook.CreateItem(0)
-    mail.To = to
-    mail.CC = cc
-    mail.Subject = f"WRITE OFF - {datos.get('fru')} / {datos.get('orden_ibm')}"
-    mail.HTMLBody = cuerpo
-    mail.Display()
+    msg = EmailMessage()
+    msg["From"] = "empresa@test"
+    msg["To"] = to
 
-    return jsonify({"mensaje": "Solicitud de WRITE-OFF generada correctamente"})
+    if cc:
+        msg["Cc"] = cc
+
+    msg["Subject"] = f"WRITE OFF - {datos.get('fru')} / {datos.get('orden_ibm')}"
+    msg["Date"] = datetime.now().strftime("%a, %d %b %Y %H:%M:%S")
+
+    msg.set_content("Este correo requiere un cliente compatible con HTML.")
+    msg.add_alternative(cuerpo, subtype="html")
+
+    # Crear archivo en memoria
+    eml_bytes = io.BytesIO()
+    eml_bytes.write(bytes(msg))
+    eml_bytes.seek(0)
+
+    nombre_archivo = f"WRITE_OFF_{datos.get('fru')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.eml"
+
+    return send_file(
+        eml_bytes,
+        as_attachment=True,
+        download_name=nombre_archivo,
+        mimetype="message/rfc822"
+    ), jsonify({"mensaje": "Solicitud de WRITE-OFF generada correctamente"})
 
 
