@@ -8,7 +8,7 @@ def get_connection():
         host = os.environ.get("MYSQLHOST")
         port = os.environ.get("MYSQLPORT")
         user = os.environ.get("MYSQLUSER")
-        password = os.environ.get("MYSQL_PASSWORD")
+        password = os.environ.get("MYSQLPASSWORD")
         database = os.environ.get("MYSQL_DATABASE")
 
         print("HOST:", host)
