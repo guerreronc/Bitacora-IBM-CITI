@@ -5,10 +5,13 @@ from io import BytesIO
 from flask import make_response
 from datetime import datetime, date, timedelta
 import os
-import win32com.client
 import tempfile
-import pythoncom
 from db import get_connection
+from email.message import EmailMessage
+from io import BytesIO
+from flask import send_file
+import mimetypes
+
 
 base_servidores_bp = Blueprint("base_servidores", __name__)
 
@@ -183,28 +186,6 @@ def generar_pdf(html):
         encoding="utf-8"
     )
     return result.getvalue()
-
-def enviar_pdf_outlook(asunto, cuerpo_html, pdf_bytes, nombre_pdf, destinatarios=""):
-    pythoncom.CoInitialize()  # ← OBLIGATORIO
-
-    try:
-        outlook = win32com.client.Dispatch("Outlook.Application")
-        mail = outlook.CreateItem(0)
-
-        mail.Subject = asunto
-        mail.HTMLBody = cuerpo_html
-        mail.To = destinatarios
-
-        # Adjuntar PDF temporal
-        temp_path = os.path.join(os.environ["TEMP"], nombre_pdf)
-        with open(temp_path, "wb") as f:
-            f.write(pdf_bytes)
-
-        mail.Attachments.Add(temp_path)
-        mail.Display()  # NO enviar automático (buena práctica)
-
-    finally:
-        pythoncom.CoUninitialize()  # ← OBLIGATORIO
 
 # ==========================
 # ENDPOINTS
@@ -525,19 +506,44 @@ def enviar_reporte_garantias_email():
     <br>
     <p>Saludos.</p>
     """
+    # -----------------------------
+    # GENERAR .EML CON PDF ADJUNTO
+    # -----------------------------
+    msg = EmailMessage()
 
-    enviar_pdf_outlook(
-        asunto=f"{titulo} - {localidad}",
-        cuerpo_html=cuerpo,
-        pdf_bytes=pdf,
-        nombre_pdf=f"reporte_garantias_{localidad}_{estado}.pdf",
-        destinatarios=destinatarios
+    msg["From"] = "noreply@tudominio.com"
+    msg["To"] = ", ".join(destinatarios.split(";"))
+    msg["Subject"] = f"{titulo} - {localidad}"
+    msg["Date"] = datetime.now().strftime("%a, %d %b %Y %H:%M:%S")
+
+    msg.set_content("Este correo contiene un reporte en PDF.")
+    msg.add_alternative(cuerpo, subtype="html")
+
+    # Adjuntar PDF
+    nombre_pdf = f"reporte_garantias_{localidad}_{estado}.pdf"
+
+    msg.add_attachment(
+        pdf,
+        maintype="application",
+        subtype="pdf",
+        filename=nombre_pdf
     )
 
-    flash("Correo preparado en Outlook", "success")
-    return redirect(
-        url_for("base_servidores.reporte_garantias", estado=estado, localidad=localidad)
+    # Crear archivo en memoria
+    eml_bytes = BytesIO()
+    eml_bytes.write(bytes(msg))
+    eml_bytes.seek(0)
+
+    nombre_eml = f"{titulo.replace(' ', '_')}_{localidad}.eml"
+
+    return send_file(
+        eml_bytes,
+        as_attachment=True,
+        download_name=nombre_eml,
+        mimetype="message/rfc822"
     )
+
+    
 
 @base_servidores_bp.route("/base-servidores/garantias")
 def selector_garantias():

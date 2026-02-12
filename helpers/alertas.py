@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-
 from flask import request
 from db import get_connection
 from helpers.utils_inventario import obtener_mensajes_stock_bajo

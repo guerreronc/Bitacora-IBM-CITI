@@ -1,12 +1,13 @@
 from flask import Blueprint, redirect, render_template, request, flash, url_for
 from datetime import datetime
 import smtplib
-import pythoncom
-import win32com.client as win32
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from db import get_connection
-
+from email.message import EmailMessage
+from io import BytesIO
+from flask import send_file
+from datetime import datetime
 
 import os
 
@@ -17,12 +18,6 @@ actividades_bp = Blueprint(
 )
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EXCEL_CASOS = os.path.join(BASE_DIR, "data", "BITACORA_GENERALIBMCITI.xlsx")
-
-SMTP_SERVER = "smtp.office365.com"
-SMTP_PORT = 587
-SMTP_USER = "tu_correo@empresa.com"
-SMTP_PASSWORD = "TU_PASSWORD"
 
 DESTINATARIOS_POR_LOCALIDAD = {
     "QUERETARO": [
@@ -253,22 +248,27 @@ def construir_html_reporte(casos, actividades, fecha_inicio, fecha_fin, localida
     return html
 
 
-def abrir_correo_outlook(asunto, html, destinatarios):
-    pythoncom.CoInitialize()  # ✅ INICIALIZA COM
+def generar_eml(asunto, html, destinatarios):
 
-    try:
-        outlook = win32.Dispatch("Outlook.Application")
-        mail = outlook.CreateItem(0)
+    msg = EmailMessage()
+    msg["From"] = "noreply@tudominio.com"
+    msg["To"] = ", ".join(destinatarios)
+    msg["Subject"] = asunto
+    msg["Date"] = datetime.now().strftime("%a, %d %b %Y %H:%M:%S")
 
-        mail.Subject = asunto
-        mail.HTMLBody = html
-        mail.To = "; ".join(destinatarios)
+    msg.set_content("Este correo requiere un cliente compatible con HTML.")
+    msg.add_alternative(html, subtype="html")
 
-        mail.Display()  # 🔹 ABRE el correo, NO lo envía
+    eml_bytes = BytesIO()
+    eml_bytes.write(bytes(msg))
+    eml_bytes.seek(0)
 
-    finally:
-        pythoncom.CoUninitialize()  # ✅ CIERRA COM
-
+    return send_file(
+        eml_bytes,
+        as_attachment=True,
+        download_name="reporte_actividades.eml",
+        mimetype="message/rfc822"
+    )
 
 @actividades_bp.route("/", methods=["GET"])
 @actividades_bp.route("", methods=["GET"])
@@ -353,16 +353,30 @@ def enviar_reporte():
 
     asunto = f"Reporte Semanal {localidad} ({fecha_inicio} al {fecha_fin})"
 
-    abrir_correo_outlook(asunto, html, destinatarios)
+    # -----------------------------
+    # GENERAR .EML
+    # -----------------------------
+    msg = EmailMessage()
+    msg["From"] = "noreply@tudominio.com"
+    msg["To"] = ", ".join(destinatarios)
+    msg["Subject"] = asunto
+    msg["Date"] = datetime.now().strftime("%a, %d %b %Y %H:%M:%S")
 
-    flash("Reporte semanal enviado correctamente.", "success")
+    msg.set_content("Este correo requiere un cliente compatible con HTML.")
+    msg.add_alternative(html, subtype="html")
 
-    return redirect(url_for(
-        "actividades.index",
-        fecha_inicio=fecha_inicio,
-        fecha_fin=fecha_fin,
-        localidad=localidad
-    ))
+    eml_bytes = BytesIO()
+    eml_bytes.write(bytes(msg))
+    eml_bytes.seek(0)
+
+    nombre_archivo = f"Reporte_Semanal_{localidad}_{fecha_inicio}_{fecha_fin}.eml"
+
+    return send_file(
+        eml_bytes,
+        as_attachment=True,
+        download_name=nombre_archivo,
+        mimetype="message/rfc822"
+    )
 
 @actividades_bp.route("/registrar", methods=["POST"])
 def registrar_actividad():

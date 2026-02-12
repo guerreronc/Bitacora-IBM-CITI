@@ -3,14 +3,13 @@ from flask import Blueprint, abort, jsonify, render_template, request, send_file
 from datetime import datetime
 import os
 from db import get_connection
-from helpers.utils_correo import enviar_reporte_inventario_pdf
+from helpers.utils_correo import guardar_reporte_inventario_eml
 from helpers.utils_inventario import obtener_mensajes_stock_bajo
 from helpers.utils_inventario import (
     obtener_partes_inventario,
     calcular_resumen_inventario
 )
 from helpers.utils_pdf import generar_pdf_inventario
-from helpers.utils_correo import enviar_reporte_inventario_pdf
 
 kit_bp = Blueprint("kit_bp", __name__)
 
@@ -635,6 +634,10 @@ def cerrar_inventario():
     # 6️⃣ REPORTE / PDF / CORREO (MYSQL + REPORTLAB)
     # =====================================================
 
+    from helpers.utils_correo import guardar_reporte_inventario_eml
+    from datetime import datetime
+    import os
+
     partes = obtener_partes_inventario(inventario_localidad_cod)
     resumen_calc = calcular_resumen_inventario(partes)
 
@@ -644,13 +647,32 @@ def cerrar_inventario():
         resumen=resumen_calc
     )
 
+    # Guardar referencia del último PDF en sesión
     session["ultimo_reporte_pdf"] = ruta_pdf
 
-    enviar_reporte_inventario_pdf(
+    # -----------------------------------------------------
+    # Generar archivo .eml en lugar de abrir Outlook
+    # -----------------------------------------------------
+
+    # Nombre dinámico del archivo .eml
+    nombre_eml = f"Inventario_{inventario_localidad_raw}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.eml"
+
+    # Carpeta donde se guardará (asegúrate que exista o se cree)
+    carpeta_reportes = "reportes_eml"
+    os.makedirs(carpeta_reportes, exist_ok=True)
+
+    ruta_eml = os.path.join(carpeta_reportes, nombre_eml)
+
+    guardar_reporte_inventario_eml(
         ruta_pdf=ruta_pdf,
         localidad=inventario_localidad_raw,
-        resumen=resumen_calc
+        resumen=resumen_calc,
+        ruta_salida=ruta_eml
     )
+
+    # Opcional: guardar también en sesión si lo necesitas después
+    session["ultimo_reporte_eml"] = ruta_eml
+
 
     # =====================================================
     # 7️⃣ MENSAJE FINAL
