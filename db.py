@@ -5,14 +5,28 @@ import os
 
 def get_connection():
     try:
+        host = os.environ.get("MYSQLHOST")
+        port = os.environ.get("MYSQLPORT")
+        user = os.environ.get("MYSQLUSER")
+        password = os.environ.get("MYSQLPASSWORD")
+        database = os.environ.get("MYSQLDATABASE")
+
+        print("HOST:", host)
+        print("PORT:", port)
+        print("USER:", user)
+        print("DATABASE:", database)
+
         connection = mysql.connector.connect(
-            host=os.environ.get("MYSQLHOST"),
-            port=int(os.environ.get("MYSQLPORT", 3306)),
-            user=os.environ.get("MYSQLUSER"),
-            password=os.environ.get("MYSQLPASSWORD"),
-            database=os.environ.get("MYSQLDATABASE")
+            host=host,
+            port=int(port) if port else 3306,
+            user=user,
+            password=password,
+            database=database
         )
+
+        print("Conexión exitosa")
         return connection
-    except Error as e:
-        print("Error al conectar a MySQL:", e)
+
+    except Exception as e:
+        print("ERROR REAL DE CONEXION:", e)
         return None
