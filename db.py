@@ -1,14 +1,25 @@
+import mysql.connector
+from urllib.parse import urlparse
+import os
+
+
 def get_connection():
     try:
+        database_url = os.environ.get("DATABASE_URL")
+
+        url = urlparse(database_url)
+
         connection = mysql.connector.connect(
-            host="mysql.railway.internal",
-            port=3306,
-            user="root",
-            password="hOxkDZyqVRVyhtorxAaWvhgFSKTerJuw",
-            database="railway"
+            host=url.hostname,
+            port=url.port,
+            user=url.username,
+            password=url.password,
+            database=url.path.lstrip("/")
         )
-        print("CONEXION HARDCODE EXITOSA")
+
+        print("CONEXION EXITOSA VIA URL")
         return connection
+
     except Exception as e:
-        print("ERROR HARDCODE:", e)
+        print("ERROR DE CONEXION:", e)
         return None
