@@ -1,16 +1,16 @@
 import mysql.connector
 from mysql.connector import Error
-from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
+import os
 
 
 def get_connection():
     try:
         connection = mysql.connector.connect(
-            host=DB_HOST,
-            port=DB_PORT,
-            user=DB_USER,
-            password=DB_PASSWORD,
-            database=DB_NAME
+            host=os.environ.get("MYSQLHOST"),
+            port=int(os.environ.get("MYSQLPORT", 3306)),
+            user=os.environ.get("MYSQLUSER"),
+            password=os.environ.get("MYSQLPASSWORD"),
+            database=os.environ.get("MYSQLDATABASE")
         )
         return connection
     except Error as e:
