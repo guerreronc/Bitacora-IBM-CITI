@@ -250,7 +250,8 @@ def construir_html_reporte(casos, actividades, fecha_inicio, fecha_fin, localida
 
 def generar_eml(asunto, html, destinatarios):
     usuario = session.get("user", {})
-
+    print("SESSION USER:", usuario)
+    print("EMAIL:", usuario.get("email"))
     email_usuario = usuario.get("email")
     nombre_usuario = usuario.get("name") or usuario.get("username")
 
