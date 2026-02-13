@@ -368,27 +368,7 @@ def enviar_reporte():
     # -----------------------------
     # GENERAR .EML
     # -----------------------------
-    msg = EmailMessage()
-    msg["From"] = "noreply@tudominio.com"
-    msg["To"] = ", ".join(destinatarios)
-    msg["Subject"] = asunto
-    msg["Date"] = datetime.now().strftime("%a, %d %b %Y %H:%M:%S")
-
-    msg.set_content("Este correo requiere un cliente compatible con HTML.")
-    msg.add_alternative(html, subtype="html")
-
-    eml_bytes = BytesIO()
-    eml_bytes.write(bytes(msg))
-    eml_bytes.seek(0)
-
-    nombre_archivo = f"Reporte_Semanal_{localidad}_{fecha_inicio}_{fecha_fin}.eml"
-
-    return send_file(
-        eml_bytes,
-        as_attachment=True,
-        download_name=nombre_archivo,
-        mimetype="message/rfc822"
-    )
+    return generar_eml(asunto, html, destinatarios)
 
 @actividades_bp.route("/registrar", methods=["POST"])
 def registrar_actividad():
