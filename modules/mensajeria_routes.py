@@ -6,6 +6,8 @@ from flask import send_file
 import io
 from helpers.utils_servidores_service import evaluar_garantia
 from modules.base_servidores import obtener_servidor_por_serie
+from flask import session
+
 
 mensajeria_bp = Blueprint(
     "mensajeria_bp",
@@ -119,13 +121,23 @@ def correo_hdd_cliente():
     </table>
     """
         # 🔹 AQUÍ ES LO QUE TE FALTABA
+    usuario = session.get("user", {})
+
+    email_usuario = usuario.get("email")
+    nombre_usuario = usuario.get("name") or usuario.get("username")
+
+    if not email_usuario or "@" not in email_usuario:
+        email_usuario = "noreply@tudominio.com"
+
+    from_header = f"{nombre_usuario} <{email_usuario}>"
+
     msg = EmailMessage()
     msg["Subject"] = "ENTREGA DE DISCO"
-    msg["From"] = "email"
+    msg["From"] = from_header
     msg["To"] = to
     msg["Cc"] = cc
 
-    msg.set_content("Este correo requiere un cliente compatible con HTML.")
+    msg.set_content("Se envia la informacion del disco reemplazado.")
     msg.add_alternative(cuerpo, subtype="html")
     eml_buffer = io.BytesIO()
     eml_buffer.write(msg.as_bytes())
@@ -302,7 +314,15 @@ def correo_writeoff():
     # GENERAR .EML EN MEMORIA
     # -----------------------------
     msg = EmailMessage()
-    msg["From"] = "empresa@test"
+
+    usuario = session.get("user", {})
+    email_usuario = usuario.get("email")
+    nombre_usuario = usuario.get("name") or usuario.get("username")
+
+    if not email_usuario or "@" not in email_usuario:
+        email_usuario = "noreply@tudominio.com"
+
+    msg["From"] = f"{nombre_usuario} <{email_usuario}>"
     msg["To"] = to
 
     if cc:
@@ -326,6 +346,6 @@ def correo_writeoff():
         as_attachment=True,
         download_name=nombre_archivo,
         mimetype="message/rfc822"
-    ), jsonify({"mensaje": "Solicitud de WRITE-OFF generada correctamente"})
+    )
 
 

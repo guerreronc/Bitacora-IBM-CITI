@@ -634,13 +634,13 @@ def cerrar_inventario():
     # 6️⃣ REPORTE / PDF / CORREO (MYSQL + REPORTLAB)
     # =====================================================
 
-    from helpers.utils_correo import guardar_reporte_inventario_eml
-    from datetime import datetime
-    import os
-
+    # 1️⃣ Obtener partes del inventario
     partes = obtener_partes_inventario(inventario_localidad_cod)
+
+    # 2️⃣ Calcular resumen del inventario
     resumen_calc = calcular_resumen_inventario(partes)
 
+    # 3️⃣ Generar PDF del inventario
     ruta_pdf = generar_pdf_inventario(
         localidad=inventario_localidad_raw,
         partes=partes,
@@ -651,28 +651,31 @@ def cerrar_inventario():
     session["ultimo_reporte_pdf"] = ruta_pdf
 
     # -----------------------------------------------------
-    # Generar archivo .eml en lugar de abrir Outlook
+    # Generar archivo .eml usando utils_correo.py
     # -----------------------------------------------------
 
-    # Nombre dinámico del archivo .eml
-    nombre_eml = f"Inventario_{inventario_localidad_raw}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.eml"
-
-    # Carpeta donde se guardará (asegúrate que exista o se cree)
+    # Carpeta donde se guardará el .eml
     carpeta_reportes = "reportes_eml"
     os.makedirs(carpeta_reportes, exist_ok=True)
 
+    # Nombre dinámico del archivo .eml
+    nombre_eml = f"Inventario_{inventario_localidad_raw}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.eml"
     ruta_eml = os.path.join(carpeta_reportes, nombre_eml)
 
+    # Obtener usuario logeado para From
+    usuario = session.get("user", {})
+
+    # Llamada al helper que construye y guarda el .eml
     guardar_reporte_inventario_eml(
         ruta_pdf=ruta_pdf,
         localidad=inventario_localidad_raw,
         resumen=resumen_calc,
-        ruta_salida=ruta_eml
+        ruta_salida=ruta_eml,
+        usuario=usuario
     )
 
-    # Opcional: guardar también en sesión si lo necesitas después
+    # Guardar referencia del último .eml en sesión
     session["ultimo_reporte_eml"] = ruta_eml
-
 
     # =====================================================
     # 7️⃣ MENSAJE FINAL

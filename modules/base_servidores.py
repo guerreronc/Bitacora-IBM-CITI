@@ -11,6 +11,7 @@ from email.message import EmailMessage
 from io import BytesIO
 from flask import send_file
 import mimetypes
+from flask import session
 
 
 base_servidores_bp = Blueprint("base_servidores", __name__)
@@ -509,9 +510,19 @@ def enviar_reporte_garantias_email():
     # -----------------------------
     # GENERAR .EML CON PDF ADJUNTO
     # -----------------------------
+    usuario = session.get("user", {})
+
+    email_usuario = usuario.get("email")
+    nombre_usuario = usuario.get("name") or usuario.get("username")
+
+    if not email_usuario or "@" not in email_usuario:
+        email_usuario = "noreply@tudominio.com"
+
+    from_header = f"{nombre_usuario} <{email_usuario}>"
+
     msg = EmailMessage()
 
-    msg["From"] = "noreply@tudominio.com"
+    msg["From"] = from_header
     msg["To"] = ", ".join(destinatarios.split(";"))
     msg["Subject"] = f"{titulo} - {localidad}"
     msg["Date"] = datetime.now().strftime("%a, %d %b %Y %H:%M:%S")

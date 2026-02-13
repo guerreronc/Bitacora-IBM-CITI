@@ -8,7 +8,7 @@ from email.message import EmailMessage
 from io import BytesIO
 from flask import send_file
 from datetime import datetime
-
+from flask import session
 import os
 
 actividades_bp = Blueprint(
@@ -249,9 +249,18 @@ def construir_html_reporte(casos, actividades, fecha_inicio, fecha_fin, localida
 
 
 def generar_eml(asunto, html, destinatarios):
+    usuario = session.get("user", {})
 
+    email_usuario = usuario.get("email")
+    nombre_usuario = usuario.get("name") or usuario.get("username")
+
+    if not email_usuario or "@" not in email_usuario:
+        email_usuario = "noreply@tudominio.com"
+
+    from_header = f"{nombre_usuario} <{email_usuario}>"
+    
     msg = EmailMessage()
-    msg["From"] = "noreply@tudominio.com"
+    msg["From"] = from_header
     msg["To"] = ", ".join(destinatarios)
     msg["Subject"] = asunto
     msg["Date"] = datetime.now().strftime("%a, %d %b %Y %H:%M:%S")

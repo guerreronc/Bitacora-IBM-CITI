@@ -2,24 +2,24 @@ import mysql.connector
 from urllib.parse import urlparse
 import os
 
+print("DATABASE_URL:", os.environ.get("DATABASE_URL"))
 
 def get_connection():
-    try:
-        database_url = os.environ.get("DATABASE_URL")
+    database_url = os.environ.get("DATABASE_URL")
 
-        url = urlparse(database_url)
+    if not database_url:
+        raise Exception("DATABASE_URL no está definida")
 
-        connection = mysql.connector.connect(
-            host=url.hostname,
-            port=url.port,
-            user=url.username,
-            password=url.password,
-            database=url.path.lstrip("/")
-        )
+    url = urlparse(database_url)
 
-        print("CONEXION EXITOSA VIA URL")
-        return connection
+    connection = mysql.connector.connect(
+        host=url.hostname,
+        port=url.port,
+        user=url.username,
+        password=url.password,
+        database=url.path.lstrip("/")
+    )
 
-    except Exception as e:
-        print("ERROR DE CONEXION:", e)
-        return None
+    print("CONEXION EXITOSA VIA URL")
+    return connection
+
