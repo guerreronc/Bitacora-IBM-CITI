@@ -10,9 +10,6 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # ARCHIVOS Y CARPETAS
 # ----------------------------
 
-# Ruta del archivo principal de Excel
-EXCEL_PATH = os.path.join(BASE_DIR, "data", "BITACORA_GENERALIBMCITI.xlsx")
-
 # Archivo JSON de usuarios (para login)
 USERS_FILE = os.path.join(BASE_DIR, "data", "users.json")
 
@@ -25,10 +22,6 @@ UPLOAD_FOLDER = os.path.join(BASE_DIR, "archivos_logs")
 
 # Límite máximo de subida de archivos (16 MB)
 MAX_CONTENT_LENGTH = 16 * 1024 * 1024
-
-# Clave secreta Flask
-SECRET_KEY = "clave_super_secreta"
-
 
 # ============================
 #  HOJAS DE EXCEL
@@ -65,5 +58,8 @@ DB_NAME = os.getenv("DB_NAME", "bitacora_ibm")
 #  SEGURIDAD / FLASK
 # ============================
 
-SECRET_KEY = os.getenv("SECRET_KEY", "dev_secret_key")
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY no configurada en entorno")
 FLASK_DEBUG = os.getenv("FLASK_DEBUG", "false").lower() == "true"

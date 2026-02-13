@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, render_template, request, flash, url_for
 from datetime import datetime
-import smtplib
+import smtplib,sys
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from db import get_connection
@@ -249,8 +249,10 @@ def construir_html_reporte(casos, actividades, fecha_inicio, fecha_fin, localida
 
 
 def generar_eml(asunto, html, destinatarios):
+    print("🔥🔥🔥 ENTRE A GENERAR_EML 🔥🔥🔥")
     usuario = session.get("user", {})
     print("SESSION USER:", usuario)
+    sys.stdout.flush()
     print("EMAIL:", usuario.get("email"))
     email_usuario = usuario.get("email")
     nombre_usuario = usuario.get("name") or usuario.get("username")
