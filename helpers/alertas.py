@@ -121,7 +121,11 @@ def obtener_alertas(usuario):
         fecha_servicio = parsear_ventana(c["ventana"])
         if not fecha_servicio:
             continue
-
+        if fecha_servicio.tzinfo is None:
+            fecha_servicio = fecha_servicio.replace(
+                tzinfo=ZoneInfo("America/Mexico_City")
+            )
+            
         if ahora <= fecha_servicio <= limite:
             minutos = int((fecha_servicio - ahora).total_seconds() / 60)
             alertas.append({
