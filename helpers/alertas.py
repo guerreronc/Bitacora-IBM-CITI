@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 from flask import request
 from db import get_connection
 from helpers.utils_inventario import obtener_mensajes_stock_bajo
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 MAP_LOCALIDAD = {
     "QUERETARO": "QRO",
@@ -75,7 +77,7 @@ def obtener_alertas(usuario):
 
     casos = cursor.fetchall()
 
-    ahora = datetime.now()
+    ahora = datetime.now(ZoneInfo("America/Mexico_City"))
     limite = ahora + timedelta(minutes=180)
 
     for c in casos:
